@@ -1,0 +1,26 @@
+﻿@page "/mywork"
+@using Savitar.Web.Shared.Models
+@inject HttpClient Http
+
+<h1>My Work</h1>
+
+@if (_clients == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @foreach (var client in _clients)
+    {
+        <p><ClientForProject Client="@client"></ClientForProject></p>
+    }
+}
+
+@code {
+    private Client[] _clients;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _clients = await Http.GetFromJsonAsync<Client[]>("api/data/GetClients");
+    }
+}

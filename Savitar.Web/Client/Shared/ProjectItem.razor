@@ -1,0 +1,88 @@
+﻿@using Savitar.Web.Shared.Models
+<div class="card">
+    <div class="card-header">
+        <span>
+            @Project.Name
+            @if (!string.IsNullOrEmpty(Project.Url))
+            {
+                <a href="@Project.Url" target="_blank" class="oi oi-external-link mr-2"></a>
+            }
+        </span>
+    </div>
+    
+    <div class="card-body">
+        <p class="card-text" style="white-space: pre-line">@((MarkupString)Project.Description)</p>
+        
+        @if (Project.Responsibilities != null && Project.Responsibilities.Any())
+        {
+            <h5 class="card-title">Responsibilities</h5>
+            <p class="card-text">
+                <ul class="list-group list-group-flush" id="projectTaglist">
+                    @foreach (var item in @Project.Responsibilities)
+                    {
+                        <li>@item.Name</li>
+                    }
+                </ul>
+            </p>
+        }
+        
+        @if (Project.TechStack != null && Project.TechStack.Any())
+        {
+            <h5 class="card-title">Tech Stack</h5>
+            <p class="card-text">
+                <ul class="list-group list-group-flush" id="projectTaglist">
+                    @foreach (var item in @Project.TechStack)
+                    {
+                        <li>@item.Name</li>
+                    }
+                </ul>
+            </p>
+        }
+    </div>
+</div>
+
+<style>
+    #projectTaglist {
+        display: inline;
+        list-style: none;
+    }
+
+    #projectTaglist li {
+        display: inline;
+    }
+
+    #projectTaglist li:after {
+        content: ", ";
+    }
+
+    #projectTaglist li:last-child:after {
+        content: "";
+    }
+
+    a:link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:visited {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: inherit;
+    }
+
+    a:active {
+        text-decoration: underline;
+        color: inherit;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public Project Project { get; set; }
+    //[Parameter]
+    //public RenderFragment ChildContent { get; set; }
+}

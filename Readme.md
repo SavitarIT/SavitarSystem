@@ -1,9 +1,10 @@
--- Put this in the server .csproj
+## Debugging
+**Put this in the server .csproj**
  <ItemGroup>
     <Watch Include="..\**\*.razor" />
     <Watch Include="..\**\*.scss" />
     <Watch Include="..\**\*.cs" />
   </ItemGroup>
 
-  -- Then run this from the command line in server root.
+**Then run this from the command line in server root.**
 dotnet watch run debug

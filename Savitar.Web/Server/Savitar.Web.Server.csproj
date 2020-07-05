@@ -23,6 +23,7 @@
     <Watch Remove="Controllers\API\DataController.cs" />
     <Watch Remove="Data\ClientsAndProjects.cs" />
     <Watch Remove="Data\Responsibilities.cs" />
+    <Watch Remove="Data\Services.cs" />
     <Watch Remove="Data\Technologies.cs" />
     <Watch Remove="TechnologyCategories.cs" />
   </ItemGroup>

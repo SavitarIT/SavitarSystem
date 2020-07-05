@@ -13,13 +13,12 @@ namespace Savitar.Web.Server.Data
                 {
                     new Project("Savitar Web : This website")
                     {
-                        Description = "Wanting to learn the new Microsoft Blazor technology, I decided to build this site using the technology to gain the experience needed.",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility },
+                        Description = "Wanting to learn the new Microsoft Blazor technology, I decided to build this site using the technology to gain some needed experience.",
                         TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetCore, Technologies.CSharp, Technologies.Blazor }
                     },
                     new Project("dBit : MWeb Payment Module")
                     {
-                        Description = "The company already had a web application build off DotNetNuke. I simply built them a DNN module that facilitated payments.",
+                        Description = "The company already had a web application built off DotNetNuke. I simply built them a DNN module that facilitated online payments.",
                         TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetCore, Technologies.CSharp, Technologies.SQLServer }
                     },
                     new Project("Absolute Systems")
@@ -74,8 +73,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     },
                     new Project("Canoe Kayak World")
                     {
-                        Description = "Canoe Kayak World required a website to display products sold in store and to advertise events organized.",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility },
+                        Description = "Canoe Kayak World required a website to display products sold in store and to advertise events organized.",                        
                         TechStack = new List<ProjectTechnology>{ Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer }
                     },
                     new Project("CheckMyTicket")
@@ -94,14 +92,12 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                             <li>Users gained access to the system via scratch card numbers. The scratch cards are provided at various outlets around Nigeria. The employee user is able to register an account and setup their CV. They are however not able to print the CV or submit to potential employers until a valid scratch card number has been entered.</li>
                             <li>Scratch card numbers are imported into the system via a flat file CSV format. These numbers are then used to verify the numbers entered in by the end user.</li>
                             <li>When the CV information has been input, the end user is then able to locate potential employers based on matching criteria and similarly, employers are able to locate employees via a similar mechanism.</li>
-                        </ul>",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility },
+                        </ul>",                        
                         TechStack = new List<ProjectTechnology>{ Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer }
                     },
                     new Project("Dawn Wing")
                     {
                         Description = @"Dawn wing reached a point where their in-house software had too many problems for the software to be usable. I was contracted to assist them with ironing out the problems and getting the software to a stable position again.",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility },
                         TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.VisualBasicNet }
                     },
                     new Project("Ferdinandplan")
@@ -121,8 +117,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
     <li>Multiple levels of security and access. Franchisee, franchisor and administrator. Each of these levels could further define their own security and permissions based on needs.</li>
     <li>Franchisees could manually capture their daily sales, or upload them automatically using our RESTful API. Stock, supplier, etc... information was manually captured.</li>
     <li>Franchisors could monitor sales, reconcile sales information, generate franshisee fees (and invoice), provide upper management GP reports, setup menu items (by store, group or region), manage stock (including pricing across regions), suppliers, agents, etc...</li>
-</ul>",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility },
+</ul>",                        
                         TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer }
                     },
                     new Project("Hygeria")
@@ -190,6 +185,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
     <li>Winforms application to assist in the manufacturing of plastic materials at Roto-Plastics.</li>
     <li>Enables end users to create recipes based on plastics, colours, dy, material and design.</li>
 </ul>",
+                        TechStack = new List<ProjectTechnology>{ Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer }
                     },
                     new Project("Savitar RC")
                     {
@@ -214,7 +210,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     {
                         Description = @"<ul class='entry-content'>
     <li>Windows application for the SABC marketing department. The application handled the cataloging and retrieval of adverts that were recorded for use on the various radio stations.</li>
-    <li>A custom database backend was developed for us in this application employing the use of C++ structs. The custom database also supported indexing for fast retrieval.</li>
+    <li>A custom database backend was developed for use in this application employing the use of C++ structs. The custom database also supported indexing for fast retrieval.</li>
 </ul>",
                         TechStack = new List<ProjectTechnology> { Technologies.CPP }
                     },
@@ -323,10 +319,10 @@ When this project started in 2005, my client only had installation files for the
                     new Project("Aura")
                     {
                         Description = @"<ul class='entry-content'>
-                            <li>Alphapos (now trading as Cosoft) required a point of sale application to serve the hospitality industry. They supply POS solutions to Steers Holdings (Steers, Debonairs, etc..), Fishaways, Something Fishy, Hotdog Café, Scooters, etc…</li>
-                            <li>The solution required a front end workstation for the till operators to perform sales and a back office for management to generate sales reports, setup menus, etc…</li>
-                            <li>The solution required that all sales were uploaded nightly at the Alphapos Enterprise server – via FTP - to be imported into a data warehouse solution to enable the franchisor to view sales statistics for all franchises and outlets country wide.</li>
-                            <li>The application was extremely feature rich and catered to both the franchisee and franchisor needs.</li>
+                            <li>Point Of Sale solution serving the hospitality industry. In use by Steers Holdings (Steers, Debonairs, etc..), Fishaways, Something Fishy, Hotdog Café, Scooters, and more.</li>
+                            <li>The system had a front end workstation for the till operators to perform sales and a back office for management to generate sales reports, setup menus, and more.</li>
+                            <li>All sales were uploaded nightly at the Alphapos Enterprise server – via FTP - to be imported into a data warehouse solution to enable the franchisor to view sales statistics for all franchises and outlets country wide.</li>
+                            <li>The application is extremely feature rich and catered to both the franchisee and franchisor needs.</li>
                         </ul>",
                         Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility, Responsibilities.MentorResponsibility },
                         TechStack = new List<ProjectTechnology> { Technologies.Delphi, Technologies.SQLServer }
@@ -349,7 +345,7 @@ When this project started in 2005, my client only had installation files for the
                                 <li>The service side has a complete management web interface to enable staff to setup vending machines, deploy settings to vending machines, manage accounts, funds, import stock, generate GP reports, etc…</li>
                                 <li>The server solution had to calculate commissions for account holders based on sales and pre-configured percentage settings.Account holders were also able to login to the web frontend to view sales statistics, draw reports and support queries.</li>
                             </ul>",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility },
+                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.SeniorDevResponsibility},
                         TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer }
                     },
                     new Project("CellC Distributor / Vendor Management System")
@@ -359,6 +355,7 @@ When this project started in 2005, my client only had installation files for the
     <li>Allows for distributor and vendor login to enable the rendering of reports for cash balances, stock orders, commissions generated, payments made, etc...</li>
     <li>Starter packs are sold by CellC to a distributor (Hi-Fi Corp, etc...). The stock is sent to the system via flat file and loaded into SQL Server. Vendors then purchase the stock at Point Of Sale terminals at the distributor, with communications via SOAP Web Services in real time.</li>    
 </ul>",
+                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.SeniorDevResponsibility},
                         TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer, Technologies.WebServices }
 
                     }

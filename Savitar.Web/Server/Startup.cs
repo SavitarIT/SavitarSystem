@@ -6,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using Microsoft.AspNetCore.Components;
+using System;
 
 namespace Savitar.Web.Server
 {
@@ -22,10 +25,21 @@ namespace Savitar.Web.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //// https://medium.com/@nohorse/blazor-server-webapi-ftw-2202e1d8a75
-            //services.AddMvc(options => options.EnableEndpointRouting = false)
-            //    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddMvc().AddNewtonsoftJson();
+            services.AddResponseCompression(opts =>
+            {
+                opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] { "application/octet-stream" });
+            });
 
+            services.AddScoped<HttpClient>(s =>
+            {
+                var navigationManager = s.GetRequiredService<NavigationManager>();
+                return new HttpClient
+                {
+                    BaseAddress = new Uri(navigationManager.BaseUri)
+                };
+            });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -34,6 +48,8 @@ namespace Savitar.Web.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseResponseCompression();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -55,9 +71,12 @@ namespace Savitar.Web.Server
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
-                endpoints.MapControllers();
-                endpoints.MapFallbackToFile("index.html");
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapFallbackToPage("/_Host");
+
+                //endpoints.MapRazorPages();
+                //endpoints.MapControllers();
+                //endpoints.MapFallbackToFile("index.html");
             });
         }
     }

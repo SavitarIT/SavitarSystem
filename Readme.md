@@ -1,11 +1,12 @@
 ## Debugging
 **Put this in the server .csproj**
- ```<ItemGroup>
+ ```
+ <ItemGroup>
     <Watch Include="..\**\*.razor" />
     <Watch Include="..\**\*.scss" />
     <Watch Include="..\**\*.cs" />
-  </ItemGroup>```
-
+  </ItemGroup>
+  ```
 **Then run this from the command line in server root.**
 `dotnet watch run debug`
 

@@ -1,6 +1,6 @@
 ﻿namespace Savitar.Web.Shared.Models
 {
-    public class Service
+    public class Service : Entity
     {
         public string Title { get; set; }
         public string Description { get; set; }

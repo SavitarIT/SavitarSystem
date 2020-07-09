@@ -1,5 +1,6 @@
 ﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Savitar IT</a>
+    <img src="/Images/SavitarLogoHeader.png" alt="Savitar IT" width="240" height="50">
+    
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,12 +8,11 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
-        <NavMenuItem Title="Home" Href=""></NavMenuItem>
-        @*<NavMenuItem Title="Testimonials" Href="testimonials"></NavMenuItem>*@
-        <NavMenuItem Title="Services" Href="services"></NavMenuItem>
-        <NavMenuItem Title="My Work" Href="mywork"></NavMenuItem>
-        <NavMenuItem Title="Skills Matrix" Href="skillsmatrix"></NavMenuItem>
-        <NavMenuItem Title="Contact" Href="contact"></NavMenuItem>
+        <NavMenuItem Title="Home" Href="" IconClass="oi-home"></NavMenuItem>
+        <NavMenuItem Title="Services" Href="services" IconClass="oi-puzzle-piece"></NavMenuItem>
+        <NavMenuItem Title="My Work" Href="mywork" IconClass="oi-project"></NavMenuItem>
+        <NavMenuItem Title="Skills Matrix" Href="skillsmatrix" IconClass="oi-list"></NavMenuItem>
+        <NavMenuItem Title="Contact" Href="contact" IconClass="oi-star"></NavMenuItem>
     </ul>
 </div>
 

@@ -1,0 +1,51 @@
+﻿<div class="card">
+    <div class="row no-gutters">
+        @if (!IsRightAlign)
+        {
+            <div class="col-auto">
+                <img src="@ImageSrc" width="@ImageWidth" height="@ImageHeight" class="img-fluid" alt="">
+            </div>
+        }
+        <div class="col">
+            <div class="card-block px-2">
+                @if (Title != null)
+                {
+                    <h4 class="card-title">@Title</h4>
+                }
+                @if (Description != null)
+                {
+                    <p class="card-text">@Description</p>
+                }
+            </div>
+        </div>
+        @if (IsRightAlign)
+        {
+            <div class="col-auto">
+                <img src="@ImageSrc" width="@ImageWidth" height="@ImageHeight" class="img-fluid" alt="">
+            </div>
+        }
+    </div>
+    @if (Footer != null)
+    {
+        <div class="card-footer w-100 text-muted">
+            Footer stating cats are CUTE little animals
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment Title { get; set; }
+    [Parameter]
+    public RenderFragment Description { get; set; }
+    [Parameter]
+    public RenderFragment Footer { get; set; }
+    [Parameter]
+    public bool IsRightAlign { get; set; }
+    [Parameter]
+    public string ImageSrc { get; set; }
+    [Parameter]
+    public int ImageWidth { get; set; } = 256;
+    [Parameter]
+    public int ImageHeight { get; set; } = 256;
+}

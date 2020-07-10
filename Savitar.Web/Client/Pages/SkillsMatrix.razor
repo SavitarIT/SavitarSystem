@@ -2,7 +2,7 @@
 @using Savitar.Web.Shared.Models
 @inject HttpClient Http
 
-    <h1 style="max-width: 50%">Skills Matrix</h1>
+    <h1>Skills Matrix</h1>
     
     @if (_technologies == null)
     {
@@ -28,7 +28,7 @@
                     lastCategoryUsed = technology.Category.Name;
                     <div class="row" style="height: 30px">
                         <div class="col-md-6">
-                            <h5><img src="Images/@(technology.Category.Name.Replace(" ", "")).svg" class="img-fluid"> @lastCategoryUsed</h5>
+                            <h5><img src="Images/@(technology.Category.Name.Replace(" ", "")).png" class="img-fluid"> @lastCategoryUsed</h5>
                         </div>
                     </div>
                 }
@@ -46,10 +46,10 @@
     }
 
     <style>
-        img {
+        .img-fluid {
             width: 24px;
         }
-
+        
         .container-fluid {
             /*        width: 800px;*/
             max-width: 850px;
@@ -84,13 +84,13 @@
 
             var years = timeSinceLastUsed.TotalDays / 365.0;
             if (years < 2)
-                return "More than a year ago";
+                return "    a year ago";
             if (years < 6)
-                return "More than 5 years ago";
+                return "> 5 years";
             if (years < 11)
-                return "More then 10 years ago";
+                return "> 10 years";
 
-            return "Woah - long long ago...";
+            return "Long long ago...";
         }
 
         protected double? GetYears(ProjectTechnology technology)

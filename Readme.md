@@ -26,7 +26,6 @@ Browser: http://savitar.local:5000/
 . Localise the app perhaps. Afrikaans is a good second language for this.
     https://channel9.msdn.com/Events/Build/2020/BOD104?ocid=AID3012654&WT.mc_id=build2020-azuredevtips-micrum
     Go to 30 mins in.
-. Add a favicon.ico file to the project for Savitar.
 . Set decent icons - all over.
 . Contact information to the top. Email, cell, whatsapp, etc... Format for call href: tel:+27609101010
 
@@ -34,3 +33,4 @@ Browser: http://savitar.local:5000/
 ## Handy links
 . https://github.com/SteveSandersonMS/CarChecker
 . https://www.matblazor.com/
+. https://www.clipartmax.com/

@@ -3,18 +3,18 @@
         <div class="col-md-4">
             <img src="@ImageSrc" alt="" class="img-fluid cardWithSideImage">
         </div>
-        <div class="col">
-            <div class="card-block px-2 col-md-8">
+        <div class="col-md-8">
+            <div class="card-block">
                 @if (Title != null)
                 {
-                    <h4 class="card-title">@Title</h4>
+                    <h4 class="card-header">@Title</h4>
                 }
                 @if (Description != null)
                 {
-                    <p class="card-text">@Description</p>
+                    <span class="card-body">@Description</span>
                 }
             </div>
-        </div>        
+        </div>
     </div>
     @if (Footer != null)
     {
@@ -37,7 +37,7 @@
     [Parameter]
     public RenderFragment Description { get; set; }
     [Parameter]
-    public RenderFragment Footer { get; set; }    
+    public RenderFragment Footer { get; set; }
     [Parameter]
     public string ImageSrc { get; set; }
     [Parameter]

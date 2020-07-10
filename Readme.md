@@ -13,8 +13,8 @@
 It's not as good as hot reloads, but Blazor is new - so hang in there. Hot reloads are coming...
 
 **Quick Access**
-Powershell: cd d:\Software\Savitar\Applications\SavitarSystem\Savitar.Web\Server\; dotnet watch run debug;
-Browser: http://savitar.local:5000/
+* Powershell: cd d:\Software\Savitar\Applications\SavitarSystem\Savitar.Web\Server\; dotnet watch run debug;
+* Browser: http://savitar.local:5000/
 
 
 ## To-Do

@@ -1,13 +1,10 @@
 ﻿<div class="card">
     <div class="row no-gutters">
-        @if (!IsRightAlign)
-        {
-            <div class="col-auto">
-                <img src="@ImageSrc" width="@ImageWidth" height="@ImageHeight" class="img-fluid" alt="">
-            </div>
-        }
+        <div class="col-md-4">
+            <img src="@ImageSrc" alt="" class="img-fluid cardWithSideImage">
+        </div>
         <div class="col">
-            <div class="card-block px-2">
+            <div class="card-block px-2 col-md-8">
                 @if (Title != null)
                 {
                     <h4 class="card-title">@Title</h4>
@@ -17,13 +14,7 @@
                     <p class="card-text">@Description</p>
                 }
             </div>
-        </div>
-        @if (IsRightAlign)
-        {
-            <div class="col-auto">
-                <img src="@ImageSrc" width="@ImageWidth" height="@ImageHeight" class="img-fluid" alt="">
-            </div>
-        }
+        </div>        
     </div>
     @if (Footer != null)
     {
@@ -33,19 +24,24 @@
     }
 </div>
 
+<style>
+    .cardWithSideImage {
+        width: 100%;
+        object-fit: fill;
+    }
+</style>
+
 @code {
     [Parameter]
     public RenderFragment Title { get; set; }
     [Parameter]
     public RenderFragment Description { get; set; }
     [Parameter]
-    public RenderFragment Footer { get; set; }
-    [Parameter]
-    public bool IsRightAlign { get; set; }
+    public RenderFragment Footer { get; set; }    
     [Parameter]
     public string ImageSrc { get; set; }
     [Parameter]
-    public int ImageWidth { get; set; } = 256;
+    public string ImageWidth { get; set; } = "100%";
     [Parameter]
     public int ImageHeight { get; set; } = 256;
 }

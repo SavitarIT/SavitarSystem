@@ -1,5 +1,4 @@
-﻿@using Savitar.Web.Client.Models
-<div class="card">
+﻿<div class="card">
     <div class="card-header">
         <span>
             @($"Client: {(MarkupString)Client.Name}")
@@ -45,5 +44,5 @@
 
 @code {
     [Parameter]
-    public Client Client { get; set; }
+    public Models.Client Client { get; set; }
 }

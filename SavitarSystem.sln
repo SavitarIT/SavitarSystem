@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Server", "Savit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Client", "Savitar.Web\Client\Savitar.Web.Client.csproj", "{9893DF38-1047-4488-AECA-64E66A22FF54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Shared", "Savitar.Web\Shared\Savitar.Web.Shared.csproj", "{0F3BBB8B-5EA6-4CFF-8776-E021921582DB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{9893DF38-1047-4488-AECA-64E66A22FF54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9893DF38-1047-4488-AECA-64E66A22FF54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9893DF38-1047-4488-AECA-64E66A22FF54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F3BBB8B-5EA6-4CFF-8776-E021921582DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F3BBB8B-5EA6-4CFF-8776-E021921582DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F3BBB8B-5EA6-4CFF-8776-E021921582DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F3BBB8B-5EA6-4CFF-8776-E021921582DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

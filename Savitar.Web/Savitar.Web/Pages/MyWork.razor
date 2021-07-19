@@ -1,0 +1,35 @@
+﻿@page "/mywork"
+@using Savitar.Web.Server.Models
+@using Savitar.Web.Data
+@inject HttpClient Http
+@inject WeatherForecastService WeatherForecastService
+
+<h1>My Work</h1>
+
+<p>
+    Feel free to peruse or copy my public repositories
+    <a href="https://github.com/SavitarIT" title="GitHub" target="_blank"><img src="/Images/GitHub.png" width="36" height="36"></a>
+    <a href="https://bitbucket.org/DominionZA" title="Bitbucket" target="_blank"><img src="/Images/Bitbucket.png" width="36" height="36"></a>
+</p>
+
+
+@if (_clients == null)
+{
+    <p><em>Loading Clients and Projects...</em></p>
+}
+else
+{
+    @foreach (var client in _clients)
+    {
+        <p><ClientForProject Client="@client"></ClientForProject></p>
+    }
+}
+
+@code {
+    private Client[] _clients;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _clients = await WeatherForecastService.GetClientsAsync();
+    }
+}

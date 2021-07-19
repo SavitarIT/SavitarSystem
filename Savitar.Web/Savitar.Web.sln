@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savitar.Web", "Savitar.Web\Savitar.Web.csproj", "{5E13E30D-A1BD-417C-AC51-8CCF10E452A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E13E30D-A1BD-417C-AC51-8CCF10E452A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E13E30D-A1BD-417C-AC51-8CCF10E452A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E13E30D-A1BD-417C-AC51-8CCF10E452A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E13E30D-A1BD-417C-AC51-8CCF10E452A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {734AF039-8A37-4045-93DD-F4CE5D00AFC6}
+	EndGlobalSection
+EndGlobal

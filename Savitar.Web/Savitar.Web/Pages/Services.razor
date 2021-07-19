@@ -1,0 +1,29 @@
+﻿@page "/services"
+@using Savitar.Web.Server.Models
+@using Savitar.Web.Data
+@inject HttpClient Http
+@inject WeatherForecastService WeatherForecastService
+
+<h1>Services</h1>
+
+@if (_items == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @foreach (var item in _items)
+    {
+        <p><ServiceItem Data="@item"></ServiceItem></p>
+    }
+}
+
+
+@code {
+    private Service[] _items;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _items = await WeatherForecastService.GetServicesAsync();
+    }
+}

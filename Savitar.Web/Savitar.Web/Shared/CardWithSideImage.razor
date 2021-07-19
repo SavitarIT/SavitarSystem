@@ -1,33 +1,33 @@
 ﻿<div class="card">
+    @if (Title != null)
+    {        
+        <h4 class="card-header">@Title</h4>        
+    }
     <div class="row no-gutters">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <img src="@ImageSrc" alt="" class="img-fluid cardWithSideImage">
         </div>
-        <div class="col-md-8">
-            <div class="card-block">
-                @if (Title != null)
-                {
-                    <h4 class="card-header">@Title</h4>
-                }
-                @if (Description != null)
-                {
+        <div class="col-md-10">            
+            @if (Description != null)
+            {
+                <div class="card-block">
                     <span class="card-body">@Description</span>
-                }
-            </div>
+                </div>
+            }            
         </div>
     </div>
     @if (Footer != null)
     {
         <div class="card-footer w-100 text-muted">
-            Footer stating cats are CUTE little animals
+            <span>@Footer</span>
         </div>
     }
 </div>
 
 <style>
     .cardWithSideImage {
-        width: 100%;
-        object-fit: fill;
+        width: 95%;
+        object-fit: fill;        
     }
 </style>
 

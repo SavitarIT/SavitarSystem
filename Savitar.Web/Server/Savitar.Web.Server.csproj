@@ -5,12 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.8" />    
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.8" />    
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Client\Savitar.Web.Client.csproj" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,13 +19,32 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Watch Remove="App.razor" />
     <Watch Remove="Controllers\API\DataController.cs" />
     <Watch Remove="Data\ClientsAndProjects.cs" />
     <Watch Remove="Data\Responsibilities.cs" />
     <Watch Remove="Data\Services.cs" />
     <Watch Remove="Data\Technologies.cs" />
+    <Watch Remove="Models\Client.cs" />
+    <Watch Remove="Models\Entity.cs" />
+    <Watch Remove="Models\Enums.cs" />
+    <Watch Remove="Models\Project.cs" />
+    <Watch Remove="Models\ProjectResponsibility.cs" />
+    <Watch Remove="Models\ProjectTechnology.cs" />
+    <Watch Remove="Models\ProjectTechnologyCategory.cs" />
+    <Watch Remove="Models\Service.cs" />
+    <Watch Remove="Models\WeatherForecast.cs" />
+    <Watch Remove="Pages\Contact.razor" />
+    <Watch Remove="Pages\Counter.razor" />
     <Watch Remove="Pages\Error - Copy.cshtml.cs" />
+    <Watch Remove="Pages\FetchData.razor" />
+    <Watch Remove="Pages\Index.razor" />
+    <Watch Remove="Pages\MyWork.razor" />
+    <Watch Remove="Pages\Services.razor" />
+    <Watch Remove="Pages\SkillsMatrix.razor" />
+    <Watch Remove="Pages\Testimonials.razor" />
     <Watch Remove="TechnologyCategories.cs" />
+    <Watch Remove="_Imports.razor" />
   </ItemGroup>
 
   <ItemGroup>

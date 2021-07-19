@@ -35,10 +35,10 @@ else
 }
 
 @code {
-    private Models.WeatherForecast[] _forecasts;
+    private Savitar.Web.Server.Models.WeatherForecast[] _forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        _forecasts = await Http.GetFromJsonAsync<Models.WeatherForecast[]>("WeatherForecast");
+        _forecasts = await Http.GetFromJsonAsync<Savitar.Web.Server.Models.WeatherForecast[]>("WeatherForecast");
     }
 }

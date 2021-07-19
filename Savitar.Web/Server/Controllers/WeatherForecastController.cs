@@ -23,10 +23,10 @@ namespace Savitar.Web.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Client.Models.WeatherForecast> Get()
+        public IEnumerable<Models.WeatherForecast> Get()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new Client.Models.WeatherForecast
+            return Enumerable.Range(1, 5).Select(index => new Models.WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),

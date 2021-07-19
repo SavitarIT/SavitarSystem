@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Savitar.Web.Client.Models;
+using Savitar.Web.Server.Models;
 
 namespace Savitar.Web.Server.Data
 {

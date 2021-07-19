@@ -1,4 +1,6 @@
 ﻿@page "/services"
+@using Savitar.Web.Server.Models
+@using Savitar.Web.Server.Shared
 @inject HttpClient Http
 
 <h1>Services</h1>
@@ -17,10 +19,10 @@ else
 
 
 @code {
-    private Savitar.Web.Client.Models.Service[] _items;
+    private Savitar.Web.Server.Models.Service[] _items;
 
     protected override async Task OnInitializedAsync()
     {
-        _items = await Http.GetFromJsonAsync<Savitar.Web.Client.Models.Service[]>("api/data/GetServices");
+        _items = await Http.GetFromJsonAsync<Savitar.Web.Server.Models.Service[]>("api/data/GetServices");
     }
 }

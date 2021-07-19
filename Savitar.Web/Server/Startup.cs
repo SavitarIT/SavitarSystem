@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -25,7 +24,7 @@ namespace Savitar.Web.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().AddNewtonsoftJson();
+            //////services.AddMvc().AddNewtonsoftJson();
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
@@ -43,6 +42,7 @@ namespace Savitar.Web.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,14 +53,14 @@ namespace Savitar.Web.Server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseWebAssemblyDebugging();
+                //////app.UseWebAssemblyDebugging();
             }
             else
             {
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseBlazorFrameworkFiles();
+            //////app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -71,6 +71,7 @@ namespace Savitar.Web.Server
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapBlazorHub();
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapFallbackToPage("/_Host");
 

@@ -18,21 +18,21 @@ namespace Savitar.Web.Server.Controllers.API
 
         [HttpGet]
         [Route("GetClients")]
-        public IEnumerable<Client.Models.Client> GetClients()
+        public IEnumerable<Models.Client> GetClients()
         {
             return ClientsAndProjects.GetAll();
         }
 
         [HttpGet]
         [Route("GetProjectTechnologies")]
-        public IEnumerable<Client.Models.ProjectTechnology> GetProjectTechnologies()
+        public IEnumerable<Models.ProjectTechnology> GetProjectTechnologies()
         {
             return Technologies.GetAll();
         }
 
         [HttpGet]
         [Route("GetServices")]
-        public IEnumerable<Client.Models.Service> GetServices()
+        public IEnumerable<Models.Service> GetServices()
         {
             return Services.GetAll();
         }

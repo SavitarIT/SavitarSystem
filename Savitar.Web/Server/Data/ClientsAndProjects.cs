@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using Savitar.Web.Shared.Models;
+using Savitar.Web.Client.Models;
 
 namespace Savitar.Web.Server.Data
 {
     public static class ClientsAndProjects
     {
-        private static readonly IEnumerable<Shared.Models.Client> Clients = new List<Shared.Models.Client>
+        private static readonly IEnumerable<Client.Models.Client> Clients = new List<Client.Models.Client>
         {
-            new Shared.Models.Client("Savitar IT Solutions")
+            new Client.Models.Client("Savitar IT Solutions")
             {
                 Projects = new List<Project>
                 {
@@ -250,7 +250,7 @@ settings by the end user.</li>
                     }
                 }
             },
-            new Shared.Models.Client("Aberdare Cables")
+            new Client.Models.Client("Aberdare Cables")
             {
                 Url = "https://www.aberdare.co.za",
                 Projects = new List<Project>
@@ -268,7 +268,7 @@ Being the first PC developer in the company, I was also responsible for assistin
                     }
                 }
             },
-            new Shared.Models.Client("Accutrak Pty (Ltd)")
+            new Client.Models.Client("Accutrak Pty (Ltd)")
             {
                 Url = "https://www.accutrak.co.za",
                 Projects = new List<Project>
@@ -312,7 +312,7 @@ When this project started in 2005, my client only had installation files for the
 
                 }
             },
-            new Shared.Models.Client("Cosoft")
+            new Client.Models.Client("Cosoft")
             {
                 Projects = new List<Project>
                 {
@@ -329,7 +329,7 @@ When this project started in 2005, my client only had installation files for the
                     }
                 }
             },
-            new Shared.Models.Client("Smartec Technologies")
+            new Client.Models.Client("Smartec Technologies")
             {
                 Projects = new List<Project>
                 {
@@ -362,7 +362,7 @@ When this project started in 2005, my client only had installation files for the
                 }
             }
         };
-        public static IEnumerable<Shared.Models.Client> GetAll()
+        public static IEnumerable<Client.Models.Client> GetAll()
         {
             return Clients;
         }

@@ -1,5 +1,4 @@
 @page "/fetchdata"
-@using Savitar.Web.Shared
 @inject HttpClient Http
 
 <h1>Weather forecast</h1>
@@ -36,10 +35,10 @@ else
 }
 
 @code {
-    private WeatherForecast[] _forecasts;
+    private Models.WeatherForecast[] _forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        _forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        _forecasts = await Http.GetFromJsonAsync<Models.WeatherForecast[]>("WeatherForecast");
     }
 }

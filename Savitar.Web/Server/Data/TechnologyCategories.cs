@@ -1,4 +1,4 @@
-﻿using Savitar.Web.Shared.Models;
+﻿using Savitar.Web.Client.Models;
 
 namespace Savitar.Web.Server.Data
 {

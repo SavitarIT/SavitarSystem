@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Savitar.Web.Client.Pages;
 using Savitar.Web.Server.Data;
 
 namespace Savitar.Web.Server.Controllers.API
@@ -19,23 +18,23 @@ namespace Savitar.Web.Server.Controllers.API
 
         [HttpGet]
         [Route("GetClients")]
-        public IEnumerable<Shared.Models.Client> GetClients()
+        public IEnumerable<Client.Models.Client> GetClients()
         {
             return ClientsAndProjects.GetAll();
         }
 
         [HttpGet]
         [Route("GetProjectTechnologies")]
-        public IEnumerable<Shared.Models.ProjectTechnology> GetProjectTechnologies()
+        public IEnumerable<Client.Models.ProjectTechnology> GetProjectTechnologies()
         {
             return Technologies.GetAll();
         }
 
         [HttpGet]
         [Route("GetServices")]
-        public IEnumerable<Shared.Models.Service> GetServices()
+        public IEnumerable<Client.Models.Service> GetServices()
         {
-            return Data.Services.GetAll();
+            return Services.GetAll();
         }
     }
 }

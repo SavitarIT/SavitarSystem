@@ -17,10 +17,10 @@ else
 
 
 @code {
-    private Savitar.Web.Shared.Models.Service[] _items;
+    private Savitar.Web.Client.Models.Service[] _items;
 
     protected override async Task OnInitializedAsync()
     {
-        _items = await Http.GetFromJsonAsync<Savitar.Web.Shared.Models.Service[]>("api/data/GetServices");
+        _items = await Http.GetFromJsonAsync<Savitar.Web.Client.Models.Service[]>("api/data/GetServices");
     }
 }

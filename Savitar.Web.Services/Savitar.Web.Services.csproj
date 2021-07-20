@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Savitar.Web.Services.Contracts\Savitar.Web.Services.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
-
 </Project>

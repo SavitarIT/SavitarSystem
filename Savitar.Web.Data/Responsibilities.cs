@@ -3,7 +3,7 @@ using Savitar.Web.Models;
 
 namespace Savitar.Web.Data
 {
-    public static class Responsibilities
+    internal class Responsibilities
     {
         public static readonly ProjectResponsibility LeadDevResponsibility = new ProjectResponsibility { Name = "Lead Developer" };
         public static readonly ProjectResponsibility SeniorDevResponsibility = new ProjectResponsibility { Name = "Senior Developer" };

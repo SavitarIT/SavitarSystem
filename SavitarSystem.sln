@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Bootstrapper", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savitar.Web.Data", "Savitar.Web.Data\Savitar.Web.Data.csproj", "{8A90E07C-93DF-4429-B411-C01E16302AF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savitar.Web.Data.Contracts", "Savitar.Web.Data.Contracts\Savitar.Web.Data.Contracts.csproj", "{D250315E-2BCB-4400-ACD1-B86E69F5ADB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{8A90E07C-93DF-4429-B411-C01E16302AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A90E07C-93DF-4429-B411-C01E16302AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A90E07C-93DF-4429-B411-C01E16302AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D250315E-2BCB-4400-ACD1-B86E69F5ADB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D250315E-2BCB-4400-ACD1-B86E69F5ADB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D250315E-2BCB-4400-ACD1-B86E69F5ADB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D250315E-2BCB-4400-ACD1-B86E69F5ADB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

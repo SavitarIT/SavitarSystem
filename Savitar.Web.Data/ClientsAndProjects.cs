@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Savitar.Web.Data.Contracts;
 using Savitar.Web.Models;
 
 namespace Savitar.Web.Data
 {
-    public static class ClientsAndProjects
+    internal class ClientsAndProjects : IClientsAndProjects
     {
-        private static readonly IEnumerable<Client> Clients = new List<Client>
+        private readonly IEnumerable<Client> Clients = new List<Client>
         {
             new Client("Savitar IT Solutions")
             {
@@ -362,7 +363,7 @@ When this project started in 2005, my client only had installation files for the
                 }
             }
         };
-        public static IEnumerable<Client> GetAll()
+        public IEnumerable<Client> GetAll()
         {
             return Clients;
         }

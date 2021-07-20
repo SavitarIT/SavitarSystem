@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Savitar.Web.Data.Contracts;
 using Savitar.Web.Models;
 
 namespace Savitar.Web.Data
 {
-    public static class Services
+    internal class Services : IServices
     {
-        public static IEnumerable<Service> GetAll()
+        public IEnumerable<Service> GetAll()
         {
             return new List<Service>
             {

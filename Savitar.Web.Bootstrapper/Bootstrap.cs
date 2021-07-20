@@ -6,6 +6,7 @@ namespace Savitar.Web.Bootstrapper
     {
         public static void Execute(IServiceCollection services)
         {
+            Data.DI.Execute(services);
             Services.DI.Execute(services);
         }
     }

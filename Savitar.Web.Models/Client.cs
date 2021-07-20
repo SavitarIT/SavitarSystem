@@ -2,7 +2,7 @@
           
 namespace Savitar.Web.Models
 {
-    public class Client
+    public class Client : Entity
     {
         public Client() {}
 

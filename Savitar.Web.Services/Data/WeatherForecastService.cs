@@ -1,10 +1,9 @@
-using Savitar.Web.Server.Data;
 using Savitar.Web.Server.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Savitar.Web.Data
+namespace Savitar.Web.Services.Data
 {
     public class WeatherForecastService
     {
@@ -36,7 +35,7 @@ namespace Savitar.Web.Data
 
         public Task<Service[]> GetServicesAsync()
         {
-            return Task.FromResult(Services.GetAll().ToArray());
+            return Task.FromResult(Data.Services.GetAll().ToArray());
         }
     }
 }

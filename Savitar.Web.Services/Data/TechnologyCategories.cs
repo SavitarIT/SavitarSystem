@@ -1,6 +1,6 @@
 ﻿using Savitar.Web.Server.Models;
 
-namespace Savitar.Web.Server.Data
+namespace Savitar.Web.Services.Data
 {
     public static class TechnologyCategories
     {

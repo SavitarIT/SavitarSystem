@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Savitar.Web.Models;
 
-namespace Savitar.Web.Data
+namespace Savitar.Web.Data.CV
 {
     internal class Responsibilities
     {

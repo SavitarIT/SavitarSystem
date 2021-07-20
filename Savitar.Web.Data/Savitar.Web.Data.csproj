@@ -13,8 +13,4 @@
     <ProjectReference Include="..\Savitar.Web.Models\Savitar.Web.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CV\" />
-  </ItemGroup>
-
 </Project>

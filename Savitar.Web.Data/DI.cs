@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Savitar.Web.Data.Contracts;
+using Savitar.Web.Data.CV;
 
 namespace Savitar.Web.Data
 {

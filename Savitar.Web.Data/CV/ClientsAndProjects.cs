@@ -2,7 +2,7 @@
 using Savitar.Web.Data.Contracts;
 using Savitar.Web.Models;
 
-namespace Savitar.Web.Data
+namespace Savitar.Web.Data.CV
 {
     internal class ClientsAndProjects : IClientsAndProjects
     {

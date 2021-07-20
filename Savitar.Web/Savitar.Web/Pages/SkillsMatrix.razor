@@ -1,8 +1,8 @@
 ﻿@page "/skillsmatrix"
-@using Savitar.Web.Server.Models
-@using Savitar.Web.Services.Data
+@using Savitar.Web.Models
+@using Savitar.Web.Services.Contracts
 @inject HttpClient Http
-@inject WeatherForecastService WeatherForecastService
+@inject ICVDataService CVDataService
 
 <h1>Skills Matrix</h1>
 
@@ -64,7 +64,7 @@ else
     private string lastCategoryUsed = null;
     protected override async Task OnInitializedAsync()
     {
-        _technologies = await WeatherForecastService.GetProjectTechnologies();
+        _technologies = await CVDataService.GetProjectTechnologies();
     }
 
     protected string GetLastUseText(ProjectTechnology technology)

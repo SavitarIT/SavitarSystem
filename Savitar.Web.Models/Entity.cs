@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace Savitar.Web.Server.Models
+namespace Savitar.Web.Models
 {
     public abstract class Entity
     {

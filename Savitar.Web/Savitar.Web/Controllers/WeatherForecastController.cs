@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Savitar.Web.Server.Controllers
+namespace Savitar.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]

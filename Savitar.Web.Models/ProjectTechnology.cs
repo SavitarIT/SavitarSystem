@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Savitar.Web.Server.Models
+namespace Savitar.Web.Models
 {
     public class ProjectTechnology : Entity
     {

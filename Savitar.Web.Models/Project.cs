@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Savitar.Web.Server.Models
+namespace Savitar.Web.Models
 {
     public class Project : Entity
     {

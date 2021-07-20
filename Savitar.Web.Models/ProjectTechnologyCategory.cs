@@ -1,4 +1,4 @@
-﻿namespace Savitar.Web.Server.Models
+﻿namespace Savitar.Web.Models
 {
     public class ProjectTechnologyCategory : Entity
     {

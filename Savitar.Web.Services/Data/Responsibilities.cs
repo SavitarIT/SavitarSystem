@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Savitar.Web.Server.Models;
+using Savitar.Web.Models;
 
 namespace Savitar.Web.Services.Data
 {

@@ -28,10 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Savitar.Web.Models\Savitar.Web.Models.csproj" />
     <ProjectReference Include="..\..\Savitar.Web.Services.Contracts\Savitar.Web.Services.Contracts.csproj" />
     <ProjectReference Include="..\..\Savitar.Web.Services\Savitar.Web.Services.csproj" />

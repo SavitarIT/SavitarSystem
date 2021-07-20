@@ -1,8 +1,8 @@
 ﻿@page "/services"
-@using Savitar.Web.Server.Models
-@using Savitar.Web.Services.Data
+@using Savitar.Web.Models
+@using Savitar.Web.Services.Contracts
 @inject HttpClient Http
-@inject WeatherForecastService WeatherForecastService
+@inject ICVDataService CVDataService
 
 <h1>Services</h1>
 
@@ -24,6 +24,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _items = await WeatherForecastService.GetServicesAsync();
+        _items = await CVDataService.GetServicesAsync();
     }
 }

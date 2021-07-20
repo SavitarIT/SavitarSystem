@@ -1,4 +1,4 @@
-﻿using Savitar.Web.Server.Models;
+﻿using Savitar.Web.Models;
 using Savitar.Web.Services.Contracts;
 using Savitar.Web.Services.Data;
 using System.Linq;

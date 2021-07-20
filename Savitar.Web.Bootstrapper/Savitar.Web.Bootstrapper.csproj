@@ -9,13 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Savitar.Web.Data\Savitar.Web.Data.csproj" />
-    <ProjectReference Include="..\Savitar.Web.Models\Savitar.Web.Models.csproj" />
     <ProjectReference Include="..\Savitar.Web.Services.Contracts\Savitar.Web.Services.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
+    <ProjectReference Include="..\Savitar.Web.Services\Savitar.Web.Services.csproj" />
   </ItemGroup>
 
 </Project>

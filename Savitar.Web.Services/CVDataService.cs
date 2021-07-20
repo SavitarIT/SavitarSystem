@@ -1,12 +1,12 @@
 ﻿using Savitar.Web.Models;
 using Savitar.Web.Services.Contracts;
-using Savitar.Web.Services.Data;
+using Savitar.Web.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Savitar.Web.Services
 {
-    public class CVDataService : ICVDataService
+    internal class CVDataService : ICVDataService
     {
         public Task<Client[]> GetClientsAsync()
         {

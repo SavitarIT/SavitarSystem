@@ -9,6 +9,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Savitar.Web.Bootstrapper\Savitar.Web.Bootstrapper.csproj" />
+    <ProjectReference Include="..\..\Libraries\Savitar.Web.Models\Savitar.Web.Models.csproj" />
+    <ProjectReference Include="..\..\Libraries\Savitar.Web.Services.Contracts\Savitar.Web.Services.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
@@ -25,12 +31,6 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Savitar.Web.Bootstrapper\Savitar.Web.Bootstrapper.csproj" />
-    <ProjectReference Include="..\..\Savitar.Web.Models\Savitar.Web.Models.csproj" />
-    <ProjectReference Include="..\..\Savitar.Web.Services.Contracts\Savitar.Web.Services.Contracts.csproj" />
   </ItemGroup>
   
 </Project>

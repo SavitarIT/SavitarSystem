@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Data.Contracts"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Tests", "Tests\Savitar.Web.Tests\Savitar.Web.Tests.csproj", "{A07B6C58-17CF-4681-B43D-B701A92AEB05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savitar.WebAssembly", "Savitar.WebAssembly\Savitar.WebAssembly.csproj", "{54FBFE15-F747-48B1-8315-1CAE618CD6D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{A07B6C58-17CF-4681-B43D-B701A92AEB05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A07B6C58-17CF-4681-B43D-B701A92AEB05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A07B6C58-17CF-4681-B43D-B701A92AEB05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54FBFE15-F747-48B1-8315-1CAE618CD6D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54FBFE15-F747-48B1-8315-1CAE618CD6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54FBFE15-F747-48B1-8315-1CAE618CD6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54FBFE15-F747-48B1-8315-1CAE618CD6D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

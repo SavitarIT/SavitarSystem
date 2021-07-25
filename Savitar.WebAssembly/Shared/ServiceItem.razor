@@ -1,0 +1,38 @@
+﻿<div class="card">
+    <div class="card-header">
+        <span>@($"{(MarkupString)Data.Title}")</span>
+    </div>
+
+    <div class="card-body">
+        <p>
+            @((MarkupString)Data.Description)
+        </p>
+    </div>
+</div>
+
+<style>
+    a:link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:visited {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: inherit;
+    }
+
+    a:active {
+        text-decoration: underline;
+        color: inherit;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public Savitar.Web.Models.Service Data { get; set; }
+}

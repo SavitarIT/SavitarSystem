@@ -1,0 +1,108 @@
+﻿@page "/skillsmatrix"
+@using Savitar.Web.Models
+@using Savitar.Web.Services.Contracts
+@inject HttpClient Http
+@inject ICVDataService CVDataService
+
+<h1>Skills Matrix</h1>
+
+@if (_technologies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container-fluid float-left">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3"><b>Skill</b></div>
+            <div class="col-md-3"><b>Last Use</b></div>
+            <div class="col-md-2"><b>Proficiency</b></div>
+            <div class="col-md-1 text-right"><b>Years</b></div>
+            <div class="col-md-2 text-right"><b>First Use</b></div>
+        </div>
+        @* Icons from here: https://iconscout.com/unicons/explore/line Color used #100ED8 *@
+
+        @foreach (var technology in _technologies.OrderBy(x => x.Category.Name).ThenByDescending(x => x.LastUse ?? DateTime.Now.Date).ThenByDescending(x => x.Proficiency))
+        {
+            @if (lastCategoryUsed != technology.Category.Name)
+            {
+                lastCategoryUsed = technology.Category.Name;
+                <div class="row" style="height: 30px">
+                    <div class="col-md-6">
+                        <h5><img src="Images/@(technology.Category.Name.Replace(" ", "")).png" class="img-fluid"> @lastCategoryUsed</h5>
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">@technology.Name</div>
+                <div class="col-md-3">@(GetLastUseText(technology))</div>
+                <div class="col-md-2">@technology.Proficiency</div>
+                <div class="col-md-1 text-right">@($"{GetYears(technology):0.0}")</div>
+                <div class="col-md-2 text-right">@($"{technology.FirstUse:MMM/yyyy}")</div>
+            </div>
+        }
+    </div>
+}
+
+<style>
+    .img-fluid {
+        width: 24px;
+    }
+
+    .container-fluid {
+        /*        width: 800px;*/
+        max-width: 850px;
+        margin: 0 auto;
+    }
+</style>
+
+@code {
+    private ProjectTechnology[] _technologies;
+    private string lastCategoryUsed = null;
+    protected override async Task OnInitializedAsync()
+    {
+        _technologies = await CVDataService.GetProjectTechnologies();
+    }
+
+    protected string GetLastUseText(ProjectTechnology technology)
+    {
+        if (!technology.LastUse.HasValue)
+            return "Current";
+
+        var lastUsed = technology.LastUse.Value;
+        var timeSinceLastUsed = DateTime.Now.Date - technology.LastUse.Value;
+
+        if (timeSinceLastUsed.TotalDays < 30)
+            return "Current";
+        if (timeSinceLastUsed.TotalDays < 90)
+            return "Recently";
+        if (timeSinceLastUsed.TotalDays < 180)
+            return "Fairly recently";
+        if (timeSinceLastUsed.TotalDays < 360)
+            return "Within the last year";
+
+        var years = timeSinceLastUsed.TotalDays / 365.0;
+        if (years < 2)
+            return "    a year ago";
+        if (years < 6)
+            return "> 5 years";
+        if (years < 11)
+            return "> 10 years";
+
+        return "Long long ago...";
+    }
+
+    protected double? GetYears(ProjectTechnology technology)
+    {
+        var lastUsed = DateTime.Now.Date;
+        if (technology.LastUse.HasValue)
+            lastUsed = technology.LastUse.Value;
+
+
+        var x = (lastUsed - technology.FirstUse).TotalDays / 365.0;
+        return Math.Round(x / 0.5, MidpointRounding.AwayFromZero) * 0.5;
+    }
+}

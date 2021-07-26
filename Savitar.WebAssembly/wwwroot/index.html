@@ -9,12 +9,16 @@
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="Savitar.WebAssembly.styles.css" rel="stylesheet" />
-    <link href="manifest.json" rel="manifest" />
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link href="manifest.json" rel="manifest" />    
 </head>
 
 <body>
-    <div id="app">Loading Savitar Software, please be patient as this could take a little while on slower connections...</div>
+    <div id="app">
+        <div style="position:absolute; top:30vh; width:100%; text-align:center">
+            <h1>Michael Smit, .NET Freelance Developer</h1>
+            <p><i class="fas fa-spin fa-spinner"></i> Savitar WebAssembly is downloading...</p>
+        </div>
+    </div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -22,7 +26,7 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <!--<script>navigator.serviceWorker.register('service-worker.js');</script>-->
 </body>
 
 </html>

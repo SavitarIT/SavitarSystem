@@ -1,6 +1,6 @@
 {
-  "name": "Savitar.WebAssembly",
-  "short_name": "Savitar.WebAssembly",
+  "name": "Savitar WebAssembly",
+  "short_name": "Savitar WebAssembly",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

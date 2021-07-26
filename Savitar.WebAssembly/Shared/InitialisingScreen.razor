@@ -1,0 +1,24 @@
+﻿@if (isLoaded)
+{
+    @ChildContent
+}
+else
+{
+<div style="position:absolute; top:30vh; width:100%; text-align:center">
+    <h1>Michael Smit, .NET Freelance Developer</h1>
+    <p><i class="fas fa-spin fa-spinner"></i> Savitar WebAssembly is initialising...</p>    
+</div>    
+}
+
+@code {
+    bool isLoaded;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        //await Task.Delay(4000); // TODO actual initialization job
+        isLoaded = true;
+    }
+}

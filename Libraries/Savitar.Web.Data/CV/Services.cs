@@ -29,8 +29,11 @@ Enterprise systems built on top of open source .NET Core.
 <br/><br/>
 <b>Use Cases</b>
 <ul class='entry-content'>
-    <li>.NET Framework to .NET Core/Standard</li>
-    <li>C/C++/Delphi to C#</li>
+    <li>Angular / React / Vue TO Blazor WebAssembly</li>
+    <li>WPF (Windows Presentation Foundation) or Silverlight to Blazor (WebAssembly or Server)</li>    
+    <li>.NET Framework TO .NET 5</li>
+    <li>C / C++ / Delphi / Visual Basic TO C#</li>
+    <li>Desktop application to Web application</li>
 </ul>"),
                 new Service("Mentoring", @"I can help your juniors accellerate their learning curves. I love to talk and teach code!")
             };

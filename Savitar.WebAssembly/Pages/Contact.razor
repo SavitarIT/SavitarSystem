@@ -1,8 +1,10 @@
 ﻿@page "/contact"
 @inject HttpClient Http
 
-<h1>Contact</h1>
+<MudText Typo="Typo.h4">Contact</MudText>
 
-<p><a href="https://wa.me/27609101010" target="_blank"><img src="/Images/Whatsapp.png" width="36" height="36" /> +27 60 910 1010</a></p>
-<p><a href="mailto:msmit@savitar.co.za" target="_blank"><img src="/Images/Email.png" width="36" height="36" /> msmit@savitar.co.za</a></p>
-<p><a href="tel:+27609101010" target="_blank"><img src="/Images/CallMe.png" width="36" height="36" /> +27 60 910 1010</a></p>
+<MudLink Href="https://wa.me/27609101010" Target="_blank" Class="pr-4"><img src="/Images/Whatsapp.png" title="Whastapp me now" width="36" height="36" />+27 60 910 1010</MudLink>
+<br />
+<MudLink Href="mailto:msmit@savitar.co.za" Target="_blank" Class="pr-4"><img src="/Images/Email.png" title="Email me now" width="36" height="36" />msmit@savitar.co.za</MudLink>
+<br />
+<MudLink Href="tel:+27609101010" Target="_blank"><img src="/Images/CallMe.png" title="Call me now" width="36" height="36" />+27 60 910 1010</MudLink>

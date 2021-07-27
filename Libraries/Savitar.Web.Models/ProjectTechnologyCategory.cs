@@ -2,13 +2,10 @@
 {
     public class ProjectTechnologyCategory : Entity
     {
+        internal static int lastId = 0;
+
         public ProjectTechnologyCategory() {}
-
-        public ProjectTechnologyCategory(string name)
-        {
-            Name = name;
-        }
-
-        public string Name { get; set; }
+   
+        public string Name { get; init; }
     }
 }

@@ -4,67 +4,96 @@
 @inject HttpClient Http
 @inject ICVDataService CVDataService
 
-<h1>Skills Matrix</h1>
+<MudText Typo="Typo.h4">Skills Matrix</MudText>
+@* Icons from here: https://iconscout.com/unicons/explore/line Color used #100ED8 *@
 
 @if (_technologies == null)
 {
     <p><em>Loading...</em></p>
 }
 else
-{
-    <div class="container-fluid float-left">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3"><b>Skill</b></div>
-            <div class="col-md-3"><b>Last Use</b></div>
-            <div class="col-md-2"><b>Proficiency</b></div>
-            <div class="col-md-1 text-right"><b>Years</b></div>
-            <div class="col-md-2 text-right"><b>First Use</b></div>
-        </div>
-        @* Icons from here: https://iconscout.com/unicons/explore/line Color used #100ED8 *@
-
-        @foreach (var technology in _technologies.OrderBy(x => x.Category.Name).ThenByDescending(x => x.LastUse ?? DateTime.Now.Date).ThenByDescending(x => x.Proficiency))
+{        
+    <MudGrid>
+        @foreach (var category in GetCategories())
         {
-            @if (lastCategoryUsed != technology.Category.Name)
-            {
-                lastCategoryUsed = technology.Category.Name;
-                <div class="row" style="height: 30px">
-                    <div class="col-md-6">
-                        <h5><img src="Images/@(technology.Category.Name.Replace(" ", "")).png" class="img-fluid"> @lastCategoryUsed</h5>
-                    </div>
-                </div>
-            }
+            <MudItem xs="12">
+                <MudCard Outlined="true">
+                    <MudCardHeader Class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
+                        <MudText Typo="Typo.h6"><img src="Images/@(category.Name.Replace(" ", "")).png" style="width: 24px;"> @category.Name</MudText>                                
+                    </MudCardHeader>
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">@technology.Name</div>
-                <div class="col-md-3">@(GetLastUseText(technology))</div>
-                <div class="col-md-2">@technology.Proficiency</div>
-                <div class="col-md-1 text-right">@($"{GetYears(technology):0.0}")</div>
-                <div class="col-md-2 text-right">@($"{technology.FirstUse:MMM/yyyy}")</div>
-            </div>
+                    <MudCardContent Class="pa=0">
+                        <MudTable Elevation="25" Outlined="true" Hover="true" Breakpoint="Breakpoint.MdAndDown" Items="@GetProjectTechnologies(category.Id).OrderBy(x => x.Category.Name).ThenByDescending(x => x.LastUse ?? DateTime.Now.Date).ThenByDescending(x => x.Proficiency)">
+                            <HeaderContent>
+                                <MudTh><b>Skill</b></MudTh>
+                                <MudTh><b>Last Use</b></MudTh>
+                                <MudTh><b>Proficiency</b></MudTh>
+                                <MudTh><b>Years</b></MudTh>
+                                <MudTh><b>First Use</b></MudTh>
+                                <MudTh></MudTh>
+                            </HeaderContent>
+                            <RowTemplate>
+                                <MudTd DataLabel="Skill">@context.Name</MudTd>
+                                <MudTd DataLabel="Last Use">@(GetLastUseText(context))</MudTd>
+                                <MudTd DataLabel="Proficiency">@context.Proficiency</MudTd>
+                                <MudTd DataLabel="Years" Style="text-align: right">@($"{GetYears(context):0.0}")</MudTd>
+                                @*<MudTd DataLabel="First Use" Class="text-right">@($"{context.FirstUse:MMM / yyyy}")</MudTd>*@
+                                <MudTd DataLabel="First Use" Style="text-align: center">@($"{context.FirstUse:yyyy}")</MudTd>
+                                <MudTd></MudTd>
+                            </RowTemplate>
+                            <ColGroup>
+                                <col style="width: 180px;" />
+                                <col style="width: 145px;" />
+                                <col style="width: 100px;" />
+                                <col style="width: 45px;"/>
+                                <col style="width: 90px;"/>
+                                <col />
+                            </ColGroup>
+                        </MudTable>
+                    </MudCardContent>
+                </MudCard>
+
+                @*<div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">@technology.Name</div>
+                    <div class="col-md-3">@(GetLastUseText(technology))</div>
+                    <div class="col-md-2">@technology.Proficiency</div>
+                    <div class="col-md-1 text-right">@($"{GetYears(technology):0.0}")</div>
+                    <div class="col-md-2 text-right">@($"{technology.FirstUse:MMM/yyyy}")</div>
+                </div>*@            
+            </MudItem>
         }
-    </div>
+    </MudGrid>
 }
 
 <style>
-    .img-fluid {
-        width: 24px;
-    }
-
-    .container-fluid {
-        /*        width: 800px;*/
-        max-width: 850px;
-        margin: 0 auto;
+    th {
+        background-color: lightslategray;
     }
 </style>
 
+
 @code {
-    private ProjectTechnology[] _technologies;
-    private string lastCategoryUsed = null;
+    private ProjectTechnology[] _technologies;    
     protected override async Task OnInitializedAsync()
     {
         _technologies = await CVDataService.GetProjectTechnologies();
+    }
+
+    protected IList<ProjectTechnologyCategory> GetCategories()
+    {
+        return _technologies
+            .OrderBy(x => x.Category.Name)
+            .Select(x => x.Category)
+            .Distinct()
+            .ToList();
+    }
+
+    protected IList<ProjectTechnology> GetProjectTechnologies(int categoryId)
+    {
+        return _technologies
+            .Where(x => x.Category.Id == categoryId)
+            .ToList();
     }
 
     protected string GetLastUseText(ProjectTechnology technology)

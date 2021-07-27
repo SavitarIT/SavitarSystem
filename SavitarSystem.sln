@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web", "Savitar.Web\Savitar.Web\Savitar.Web.csproj", "{4EDE18D7-55E8-4563-913A-D417343A3E8A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{505E52AB-6E33-4EFD-BBAA-401FED6BB5A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CD2975A0-015E-4FB2-B88D-F17075FC1194}"
@@ -30,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Data.Contracts"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Tests", "Tests\Savitar.Web.Tests\Savitar.Web.Tests.csproj", "{A07B6C58-17CF-4681-B43D-B701A92AEB05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savitar.WebAssembly", "Savitar.WebAssembly\Savitar.WebAssembly.csproj", "{54FBFE15-F747-48B1-8315-1CAE618CD6D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.WebAssembly", "Savitar.WebAssembly\Savitar.WebAssembly.csproj", "{54FBFE15-F747-48B1-8315-1CAE618CD6D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +36,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4EDE18D7-55E8-4563-913A-D417343A3E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EDE18D7-55E8-4563-913A-D417343A3E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EDE18D7-55E8-4563-913A-D417343A3E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EDE18D7-55E8-4563-913A-D417343A3E8A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0D2F3E9-9CC8-43AA-A66E-A2ADCEA94D13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0D2F3E9-9CC8-43AA-A66E-A2ADCEA94D13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0D2F3E9-9CC8-43AA-A66E-A2ADCEA94D13}.Release|Any CPU.ActiveCfg = Release|Any CPU

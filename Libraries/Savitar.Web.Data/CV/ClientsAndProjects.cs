@@ -15,7 +15,7 @@ namespace Savitar.Web.Data.CV
                     new Project("Savitar Web : This website")
                     {
                         Description = "Wanting to learn the new Microsoft Blazor technology, I decided to build this site using the technology to gain some needed experience.",
-                        TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetCore, Technologies.CSharp, Technologies.Blazor }
+                        TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNet5, Technologies.CSharp, Technologies.Blazor, Technologies.MudBlazor }
                     },
                     new Project("dBit : MWeb Payment Module")
                     {

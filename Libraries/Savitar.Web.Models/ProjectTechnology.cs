@@ -8,8 +8,9 @@ namespace Savitar.Web.Models
         {
         }
 
-        public ProjectTechnology(string name, DateTime firstUse, ProjectTechnologyCategory category = null, DateTime? lastUse = null, Frequencies usageFrequency = Frequencies.Daily, Proficiencies proficiency = Proficiencies.Intermediate)
+        public ProjectTechnology(int id, string name, DateTime firstUse, ProjectTechnologyCategory category = null, DateTime? lastUse = null, Frequencies usageFrequency = Frequencies.Daily, Proficiencies proficiency = Proficiencies.Intermediate)
         {
+            Id = id;
             Name = name;
             FirstUse = firstUse;
             Category = category;

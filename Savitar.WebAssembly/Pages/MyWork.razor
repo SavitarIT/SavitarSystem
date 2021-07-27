@@ -4,14 +4,7 @@
 @inject HttpClient Http
 @inject ICVDataService CVDataService
 
-<h1>My Work</h1>
-
-<p>
-    Feel free to peruse or copy my public repositories
-    <a href="https://github.com/SavitarIT" title="GitHub" target="_blank"><img src="/Images/GitHub.png" width="36" height="36"></a>
-    <a href="https://bitbucket.org/DominionZA" title="Bitbucket" target="_blank"><img src="/Images/Bitbucket.png" width="36" height="36"></a>
-</p>
-
+<MudText Typo="Typo.h4">My Work</MudText>
 
 @if (_clients == null)
 {
@@ -19,11 +12,81 @@
 }
 else
 {
-    @foreach (var client in _clients)
-    {
-        <p><ClientForProject Client="@client"></ClientForProject></p>
-    }
+    <MudGrid>
+        <MudItem xs="12">
+            <MudText Typo="Typo.subtitle1">Feel free to peruse or copy my public repositories</MudText>    
+            <MudLink Href="https://github.com/SavitarIT" Target="_blank"><img title="GitHub" src="/Images/GitHub.png" width="36" height="36"></MudLink>
+            <MudLink Href="https://bitbucket.org/DominionZA" Target="_blank"><img title="BitBucket" src="/Images/Bitbucket.png" width="36" height="36"></MudLink>
+        </MudItem>
+
+        
+        @foreach (var project in GetOrderedProjects())
+        {
+            
+            <MudItem xs="12">
+                <MudCard Outlined="true">
+                    <MudCardHeader Class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h6">@project.Name</MudText>
+                            @*@if (!string.IsNullOrEmpty(project.Url))
+                            {
+                                <a href="@project.Url" target="_blank" class="oi oi-external-link mr-2"></a>
+                            }*@
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent Class="pa=0">
+                        <MudText Typo="Typo.body1">@((MarkupString)project.Description)</MudText>
+                        <br />
+                        @if (project.Responsibilities != null && project.Responsibilities.Any())
+                        {
+                            <MudText Typo="Typo.h6">Responsibilities</MudText>
+                            <MudText Typo="Typo.body2" Class="pl-4">
+                                <ul class="list-group list-group-flush" id="projectTaglist">
+                                    @foreach (var item in @project.Responsibilities)
+                                    {
+                                        <li>@item.Name</li>
+                                    }
+                                </ul>
+                            </MudText>
+                        }
+
+                        @if (project.TechStack != null && project.TechStack.Any())
+                        {
+                            <MudText Typo="Typo.h6">Tech Stack</MudText>
+                            <MudText Typo="Typo.body2" Class="pl-4">
+                                <ul class="list-group list-group-flush" id="projectTaglist">
+                                    @foreach (var item in project.TechStack)
+                                    {
+                                        <li>@item.Name</li>
+                                    }
+                                </ul>
+                            </MudText>                    
+                        }
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
 }
+
+<style>
+    #projectTaglist {
+        display: inline;
+        list-style: none;
+    }
+
+    #projectTaglist li {
+        display: inline;
+    }
+
+    #projectTaglist li:after {
+        content: ", ";
+    }
+
+    #projectTaglist li:last-child:after {
+        content: "";
+    }    
+</style>
 
 @code {
     private Client[] _clients;
@@ -31,5 +94,10 @@ else
     protected override async Task OnInitializedAsync()
     {
         _clients = await CVDataService.GetClientsAsync();
+    }
+
+    protected IList<Project> GetOrderedProjects()
+    {
+        return _clients.Select(x => x.Projects).SelectMany(x => x).OrderBy(x => x.Name).ToList();
     }
 }

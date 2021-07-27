@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Savitar.Web\Savitar.Web\Savitar.Web.csproj" />
-  </ItemGroup>
-
 </Project>

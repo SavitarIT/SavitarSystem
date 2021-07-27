@@ -2,14 +2,9 @@
 {
     public class Service : Entity
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string Title { get; init; }
+        public string Description { get; init; }
 
-        public Service() { }
-        public Service(string title, string description)
-        {
-            Title = title;
-            Description = description;
-        }
+        public Service() { }        
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Savitar.Web.Bootstrapper;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ namespace Savitar.WebAssembly
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            Web.Bootstrapper.Bootstrap.Execute(builder.Services);
+            builder.Services.AddSavitarServices();
+            
             await builder.Build().RunAsync();
         }
     }

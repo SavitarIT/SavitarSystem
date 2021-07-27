@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Savitar.Web.Bootstrapper;
 using System;
 using System.Net.Http;
 
@@ -33,8 +34,7 @@ namespace Savitar.Web
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
-
-            Bootstrapper.Bootstrap.Execute(services);
+            services.AddSavitarServices();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

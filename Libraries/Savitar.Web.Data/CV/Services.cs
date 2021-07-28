@@ -21,7 +21,8 @@ namespace Savitar.Web.Data.CV
     <li>1 or more days per week - 1 or more weeks per month (most common). We agree on the pre-booked time and enter into a retainer. The per hour rate is also reduced relative to the kind of time booked in this arrangment.</li>
 </ul>
 <p>Your invoice will come from Savitar IT (VAT registered).</p>" },
-                new Service() { Id = 2, Title = "Complete Systems", Description = @"From the ground up, I can build you a new system or web application, adhering to the most current standards and specifications.
+
+                new Service() { Id = 2, Title = "Complete Systems", Description = @"From the ground up, I can build you a new system adhering to the most current standards and specifications.
 <br/><br/>
 Enterprise systems built on top of open source .NET Core.
                 " },

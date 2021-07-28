@@ -12,23 +12,46 @@
 }
 else
 {
-    <MudGrid>
+    
+        <MudList>
+            <MudListItem>Photos</MudListItem>
+            <MudListItem>Work</MudListItem>
+            <MudListItem>Vacation</MudListItem>
+        </MudList>
+    
+
+    <MudText>
+        <ul>
+            <li>Per Module</li>
+            <li>Per Project</li>    
+            <li>Per Hour</li>
+            <li>1 or more days per week - 1 or more weeks per month (most common). We agree on the pre-booked time and enter into a retainer. The per hour rate is also reduced relative to the kind of time booked in this arrangment.</li>
+        </ul>
+    </MudText>
+
+    <style>
+        a {
+            background-color: yellow;
+        }
+    </style>
+
+    @*<MudGrid>
         @foreach (var item in _items)
         {       
             <MudItem xs="12">
                 <MudCard Outlined="true">
                     <MudCardHeader Class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
                         <CardHeaderContent>
-                            <MudText Typo="Typo.h6">@($"{(MarkupString)item.Title}")</MudText>
+                            <MudText Typo="Typo.h6"><p>@((MarkupString)item.Title)</p></MudText>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent Class="pa=0">
-                        <MudText Typo="Typo.body1">@((MarkupString)item.Description)</MudText>
+                        <MudText Typo="Typo.body1">@((MarkupString)item.Description)  </MudText>
                     </MudCardContent>
                 </MudCard>
             </MudItem>
         }
-    </MudGrid>
+    </MudGrid>*@
 }
 
 

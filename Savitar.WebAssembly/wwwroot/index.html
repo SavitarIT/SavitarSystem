@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Savitar, by Michael Smit</title>
     <base href="/" />
-    <link href="manifest.json" rel="manifest" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <!-- We need to included Savitar.WebAssembly.styles.css as all scoped css is written to this file at build time. -->
+    <link href="Savitar.WebAssembly.styles.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -26,6 +27,36 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+
+    <style>
+        a {
+            color: gray;
+            text-decoration: underline;
+            /*background-color: yellow;*/
+        }
+        
+        ul {
+            list-style-type: disc;
+            list-style-position: inside;
+        }
+
+        ol {
+            list-style-type: decimal;
+            list-style-position: inside;
+        }
+
+        ul ul, ol ul {
+            list-style-type: circle;
+            list-style-position: inside;
+            margin-left: 15px;
+        }
+
+        ol ol, ul ol {
+            list-style-type: lower-latin;
+            list-style-position: inside;
+            margin-left: 15px;
+        }
+    </style>
 </body>
 
 </html>

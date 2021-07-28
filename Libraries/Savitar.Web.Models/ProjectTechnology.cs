@@ -4,13 +4,14 @@ namespace Savitar.Web.Models
 {
     public class ProjectTechnology : Entity
     {
+        internal static int id = 0;
         public ProjectTechnology()
         {
         }
 
-        public ProjectTechnology(int id, string name, DateTime firstUse, ProjectTechnologyCategory category = null, DateTime? lastUse = null, Frequencies usageFrequency = Frequencies.Daily, Proficiencies proficiency = Proficiencies.Intermediate)
+        public ProjectTechnology(string name, DateTime firstUse, ProjectTechnologyCategory category = null, DateTime? lastUse = null, Frequencies usageFrequency = Frequencies.Daily, Proficiencies proficiency = Proficiencies.Intermediate)
         {
-            Id = id;
+            Id = ++id;
             Name = name;
             FirstUse = firstUse;
             Category = category;

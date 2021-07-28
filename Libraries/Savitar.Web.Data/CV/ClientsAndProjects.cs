@@ -35,7 +35,7 @@ I wrote the web application for the system that enabled users to setup the canis
                     },
                     new Project("Artemis Red Robot")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Traffic violation system installed on freeways and at intersections, and any other deemed to be an area speed or red robot violations are committed.</li>
     <li>Speed is determined based on data fed to the system via pizzo lines laid under the road, or a laser system mounted to the camera unit. The system communicates with a Canon camera of image taking.</li>
     <li>Red robot status is determined by data fed to the system via the traffic lights.</li>
@@ -50,7 +50,7 @@ I wrote the web application for the system that enabled users to setup the canis
                     },
                     new Project("Artemis Mobile Edition")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Similar application to Artemis Red Robot, but this version streams feed from a video camera and freezes the image when a violation is recorded. The system is also a mobile system. The PC is embedded in a hardened plastic suitcase and powered off a 12v battery.</li>
     <li>Speed is recorded via a hand held or tripod mounted laser.</li>
     <li>Red robot violations cannot be handled by this system.</li>
@@ -79,7 +79,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     },
                     new Project("CheckMyTicket")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Web application for monitoring winning lotto numbers and notifies end users of winning number combinations.</li>
     <li>End users would SMS the numbers they required notififcation for to a 5 digit number (like advertised on TV). The SMS is sent via the ClickATell gateway to the website and loaded into the database against the users cell number. Depending on the code entered, the end user would receive notifications for 2, 4 or 8 week periods.</li>
     <li>The web application owner would load the winning numbers after each draw. If any of the notifications in the system matched the winning numbers, an SMS would be sent to the end users via the ClickATell gateway notifying them of their winning numbers.</li>
@@ -88,7 +88,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     },
                     new Project("CV Magic Worldwide")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
                             <li>Web application catering to both the employer and employee. The system ran very much in the same way PNet does but with some unique ideas provided by the client. This system was also targeted initially at the Nigerian market with the aim of going world wide at a later date.</li>
                             <li>Users gained access to the system via scratch card numbers. The scratch cards are provided at various outlets around Nigeria. The employee user is able to register an account and setup their CV. They are however not able to print the CV or submit to potential employers until a valid scratch card number has been entered.</li>
                             <li>Scratch card numbers are imported into the system via a flat file CSV format. These numbers are then used to verify the numbers entered in by the end user.</li>
@@ -103,7 +103,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     },
                     new Project("Ferdinandplan")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Winforms application to handle insurance contracts sold to owners of exotic cars like Ferrari, Lamborghini, etc...</li>
     <li>The system tracked teh insurance value and start/end dates.</li>
     <li>When all data was loaded into the system, the system generates a contract for the client. Contract is signed, scanned back into the system and linked to the clients profile.</li>
@@ -113,7 +113,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     new Project("Franchise Management System")
                     {
                         Description = @"This was a system owned / maintained by Savitar IT Solutions for about 8 years, and in use in the hospitality industry.
-<ul class='entry-content'>
+<ul>
     <li>Targets both the Franchisee and Franchisor.</li>
     <li>Multiple levels of security and access. Franchisee, franchisor and administrator. Each of these levels could further define their own security and permissions based on needs.</li>
     <li>Franchisees could manually capture their daily sales, or upload them automatically using our RESTful API. Stock, supplier, etc... information was manually captured.</li>
@@ -133,7 +133,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     },
                     new Project("Media Magic")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Winforms application for cataloging and provide lookup/search functionality of various media.</li>
     <li>In addition, when audio CD's are inserted, the ID of the disc is read and a lookup done to the CD-DB API to retrieve information about the disc.</li>
     <li>Media can be played directly out of Media Magic. All the user has to do is search for the media they want to listen to, then insert the </li>
@@ -158,7 +158,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     },
                     new Project("Project Watch")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Web application for handling timesheets and time invoicing.</li>
     <li>System catered to companies, staff and users.</li>
     <li>Invoices auto or manually emailed. Users could log in to manage/view timesheets, invoices and payments.</li>    
@@ -182,7 +182,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     },
                     new Project("Roto-Platics")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Winforms application to assist in the manufacturing of plastic materials at Roto-Plastics.</li>
     <li>Enables end users to create recipes based on plastics, colours, dy, material and design.</li>
 </ul>",
@@ -191,7 +191,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     new Project("Savitar RC")
                     {
                         Description = @"Web application for handling the distribution of radio controlled helicopters and accessories.
-<ul class='entry-content'>
+<ul>
     <li>Dual purpose website for both distributors and vendors with pricing to match login.</li>
     <li>The system handles ordering, checkout and shipping tracking. Stock control is maintained on invoice and stock levels are automatically adjusted</li>
 </ul>",
@@ -209,7 +209,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     },
                     new Project("SmartAd")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Windows application for the SABC marketing department. The application handled the cataloging and retrieval of adverts that were recorded for use on the various radio stations.</li>
     <li>A custom database backend was developed for use in this application employing the use of C++ structs. The custom database also supported indexing for fast retrieval.</li>
 </ul>",
@@ -227,7 +227,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                     },
                     new Project("Winamp Monitor")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Winamp 2.x plugin</li>
     <li>Hooks all winamp windows and log internal window messages sent between the various Winamp windows. The plugin is a developer tool to assist plugin developers of Winamp plugins to easily work out which messages to intercept.
 This was released free to the community and assisted me with further Winamp development.</li>
@@ -236,7 +236,7 @@ This was released free to the community and assisted me with further Winamp deve
                     },
                     new Project("Winamp Ratings")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>Winamp 2.x plugin</li>
     <li>Winamp had no mechanism to rate tracks or set tempo. This plug-in enabled a user to rate tracks and set the tempo
 via global hot keys (Winamp did not need focus to handle the hotkeys). Tracks could then be loaded via these
@@ -319,7 +319,7 @@ When this project started in 2005, my client only had installation files for the
                 {
                     new Project("Aura")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
                             <li>Point Of Sale solution serving the hospitality industry. In use by Steers Holdings (Steers, Debonairs, etc..), Fishaways, Something Fishy, Hotdog Café, Scooters, and more.</li>
                             <li>The system had a front end workstation for the till operators to perform sales and a back office for management to generate sales reports, setup menus, and more.</li>
                             <li>All sales were uploaded nightly at the Alphapos Enterprise server – via FTP - to be imported into a data warehouse solution to enable the franchisor to view sales statistics for all franchises and outlets country wide.</li>
@@ -337,7 +337,7 @@ When this project started in 2005, my client only had installation files for the
                     new Project("Top-It-Up")
                     {
                         Description = @"This is a pre-paid airtime vending system.                            
-                            <ul class='entry-content'>
+                            <ul>
                                 <li>Vending machines are installed around the country with an interface to enable customers to purchase pre-paid airtime.</li>
                                 <li>The vending machine communicates with a server via GPRS/EDGE/3D/HSDPA depending on the signal available at the installed location.</li>
                                 <li>Accounts for the vending machine owner are maintained on the server and data is synchronized with the vending machine from time to time.</li>
@@ -351,7 +351,7 @@ When this project started in 2005, my client only had installation files for the
                     },
                     new Project("CellC Distributor / Vendor Management System")
                     {
-                        Description = @"<ul class='entry-content'>
+                        Description = @"<ul>
     <li>System to handle the management of starter packs sold to distributors, then to vendors - and generated commission.</li>
     <li>Allows for distributor and vendor login to enable the rendering of reports for cash balances, stock orders, commissions generated, payments made, etc...</li>
     <li>Starter packs are sold by CellC to a distributor (Hi-Fi Corp, etc...). The stock is sent to the system via flat file and loaded into SQL Server. Vendors then purchase the stock at Point Of Sale terminals at the distributor, with communications via SOAP Web Services in real time.</li>    

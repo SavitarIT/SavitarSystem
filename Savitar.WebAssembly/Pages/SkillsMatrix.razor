@@ -36,8 +36,7 @@ else
                                 <MudTd DataLabel="Skill">@context.Name</MudTd>
                                 <MudTd DataLabel="Last Use">@(GetLastUseText(context))</MudTd>
                                 <MudTd DataLabel="Proficiency">@context.Proficiency</MudTd>
-                                <MudTd DataLabel="Years" Style="text-align: right">@($"{GetYears(context):0.0}")</MudTd>
-                                @*<MudTd DataLabel="First Use" Class="text-right">@($"{context.FirstUse:MMM / yyyy}")</MudTd>*@
+                                <MudTd DataLabel="Years" Style="text-align: right">@($"{GetYears(context):0.0}")</MudTd>                                
                                 <MudTd DataLabel="First Use" Style="text-align: center">@($"{context.FirstUse:yyyy}")</MudTd>
                                 <MudTd></MudTd>
                             </RowTemplate>
@@ -51,16 +50,7 @@ else
                             </ColGroup>
                         </MudTable>
                     </MudCardContent>
-                </MudCard>
-
-                @*<div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">@technology.Name</div>
-                    <div class="col-md-3">@(GetLastUseText(technology))</div>
-                    <div class="col-md-2">@technology.Proficiency</div>
-                    <div class="col-md-1 text-right">@($"{GetYears(technology):0.0}")</div>
-                    <div class="col-md-2 text-right">@($"{technology.FirstUse:MMM/yyyy}")</div>
-                </div>*@            
+                </MudCard>                
             </MudItem>
         }
     </MudGrid>
@@ -111,7 +101,7 @@ else
         if (timeSinceLastUsed.TotalDays < 180)
             return "Fairly recently";
         if (timeSinceLastUsed.TotalDays < 360)
-            return "Within the last year";
+            return "< 1 year ago";
 
         var years = timeSinceLastUsed.TotalDays / 365.0;
         if (years < 2)

@@ -8,7 +8,9 @@
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudContainer Class="float-left">
-            <img src="/Images/SavitarLogoHeader.png" alt="Savitar / Michael Smit" width="256" height="64">    
+            <MudNavLink Href="/">
+                <img src="/Images/SavitarLogoHeader.png" alt="" width="256" height="64">
+            </MudNavLink>
         </MudContainer>
         <MudSpacer />
         <MudButton OnClick="@((e) => ToggleDarkLightMode())"><img src="/Images/SunMoon.png" title="Toggle Dark/Light Modes" width="36" height="36" /></MudButton>

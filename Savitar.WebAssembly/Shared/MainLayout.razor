@@ -14,13 +14,13 @@
         </MudContainer>
         <MudSpacer />
         <MudButton OnClick="@((e) => ToggleDarkLightMode())"><img src="/Images/SunMoon.png" title="Toggle Dark/Light Modes" width="36" height="36" /></MudButton>
-        <MudLink Href="https://wa.me/27609101010" Target="_blank" Class="pr-4"><img src="/Images/Whatsapp.png" title="Whastapp me now" width="36" height="36" /></MudLink>
+        
+        <Contacts IsVertical="false" />
+        @*<MudLink Href="https://wa.me/27609101010" Target="_blank" Class="pr-4"><img src="/Images/Whatsapp.png" title="Whastapp me now" width="36" height="36" /></MudLink>
         <MudLink Href="https://m.me/MichaelSmitZA" Target="_blank" Class="pr-4"><img src="/Images/FacebookMessengerIcon.png" title="Message me on Facebook now" width="36" height="36" /></MudLink>        
         <MudLink Href="https://savitarit.slack.com/archives/D7EQZNLJH" Target="_blank" Class="pr-4"><img src="/Images/slack.png" title="Message me on Slack now" width="36" height="36" /></MudLink>        
-        
-
         <MudLink Href="mailto:msmit@savitar.co.za" Target="_blank" Class="pr-4"><img src="/Images/Email.png" title="Email me now" width="36" height="36" /></MudLink>
-        <MudLink Href="tel:+27609101010" Target="_blank"><img src="/Images/CallMe.png" title="Call me now" width="36" height="36" /></MudLink>                
+        <MudLink Href="tel:+27609101010" Target="_blank"><img src="/Images/CallMe.png" title="Call me now" width="36" height="36" /></MudLink>                *@
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu/>

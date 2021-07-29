@@ -30,46 +30,6 @@ https://try.mudblazor.com/snippet/GamvuVmhzOTfEZde
     }
 </style>
 
-
-
-
-
-
-
-
-@*<div class="card">
-    @if (Title != null)
-    {        
-        <h4 class="card-header">@Title</h4>        
-    }
-    <div class="row no-gutters">
-        <div class="col-md-2">
-            <img src="@ImageSrc" alt="" class="img-fluid cardWithSideImage">
-        </div>
-        <div class="col-md-10">            
-            @if (Description != null)
-            {
-                <div class="card-block">
-                    <span class="card-body">@Description</span>
-                </div>
-            }            
-        </div>
-    </div>
-    @if (Footer != null)
-    {
-        <div class="card-footer w-100 text-muted">
-            <span>@Footer</span>
-        </div>
-    }
-</div>
-
-<style>
-    .cardWithSideImage {
-        width: 95%;
-        object-fit: fill;        
-    }
-</style>
-*@
 @code {
     [Parameter]
     public RenderFragment Title { get; set; }

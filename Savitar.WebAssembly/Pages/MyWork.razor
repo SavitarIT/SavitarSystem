@@ -41,7 +41,7 @@ else
                         {
                             <MudText Typo="Typo.h6">Responsibilities</MudText>
                             <MudText Typo="Typo.body2" Class="pl-4">
-                                <ul class="list-group list-group-flush" id="projectTaglist">
+                                <ul class="list-group list-group-flush">
                                     @foreach (var item in @project.Responsibilities)
                                     {
                                         <li>@item.Name</li>
@@ -54,7 +54,7 @@ else
                         {
                             <MudText Typo="Typo.h6">Tech Stack</MudText>
                             <MudText Typo="Typo.body2" Class="pl-4">
-                                <ul class="list-group list-group-flush" id="projectTaglist">
+                                <ul class="list-group list-group-flush">
                                     @foreach (var item in project.TechStack)
                                     {
                                         <li>@item.Name</li>
@@ -68,25 +68,6 @@ else
         }
     </MudGrid>
 }
-
-<style>
-    #projectTaglist {
-        display: inline;
-        list-style: none;
-    }
-
-    #projectTaglist li {
-        display: inline;
-    }
-
-    #projectTaglist li:after {
-        content: ", ";
-    }
-
-    #projectTaglist li:last-child:after {
-        content: "";
-    }    
-</style>
 
 @code {
     private Client[] _clients;

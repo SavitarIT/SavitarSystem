@@ -12,13 +12,12 @@
     <link href="Savitar.WebAssembly.styles.css" rel="stylesheet" />
 </head>
 
-<body>
-    <!-- Will come back to Facebook messenger later. Need to size the chat box, and setup a server for the chat to communicate with -->
+<body>    
     <!-- Messenger Chat Plugin Code -->
-    <!--<div id="fb-root"></div>-->
+    <div id="fb-root"></div>
 
     <!-- Your Chat Plugin code -->
-    <!--<div id="fb-customer-chat" class="fb-customerchat"></div>
+    <div id="fb-customer-chat" class="fb-customerchat"></div>
 
     <script>
         var chatbox = document.getElementById('fb-customer-chat');
@@ -39,12 +38,15 @@
             js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-    </script>-->
+    </script>
 
-    <div id="app">
+    <div id="app">        
         <div style="position:absolute; top:30vh; width:100%; text-align:center">
             <h1>Michael Smit, a freelance .NET software developer</h1>
+            <br />
             <p><i class="fas fa-spin fa-spinner"></i> Savitar WebAssembly is downloading...</p>
+            <br />
+            <p><div class="spinner" style="margin-left: auto; margin-right: auto" /></p>
         </div>
     </div>
 
@@ -73,17 +75,36 @@
             list-style-position: inside;
         }
 
-            ul ul, ol ul {
-                list-style-type: circle;
-                list-style-position: inside;
-                margin-left: 15px;
+        ul ul, ol ul {
+            list-style-type: circle;
+            list-style-position: inside;
+            margin-left: 15px;
+        }
+
+        ol ol, ul ol {
+            list-style-type: lower-latin;
+            list-style-position: inside;
+            margin-left: 15px;
+        }
+
+        .spinner {
+            border: 16px solid silver;
+            border-top: 16px solid #337AB7;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 700ms linear infinite;            
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg)
             }
 
-            ol ol, ul ol {
-                list-style-type: lower-latin;
-                list-style-position: inside;
-                margin-left: 15px;
+            100% {
+                transform: rotate(360deg)
             }
+        }
     </style>
 </body>
 

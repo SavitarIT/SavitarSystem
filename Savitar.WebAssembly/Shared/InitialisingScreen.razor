@@ -3,13 +3,36 @@
     @ChildContent
 }
 else
-{
-<div style="position:absolute; top:30vh; width:100%; text-align:center">
-    <h1>Michael Smit, a freelance .NET software developer</h1>
-    <p><i class="fas fa-spin fa-spinner"></i> Savitar WebAssembly is initialising...</p>    
-</div>    
+{    
+    <div style="position:absolute; top:30vh; width:100%; text-align:center">        
+        <h1>Michael Smit, a freelance .NET software developer</h1>
+        <br />
+        <p><i class="fas fa-spin fa-spinner"></i> Savitar WebAssembly is initialising...</p>
+        <br />
+        <p><div class="spinner" style="margin-left: auto; margin-right: auto" /></p>
+    </div>    
 }
 
+<style>
+    .spinner {
+            border: 16px solid silver;
+            border-top: 16px solid #337AB7;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 700ms linear infinite;            
+        }
+
+    @@keyframes spin {
+            0% {
+                transform: rotate(0deg)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+</style>
 @code {
     bool isLoaded;
 
@@ -18,7 +41,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(0); // TODO actual initialization job
+        await Task.Delay(10000); // TODO actual initialization job
         isLoaded = true;
     }
+
+
 }

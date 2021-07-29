@@ -8,7 +8,7 @@
 
 @if (_clients == null)
 {
-    <p><em>Loading Projects...</em></p>
+    <MudContainer Class="spinner" />
 }
 else
 {
@@ -92,8 +92,7 @@ else
     private Client[] _clients;
 
     protected override async Task OnInitializedAsync()
-    {
-        await Task.Delay(5000);
+    {        
         _clients = await CVDataService.GetClientsAsync();
     }
 

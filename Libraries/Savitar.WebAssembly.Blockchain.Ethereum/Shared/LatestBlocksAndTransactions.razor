@@ -1,0 +1,41 @@
+﻿@using MudBlazor
+@using Nethereum.RPC.Eth.DTOs
+@using Savitar.WebAssembly.Blockchain.Ethereum.Services.Contracts
+@inject IEthereumService _ethereumService
+
+@if (!hasLoaded)
+{
+    <MudContainer Class="spinner" />
+}
+else
+{    
+    <MudCard Outlined="true">
+        <MudCardHeader class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">ETHERIUM BLOCKCHAIN INFO</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudText><b>Latest Block Number:</b> @_latestBlockNumber</MudText>
+            <MudText><b>Etherium Foundation Balance:</b> @_balance</MudText>
+            <MudText><b>Network Version:</b> @_networkVersion</MudText>
+        </MudCardContent>
+    </MudCard>
+}
+
+@code {
+    private Nethereum.Hex.HexTypes.HexBigInteger _latestBlockNumber = null;
+    private decimal _balance;
+    private string _networkVersion;
+
+    private bool hasLoaded = false;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _latestBlockNumber = await _ethereumService.GetLatestBlockNumber();
+        _balance = await _ethereumService.GetBalance();
+        _networkVersion = await _ethereumService.GetNetworkVersion();
+
+        hasLoaded = true;
+    }
+}

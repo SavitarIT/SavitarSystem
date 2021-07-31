@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Tests", "Tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.WebAssembly", "Savitar.WebAssembly\Savitar.WebAssembly.csproj", "{54FBFE15-F747-48B1-8315-1CAE618CD6D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savitar.WebAssembly.Blockchain.Ethereum", "Libraries\Savitar.WebAssembly.Blockchain.Ethereum\Savitar.WebAssembly.Blockchain.Ethereum.csproj", "{EA494E86-4F8A-4E66-A6EA-BE3EE26562E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.WebAssembly.Blockchain.Ethereum", "Libraries\Savitar.WebAssembly.Blockchain.Ethereum\Savitar.WebAssembly.Blockchain.Ethereum.csproj", "{EA494E86-4F8A-4E66-A6EA-BE3EE26562E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Server", "Savitar.Server\Savitar.Server.csproj", "{11694167-14F2-4194-BCBE-E816F97F3417}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{EA494E86-4F8A-4E66-A6EA-BE3EE26562E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA494E86-4F8A-4E66-A6EA-BE3EE26562E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA494E86-4F8A-4E66-A6EA-BE3EE26562E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11694167-14F2-4194-BCBE-E816F97F3417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11694167-14F2-4194-BCBE-E816F97F3417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11694167-14F2-4194-BCBE-E816F97F3417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11694167-14F2-4194-BCBE-E816F97F3417}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

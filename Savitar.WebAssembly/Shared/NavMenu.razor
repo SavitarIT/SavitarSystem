@@ -8,4 +8,9 @@
     <MudNavGroup Title="Blockchain" Expanded="true">
         <MudNavLink Href="/EthereumExplorer">Ethereum Explorer</MudNavLink>    
     </MudNavGroup>
+    @if (EnvironmentInfo.IsDebug())
+    {        
+        <MudDivider Class="my-2"/>
+        <MudNavLink Href="/FetchData">Fetch Data</MudNavLink>        
+    }
 </MudNavMenu>

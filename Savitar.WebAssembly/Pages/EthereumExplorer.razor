@@ -22,7 +22,7 @@ else
         </MudCardHeader>
         <MudCardContent>
             <MudText><b>Latest Block Number:</b> @_data.LatestBlockNumber</MudText>            
-            <MudText><b>Etherium Foundation Balance:</b> @_data.Balance</MudText>
+            <MudText><b>Etherium Foundation Balance:</b> @string.Format($"${_data.Balance:###,###,###,##0.00}")</MudText>
             <MudText><b>Network Version:</b> @_data.NetworkVersion</MudText>
         </MudCardContent>
     </MudCard>

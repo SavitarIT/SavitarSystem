@@ -6,7 +6,7 @@
 
 <MudText Typo="Typo.h4">My Work</MudText>
 
-@if (_clients == null)
+@if (_projects == null)
 {
     <MudContainer Class="spinner" />
 }
@@ -70,15 +70,15 @@ else
 }
 
 @code {
-    private Client[] _clients;
+    private Project[] _projects;
 
     protected override async Task OnInitializedAsync()
-    {        
-        _clients = await CVDataService.GetClientsAsync();
+    {
+        _projects = await Http.GetFromJsonAsync<Project[]>("api/CVInfo/GetProjects");
     }
 
     protected IList<Project> GetOrderedProjects()
     {
-        return _clients.Select(x => x.Projects).SelectMany(x => x).OrderBy(x => x.Name).ToList();
+        return _projects; //_clients.Select(x => x.Projects).SelectMany(x => x).OrderBy(x => x.Name).ToList();
     }
 }

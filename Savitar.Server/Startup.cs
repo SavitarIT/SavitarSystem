@@ -27,7 +27,9 @@ namespace WebApplication3.Server
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Savitar.Server", Version = "v1" });
             });
 
-            var infuraApiKey = "7238211010344719ad14a89db874158c";
+
+
+            var infuraApiKey = Configuration.GetSection("Infura")["APIKey"]; //"7238211010344719ad14a89db874158c";
             services.AddSavitarBlockchainEthereumServices(infuraApiKey);
         }
 

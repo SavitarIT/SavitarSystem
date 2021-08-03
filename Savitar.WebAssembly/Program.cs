@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
-using Savitar.Web.Bootstrapper;
+using Savitar.Bootstrapper;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;

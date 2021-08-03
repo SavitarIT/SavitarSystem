@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Savitar.Web.Domain.Models;
+using Savitar.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

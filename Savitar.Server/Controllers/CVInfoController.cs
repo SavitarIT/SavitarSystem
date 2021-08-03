@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Savitar.Web.Domain.Models;
-using Savitar.Web.Infrastructure.Repository.Contracts.CV;
+using Savitar.Domain.Models;
+using Savitar.Infrastructure.Repository.Contracts.CV;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

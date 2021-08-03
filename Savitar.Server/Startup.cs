@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Savitar.Web.Bootstrapper;
+using Savitar.Bootstrapper;
 using Savitar.WebAssembly.Blockchain.Ethereum;
 
 namespace WebApplication3.Server

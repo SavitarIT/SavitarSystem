@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Savitar.Web.Domain.Dtos;
+using Savitar.Domain.Dtos;
 using Savitar.WebAssembly.Blockchain.Ethereum.Services.Contracts;
 using System.Threading.Tasks;
 

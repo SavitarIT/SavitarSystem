@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Savitar.Web.Domain\Savitar.Web.Domain.csproj" />
+    <ProjectReference Include="..\Core\Savitar.Web.Domain\Savitar.Web.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -17,7 +17,6 @@
   <ItemGroup>	
     <ProjectReference Include="..\Libraries\Savitar.Bootstrapper\Savitar.Bootstrapper.csproj" />	
     <ProjectReference Include="..\Libraries\Savitar.Domain\Savitar.Domain.csproj" />
-    <ProjectReference Include="..\Libraries\Savitar.Services.Shared\Savitar.Services.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

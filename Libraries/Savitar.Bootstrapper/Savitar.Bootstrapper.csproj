@@ -9,9 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Savitar.Infrastructure.Repository.Shared\Savitar.Infrastructure.Repository.Shared.csproj" />
     <ProjectReference Include="..\Savitar.Infrastructure.Repository\Savitar.Infrastructure.Repository.csproj" />
     <ProjectReference Include="..\Savitar.Services.Shared\Savitar.Services.Shared.csproj" />
     <ProjectReference Include="..\Savitar.Services\Savitar.Services.csproj" />
   </ItemGroup>
-
 </Project>

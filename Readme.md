@@ -19,6 +19,11 @@ It's not as good as hot reloads, but Blazor is new - so hang in there. Hot reloa
 * Powershell: cd d:\Software\Savitar\Applications\SavitarSystem\Savitar.Web\Server\; dotnet watch run debug;
 * Browser: http://savitar.local:5000/
 
+## If errors on live, add the following to the <aspNetCore>... section in web.config. Errors will show up then. Remove once done.
+<environmentVariables>
+    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Development" />
+</environmentVariables>
+
 
 ## To-Do
 * My Work: Can be flattened a bit. Remove the Client surrounding group, and introduce Client into the project. Display if set.

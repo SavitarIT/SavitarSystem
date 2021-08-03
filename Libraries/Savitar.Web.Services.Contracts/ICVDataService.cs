@@ -1,4 +1,4 @@
-﻿using Savitar.Web.Models;
+﻿using Savitar.Web.Domain.Models;
 using System.Threading.Tasks;
 
 namespace Savitar.Web.Services.Contracts

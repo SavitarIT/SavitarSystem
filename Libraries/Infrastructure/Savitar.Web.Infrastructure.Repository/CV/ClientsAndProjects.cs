@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Savitar.Web.Data.Contracts;
-using Savitar.Web.Models;
+﻿using Savitar.Web.Domain.Models;
+using Savitar.Web.Infrastructure.Repository.Contracts.CV;
+using System.Collections.Generic;
 
-namespace Savitar.Web.Data.CV
+namespace Savitar.Web.Infrastructure.Repository.CV
 {
     internal class ClientsAndProjects : IClientsAndProjects
     {

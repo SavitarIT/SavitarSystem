@@ -1,8 +1,8 @@
-﻿using Savitar.Web.Models;
+﻿using Savitar.Web.Domain.Models;
 using Savitar.Web.Services.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
-using Savitar.Web.Data.Contracts;
+using Savitar.Web.Infrastructure.Repository.Contracts.CV;
 
 namespace Savitar.Web.Services
 {

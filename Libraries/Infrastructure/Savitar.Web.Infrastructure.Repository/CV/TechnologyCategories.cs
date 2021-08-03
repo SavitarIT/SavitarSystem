@@ -1,6 +1,6 @@
-﻿using Savitar.Web.Models;
+﻿using Savitar.Web.Domain.Models;
 
-namespace Savitar.Web.Data.CV
+namespace Savitar.Web.Infrastructure.Repository.CV
 {
     internal static class TechnologyCategories
     {

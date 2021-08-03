@@ -6,7 +6,7 @@ namespace Savitar.Web.Bootstrapper
     {
         public static IServiceCollection AddSavitarServices(this IServiceCollection services)
         {
-            Data.DI.Execute(services);
+            Infrastructure.Repository.DI.Execute(services);
             Services.DI.Execute(services);
             
             return services;

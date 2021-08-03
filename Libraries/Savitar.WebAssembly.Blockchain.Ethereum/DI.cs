@@ -10,8 +10,7 @@ namespace Savitar.WebAssembly.Blockchain.Ethereum
     public static class DI
     {
         public static IServiceCollection AddSavitarBlockchainEthereumServices(this IServiceCollection services)
-        {
-            // cd0a30d54479474b8dfdbd4b3941e7cd
+        {            
             services.AddSingleton<IWeb3>(ctx => new Web3("https://mainnet.infura.io/v3/7238211010344719ad14a89db874158c"));
             services.AddSingleton<IEthereumService, EthereumService>();
 

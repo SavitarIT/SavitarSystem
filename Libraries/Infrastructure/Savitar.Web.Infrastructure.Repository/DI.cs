@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Savitar.Web.Data.Contracts;
-using Savitar.Web.Data.CV;
+using Savitar.Web.Infrastructure.Repository.Contracts.CV;
+using Savitar.Web.Infrastructure.Repository.CV;
 
-namespace Savitar.Web.Data
+namespace Savitar.Web.Infrastructure.Repository
 {
     public static class DI
     {

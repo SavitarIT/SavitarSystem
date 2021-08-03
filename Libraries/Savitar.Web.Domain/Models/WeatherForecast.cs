@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Savitar.Web.Models
+namespace Savitar.Web.Domain.Models
 {
     public class WeatherForecast
     {

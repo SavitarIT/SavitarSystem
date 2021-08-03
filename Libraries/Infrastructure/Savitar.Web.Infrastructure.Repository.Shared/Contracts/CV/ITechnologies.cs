@@ -1,7 +1,7 @@
-﻿using Savitar.Web.Models;
+﻿using Savitar.Web.Domain.Models;
 using System.Collections.Generic;
 
-namespace Savitar.Web.Data.Contracts
+namespace Savitar.Web.Infrastructure.Repository.Contracts.CV
 {
     public interface ITechnologies
     {

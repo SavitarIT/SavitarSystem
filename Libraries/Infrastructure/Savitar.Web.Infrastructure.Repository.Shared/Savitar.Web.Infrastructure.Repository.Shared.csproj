@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Savitar.Web.Models\Savitar.Web.Models.csproj" />
+    <ProjectReference Include="..\..\Savitar.Web.Domain\Savitar.Web.Domain.csproj" />
   </ItemGroup>
 
 </Project>

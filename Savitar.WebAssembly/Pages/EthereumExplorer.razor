@@ -1,10 +1,8 @@
 ﻿@page "/EthereumExplorer"
+@using Microsoft.Extensions.Configuration
 @using Savitar.Web.Domain.Dtos
 @using Savitar.Web.Domain.Models
 @inject HttpClient Http
-@inject Microsoft.Extensions.Configuration.IConfiguration config
- 
-<span>@config["message"]</span>
 
 <MudText Typo="Typo.h4">Ethereum Playground</MudText>
 
@@ -47,9 +45,3 @@ else
         hasLoaded = true;
     }
 }
-
-
-@*<MetamaskControl></MetamaskControl>*@
-@*<Savitar.WebAssembly.Blockchain.Ethereum.Shared.LatestBlocksAndTransactions></Savitar.WebAssembly.Blockchain.Ethereum.Shared.LatestBlocksAndTransactions>*@
-
-@*<Savitar.WebAssembly.Blockchain.Ethereum.Explorer></Savitar.WebAssembly.Blockchain.Ethereum.Explorer>*@

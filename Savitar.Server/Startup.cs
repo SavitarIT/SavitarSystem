@@ -28,8 +28,7 @@ namespace WebApplication3.Server
             });
 
 
-
-            var infuraApiKey = Configuration.GetSection("Infura")["APIKey"]; //"7238211010344719ad14a89db874158c";
+            var infuraApiKey = Configuration.GetSection("Infura")["APIKey"];
             services.AddSavitarBlockchainEthereumServices(infuraApiKey);
         }
 

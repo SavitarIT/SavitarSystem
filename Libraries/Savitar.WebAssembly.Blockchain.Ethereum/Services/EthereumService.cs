@@ -1,6 +1,4 @@
-﻿using Nethereum.Hex.HexTypes;
-using Nethereum.RPC.Eth.DTOs;
-using Nethereum.Web3;
+﻿using Nethereum.Web3;
 using Savitar.WebAssembly.Blockchain.Ethereum.Services.Contracts;
 using System.Threading.Tasks;
 
@@ -15,18 +13,19 @@ namespace Savitar.WebAssembly.Blockchain.Ethereum.Services
             _web3 = web3;
         }
 
-        public async Task<HexBigInteger> GetLatestBlockNumber()
-        {
-            return await _web3.Eth.Blocks.GetBlockNumber.SendRequestAsync();
+        public async Task<decimal> GetLatestBlockNumberAsync()
+        {            
+            var result = await _web3.Eth.Blocks.GetBlockNumber.SendRequestAsync();
+            return (decimal)result.Value;            
         }   
 
-        public async Task<decimal> GetBalance()
+        public async Task<decimal> GetBalanceAsync(string ethWalletAddress = "0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae")
         {            
-            var balance = await _web3.Eth.GetBalance.SendRequestAsync("0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae");
+            var balance = await _web3.Eth.GetBalance.SendRequestAsync(ethWalletAddress);
             return Web3.Convert.FromWei(balance.Value);
         }
 
-        public async Task<string> GetNetworkVersion()
+        public async Task<string> GetNetworkVersionAsync()
         {
             return await _web3.Net.Version.SendRequestAsync();
         }

@@ -2,13 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>cb6fc610-309c-4591-9307-423b0c16bbcf</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Libraries\Savitar.WebAssembly.Blockchain.Ethereum\Savitar.WebAssembly.Blockchain.Ethereum.csproj" />
     <ProjectReference Include="..\Savitar.WebAssembly\Savitar.WebAssembly.csproj" />
   </ItemGroup>
 

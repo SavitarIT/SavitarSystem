@@ -24,7 +24,7 @@ else
 }
 
 @code {
-    private Nethereum.Hex.HexTypes.HexBigInteger _latestBlockNumber = null;
+    private decimal _latestBlockNumber;
     private decimal _balance;
     private string _networkVersion;
 
@@ -32,9 +32,9 @@ else
     
     protected override async Task OnInitializedAsync()
     {
-        _latestBlockNumber = await _ethereumService.GetLatestBlockNumber();
-        _balance = await _ethereumService.GetBalance();
-        _networkVersion = await _ethereumService.GetNetworkVersion();
+        _latestBlockNumber = await _ethereumService.GetLatestBlockNumberAsync();
+        _balance = await _ethereumService.GetBalanceAsync();
+        _networkVersion = await _ethereumService.GetNetworkVersionAsync();
 
         hasLoaded = true;
     }

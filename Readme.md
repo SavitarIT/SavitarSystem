@@ -1,3 +1,6 @@
+## Savitar.Server has Swagger support now.
+http://localhost:5001/swagger/index.html
+
 ## Debugging
 **Put this in the server .csproj**
  ```

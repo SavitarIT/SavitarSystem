@@ -2,17 +2,17 @@
 @inject NethereumAuthenticator  _nethereumAuthenticator;
 
 <div>
-    @if (MetamaskAvailable && !string.IsNullOrEmpty(SelectedAccount))
+    @if (IsMetamaskAvailable && !string.IsNullOrEmpty(SelectedAccount))
     {
         @SelectedAccount
     }
 
-    @if (MetamaskAvailable && string.IsNullOrEmpty(SelectedAccount))
+    @if (IsMetamaskAvailable && string.IsNullOrEmpty(SelectedAccount))
     {
         <button type="button" class="btnMetamask" @onclick="@EnableEthereumAsync">Connect Metamask</button>
     }
 
-    @if (!MetamaskAvailable)
+    @if (!IsMetamaskAvailable)
     {
         <button class="btnMetamask" disabled>Please Install Metamask</button>
     }
@@ -21,7 +21,7 @@
 
 @code {
 
-    bool MetamaskAvailable { get; set; }
+    bool IsMetamaskAvailable { get; set; }
     string SelectedAccount { get; set; }
     protected string AuthenticatedAccount { get; set; }
 
@@ -30,7 +30,7 @@
         if (firstRender)
         {
             _metamaskHostProvider.SelectedAccountChanged += MetamaskHostProvider_SelectedAccountChanged;
-            MetamaskAvailable = await _metamaskHostProvider.CheckProviderAvailabilityAsync();
+            IsMetamaskAvailable = await _metamaskHostProvider.CheckProviderAvailabilityAsync();
 
             StateHasChanged();
         }
@@ -40,6 +40,7 @@
     {
         SelectedAccount = account;
         this.StateHasChanged();
+        await Task.CompletedTask;
     }
 
     protected async Task EnableEthereumAsync()

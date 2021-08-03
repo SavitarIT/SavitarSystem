@@ -1,8 +1,55 @@
 ﻿@page "/EthereumExplorer"
+@using Savitar.Web.Domain.Dtos
 @using Savitar.Web.Domain.Models
 @inject HttpClient Http
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+ 
+<span>@config["message"]</span>
+
+<MudText Typo="Typo.h4" ">Ethereum Playground</MudText>
+
+@if (!hasLoaded)
+{
+    <MudContainer Class="spinner" />
+}
+else
+{    
+    <MudCard Outlined="true">
+        <MudCardHeader class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">ETHERIUM BLOCKCHAIN INFO</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudText><b>Latest Block Number:</b> @_data.LatestBlockNumber</MudText>            
+            <MudText><b>Etherium Foundation Balance:</b> @_data.Balance</MudText>
+            <MudText><b>Network Version:</b> @_data.NetworkVersion</MudText>
+        </MudCardContent>
+    </MudCard>
+}
+
+@code {
+    private bool hasLoaded = false;
+    
+    EthInfo _data;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _data  = await Http.GetFromJsonAsync<EthInfo>("api/EthFunctions/getall");
+        }
+        catch (Exception ex)
+        {            
+            Console.WriteLine(ex.Message);
+        }
+
+        hasLoaded = true;
+    }
+}
 
 
-<MudText Typo="Typo.h4">Ethereum Playground</MudText>
+@*<MetamaskControl></MetamaskControl>*@
+@*<Savitar.WebAssembly.Blockchain.Ethereum.Shared.LatestBlocksAndTransactions></Savitar.WebAssembly.Blockchain.Ethereum.Shared.LatestBlocksAndTransactions>*@
 
-<Savitar.WebAssembly.Blockchain.Ethereum.Explorer></Savitar.WebAssembly.Blockchain.Ethereum.Explorer>
+@*<Savitar.WebAssembly.Blockchain.Ethereum.Explorer></Savitar.WebAssembly.Blockchain.Ethereum.Explorer>*@

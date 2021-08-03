@@ -2,7 +2,6 @@
 @using Savitar.Web.Domain.Models
 @using Savitar.Web.Services.Contracts
 @inject HttpClient Http
-@inject ICVDataService CVDataService
 
 <MudText Typo="Typo.h4">Skills Matrix</MudText>
 @* Icons from here: https://iconscout.com/unicons/explore/line Color used #100ED8 *@
@@ -67,7 +66,7 @@ else
     private ProjectTechnology[] _technologies;    
     protected override async Task OnInitializedAsync()
     {
-        _technologies = await CVDataService.GetProjectTechnologies();
+        _technologies = await Http.GetFromJsonAsync<ProjectTechnology[]>("api/CVInfo/GetTechnologies");
     }
 
     protected IList<ProjectTechnologyCategory> GetCategories()

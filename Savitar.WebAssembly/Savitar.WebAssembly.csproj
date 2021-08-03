@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Libraries\Infrastructure\Savitar.Web.Infrastructure.Repository.Shared\Savitar.Web.Infrastructure.Repository.Shared.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.Web.Bootstrapper\Savitar.Web.Bootstrapper.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.Web.Domain\Savitar.Web.Domain.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.Web.Services.Contracts\Savitar.Web.Services.Contracts.csproj" />

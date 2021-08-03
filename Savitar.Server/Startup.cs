@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Savitar.Web.Bootstrapper;
 using Savitar.WebAssembly.Blockchain.Ethereum;
 
 namespace WebApplication3.Server
@@ -27,6 +28,8 @@ namespace WebApplication3.Server
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Savitar.Server", Version = "v1" });
             });
 
+            
+            services.AddSavitarServices();
 
             var infuraApiKey = Configuration.GetSection("Infura")["APIKey"];
             services.AddSavitarBlockchainEthereumServices(infuraApiKey);

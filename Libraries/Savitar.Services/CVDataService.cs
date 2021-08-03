@@ -1,8 +1,8 @@
 ﻿using Savitar.Domain.Models;
-using Savitar.Services.Contracts;
+using Savitar.Services.Shared;
 using System.Linq;
 using System.Threading.Tasks;
-using Savitar.Infrastructure.Repository.Contracts.CV;
+using Savitar.Infrastructure.Repository.Shared.CV;
 
 namespace Savitar.Services
 {

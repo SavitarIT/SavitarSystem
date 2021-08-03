@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Savitar.Services.Contracts;
+using Savitar.Services.Shared;
 
 namespace Savitar.Services
 {

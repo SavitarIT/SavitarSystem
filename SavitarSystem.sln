@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CD2975A0-015E-4FB2-B88D-F17075FC1194}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Services.Contracts", "Libraries\Savitar.Services.Contracts\Savitar.Services.Contracts.csproj", "{0C2B6F10-DFEB-4F0D-8429-56206C6282C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Services.Shared", "Libraries\Savitar.Services.Shared\Savitar.Services.Shared.csproj", "{0C2B6F10-DFEB-4F0D-8429-56206C6282C5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Services", "Libraries\Savitar.Services\Savitar.Services.csproj", "{ED07D76B-0DBC-49C0-8E24-1AD99FD1E1C5}"
 EndProject

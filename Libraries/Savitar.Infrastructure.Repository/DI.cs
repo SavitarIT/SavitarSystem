@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Savitar.Infrastructure.Repository.Contracts.CV;
+using Savitar.Infrastructure.Repository.Shared.CV;
 using Savitar.Infrastructure.Repository.CV;
 
 namespace Savitar.Infrastructure.Repository

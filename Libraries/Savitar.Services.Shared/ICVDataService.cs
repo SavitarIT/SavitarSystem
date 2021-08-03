@@ -1,7 +1,7 @@
 ﻿using Savitar.Domain.Models;
 using System.Threading.Tasks;
 
-namespace Savitar.Services.Contracts
+namespace Savitar.Services.Shared
 {
     public interface ICVDataService
     {

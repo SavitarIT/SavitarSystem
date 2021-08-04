@@ -19,6 +19,7 @@ namespace Savitar.Server.Controllers
         public IEthereumService EthereumService { get; }
 
         [HttpGet("GetAll")]
+        [ResponseCache(NoStore = false, Duration = 10, Location = ResponseCacheLocation.Any)]
         public async Task<EthInfo> GetAll()
         {
             var result = new EthInfo()

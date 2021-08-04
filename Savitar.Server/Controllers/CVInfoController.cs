@@ -25,6 +25,7 @@ namespace Savitar.Server.Controllers
         }
         
         [HttpGet("GetProjects")]
+        [ResponseCache(NoStore = false, Duration = 10, Location = ResponseCacheLocation.Any)]
         public async Task<IEnumerable<Project>> GetProjects()
         {
             var result = ClientsAndProjectsService.GetAll()
@@ -36,6 +37,7 @@ namespace Savitar.Server.Controllers
         }   
         
         [HttpGet("GetTechnologies")]
+        [ResponseCache(NoStore = false, Duration = 10, Location = ResponseCacheLocation.Any)]
         public async Task<IEnumerable<ProjectTechnology>> GetTechnologies()
         {
             var result = TechnologiesService.GetAll();
@@ -43,6 +45,7 @@ namespace Savitar.Server.Controllers
         }
 
         [HttpGet("GetServices")]
+        [ResponseCache(NoStore = false, Duration = 10, Location = ResponseCacheLocation.Any)]
         public async Task<IEnumerable<Service>> GetServices()
         {
             var result = ServicesService.GetAll();

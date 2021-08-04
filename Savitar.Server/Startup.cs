@@ -50,6 +50,7 @@ namespace WebApplication3.Server
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 

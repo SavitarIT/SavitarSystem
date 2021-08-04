@@ -59,7 +59,7 @@ else
     private Service[] _items;
 
     protected override async Task OnInitializedAsync()
-    {        
+    {                
         _items = await Http.GetFromJsonAsync<Service[]>("api/CVInfo/GetServices");
     }
 }

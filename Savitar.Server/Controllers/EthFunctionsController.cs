@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Savitar.Server.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    [Produces("application/json")]
-    public class EthFunctionsController : ControllerBase
+    public class EthFunctionsController : BaseApiController
     {
         private readonly ILogger<EthFunctionsController> _logger;
 

@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 
 namespace Savitar.Server.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    [Produces("application/json")]
-    public class CVInfoController : ControllerBase
+    public class CVInfoController : BaseApiController
     {
         private readonly ILogger<EthFunctionsController> _logger;
         public IClientsAndProjects ClientsAndProjectsService { get; }

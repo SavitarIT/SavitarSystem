@@ -11,7 +11,8 @@ namespace Savitar.Infrastructure.Repository.CV
         internal static readonly ProjectTechnology DotNetFramework = new(".NET Framework", new DateTime(2001, 6, 1), TechnologyCategories.Framework, null, Frequencies.Daily, Proficiencies.Advanced);
         internal static readonly ProjectTechnology DotNetCore = new(".NET Core", new DateTime(2014, 11, 1), TechnologyCategories.Framework, null, Frequencies.Frequently, Proficiencies.Intermediate);
         internal static readonly ProjectTechnology DotNet5 = new(".NET 5", new DateTime(2021, 1, 1), TechnologyCategories.Framework, null, Frequencies.Daily, Proficiencies.Intermediate);
-        internal static readonly ProjectTechnology Blazor = new("Blazor", new DateTime(2020, 5, 1), TechnologyCategories.Framework, null, Frequencies.Daily, Proficiencies.Intermediate);
+        internal static readonly ProjectTechnology BlazorServer = new("Blazor Server", new DateTime(2020, 5, 1), TechnologyCategories.Framework, null, Frequencies.Daily, Proficiencies.Intermediate);
+        internal static readonly ProjectTechnology BlazorWebAssembly = new("Blazor WebAssembly", new DateTime(2020, 5, 1), TechnologyCategories.Framework, null, Frequencies.Daily, Proficiencies.Intermediate);
         internal static readonly ProjectTechnology SQLServer = new("SQL Server", new DateTime(1998, 6, 1), TechnologyCategories.Database, DateTime.Now.Date, Frequencies.Daily, Proficiencies.Advanced);
         internal static readonly ProjectTechnology PostgreSQL = new("PostgreSQL", new DateTime(2020, 1, 1), TechnologyCategories.Database, new DateTime(2020, 9, 1), Frequencies.Rarely, Proficiencies.Basic);
         internal static readonly ProjectTechnology Automapper = new("Automapper", new DateTime(2015, 1, 1), TechnologyCategories.Tool, null, Frequencies.Frequently, Proficiencies.Advanced);
@@ -47,7 +48,7 @@ namespace Savitar.Infrastructure.Repository.CV
         {
             return new List<ProjectTechnology>
             {
-                AS400, Automapper, Blazor, CPP, CSharp, Delphi, DotNetCore, DotNetFramework,
+                AS400, Automapper, BlazorServer, BlazorWebAssembly, CPP, CSharp, Delphi, DotNetCore, DotNetFramework,
                 Excel, MSAccess, Postman, SQLServer, StructureMap, VisualBasic, VisualBasicNet,
                 VisualStudio, WebServices, EntityFramework, PostgreSQL, NHibernate, WebAPI, TurboPascal, Javascript,
                 RabbitMQ, Python, VUE, PyCharm, VSCode, PowerShell, BorlandDeveloperStudio, ApacheSpark, Docker, DotNet5, MudBlazor

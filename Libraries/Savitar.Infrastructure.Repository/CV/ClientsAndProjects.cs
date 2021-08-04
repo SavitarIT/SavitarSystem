@@ -12,10 +12,11 @@ namespace Savitar.Infrastructure.Repository.CV
             {
                 Projects = new List<Project>
                 {
-                    new Project("Savitar Web : This website")
+                    new Project("# Savitar WebAssembly and Server : This website :)")
                     {
-                        Description = "Wanting to learn the new Microsoft Blazor technology, I decided to build this site using the technology to gain some needed experience.",
-                        TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNet5, Technologies.CSharp, Technologies.Blazor, Technologies.MudBlazor }
+                        Description = @"Wanting to learn the new Microsoft Blazor technology, I decided to build this site using the technology to gain some needed experience.<br/><br/>
+                        The aim is to introduce different concepts over time, add tools, and just generarlly showcase what Blazor is capable of, and what I can do with it.",                       
+                        TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNet5, Technologies.CSharp, Technologies.BlazorWebAssembly, Technologies.MudBlazor, Technologies.SQLServer, Technologies.WebAPI }
                     },
                     new Project("dBit : MWeb Payment Module")
                     {

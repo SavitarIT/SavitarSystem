@@ -1,0 +1,45 @@
+﻿<MudText Typo="Typo.h4">@(string.IsNullOrEmpty(Title) ? "Savitar WebAssembly, by Michael Smit" : Title)</MudText>
+<br/>
+
+@if (!isLoaded)
+{
+    <MudContainer>
+        <MudContainer Class="spinner" />        
+        <br />
+        <MudText Typo="Typo.h3" Style="text-align: center">@Message</MudText>        
+    </MudContainer>
+}
+else
+{        
+    @ChildContent
+}
+
+@code {
+    bool isLoaded;
+    protected string Message { get; set; } = "Fetching data... Gimme a sec!";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string Title { get; init; }
+    
+    [Parameter]
+    public EventCallback<BasePageServices> OnInitData { get; set; }
+
+    protected void MessageChange(string message)
+    {
+        Message = message;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var basePageServices = new BasePageServices()
+        {
+            DisplayMessage = MessageChange
+        };
+        await OnInitData.InvokeAsync(basePageServices);
+
+        //await Task.Delay(5000); // TODO actual initialization job
+        isLoaded = true;        
+    }
+}

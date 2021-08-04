@@ -4,14 +4,7 @@
 @using Savitar.Domain.Models
 @inject HttpClient Http
 
-<MudText Typo="Typo.h4">Ethereum Playground</MudText>
-
-@if (!hasLoaded)
-{
-    <MudContainer Class="spinner" />
-}
-else
-{    
+<BasePage Title="Ethereum Playground" OnInitData="OnInitData">
     <MudCard Outlined="true">
         <MudCardHeader class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
             <CardHeaderContent>
@@ -24,24 +17,23 @@ else
             <MudText><b>Network Version:</b> @_data.NetworkVersion</MudText>
         </MudCardContent>
     </MudCard>
-}
 
-@code {
-    private bool hasLoaded = false;
-    
-    EthInfo _data;
+    @code {        
+        EthInfo _data;
 
-    protected override async Task OnInitializedAsync()
-    {
-        try
+        protected async Task OnInitData(BasePageServices basePageServices)
         {
-            _data  = await Http.GetFromJsonAsync<EthInfo>("api/EthFunctions/getall");
-        }
-        catch (Exception ex)
-        {            
-            Console.WriteLine(ex.Message);
-        }
+            try
+            {
+                basePageServices.DisplayMessage("Fetching top level ETH blockchain info");
+                _data  = await Http.GetFromJsonAsync<EthInfo>("api/EthFunctions/getall");
+            }
+            catch (Exception ex)
+            {            
+                Console.WriteLine(ex.Message);
+            }
 
-        hasLoaded = true;
+            @*hasLoaded = true; *@
+        }        
     }
-}
+</BasePage>

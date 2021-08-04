@@ -3,63 +3,64 @@
 @using Savitar.Services.Shared
 @inject HttpClient Http
 
-<MudText Typo="Typo.h4">Services</MudText>
+<BasePage Title="Services" OnInitData="OnInitData">
+    @if (_items == null)
+    {
+        <MudContainer Class="spinner" />
+    }
+    else
+    {
+        <MudGrid>
+            @foreach (var item in _items)
+            {       
+                <MudItem xs="12">
+                    <MudCard Outlined="true">
+                        <MudCardHeader Class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
+                            <CardHeaderContent>
+                                <MudText Typo="Typo.h6"><p>@((MarkupString)item.Title)</p></MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent Class="pa=0">
+                            <MudText Typo="Typo.body1">@((MarkupString)item.Description)  </MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+            }
+        </MudGrid>
+    }
 
-@if (_items == null)
-{
-    <MudContainer Class="spinner" />
-}
-else
-{
-    <MudGrid>
-        @foreach (var item in _items)
-        {       
-            <MudItem xs="12">
-                <MudCard Outlined="true">
-                    <MudCardHeader Class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
-                        <CardHeaderContent>
-                            <MudText Typo="Typo.h6"><p>@((MarkupString)item.Title)</p></MudText>
-                        </CardHeaderContent>
-                    </MudCardHeader>
-                    <MudCardContent Class="pa=0">
-                        <MudText Typo="Typo.body1">@((MarkupString)item.Description)  </MudText>
-                    </MudCardContent>
-                </MudCard>
-            </MudItem>
+    <style>    
+        ul {
+            list-style-type: disc;
+            list-style-position: inside;
+        }   
+
+        ol {
+            list-style-type: decimal;
+            list-style-position: inside;
         }
-    </MudGrid>
-}
 
-<style>    
-    ul {
-        list-style-type: disc;
-        list-style-position: inside;
-    }   
+        ul ul, ol ul {
+            list-style-type: circle;
+            list-style-position: inside;
+            margin-left: 15px;
+        }
 
-    ol {
-        list-style-type: decimal;
-        list-style-position: inside;
+        ol ol, ul ol {
+            list-style-type: lower-latin;
+            list-style-position: inside;
+            margin-left: 15px;
+        }
+    </style>
+
+
+    @code {
+        private Service[] _items;
+
+        protected async Task OnInitData(BasePageServices basePageServices)
+        {
+            basePageServices.DisplayMessage("Fetching services I have to offer");
+            _items = await Http.GetFromJsonAsync<Service[]>("api/CVInfo/GetServices");
+        }        
     }
-
-    ul ul, ol ul {
-        list-style-type: circle;
-        list-style-position: inside;
-        margin-left: 15px;
-    }
-
-    ol ol, ul ol {
-        list-style-type: lower-latin;
-        list-style-position: inside;
-        margin-left: 15px;
-    }
-</style>
-
-
-@code {
-    private Service[] _items;
-
-    protected override async Task OnInitializedAsync()
-    {                
-        _items = await Http.GetFromJsonAsync<Service[]>("api/CVInfo/GetServices");
-    }
-}
+</BasePage>

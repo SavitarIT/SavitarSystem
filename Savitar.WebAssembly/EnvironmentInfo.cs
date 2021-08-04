@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace Savitar.WebAssembly
+﻿namespace Savitar.WebAssembly
 {
+
     public class EnvironmentInfo
     {
         public static bool IsDebug()

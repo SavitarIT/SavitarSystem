@@ -3,124 +3,127 @@
 @using Savitar.Services.Shared
 @inject HttpClient Http
 
-<MudText Typo="Typo.h4">Skills Matrix</MudText>
-@* Icons from here: https://iconscout.com/unicons/explore/line Color used #100ED8 *@
+<BasePage Title="Skills Matrix" OnInitData="OnInitData">
+    @* Icons from here: https://iconscout.com/unicons/explore/line Color used #100ED8 *@
 
-@if (_technologies == null)
-{
-    <MudContainer Class="spinner" />
-}
-else
-{        
-    <MudGrid>
-        @foreach (var category in GetCategories())
-        {
-            <MudItem xs="12">
-                <MudCard Outlined="true">
-                    <MudCardHeader Class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
-                        <MudText Typo="Typo.h6"><img src="Images/@(category.Name.Replace(" ", "")).png" style="width: 24px;"> @category.Name</MudText>                                
-                    </MudCardHeader>
+    @if (_technologies == null)
+    {
+        <MudContainer Class="spinner" />
+    }
+    else
+    {        
+        <MudGrid>
+            @foreach (var category in GetCategories())
+            {
+                <MudItem xs="12">
+                    <MudCard Outlined="true">
+                        <MudCardHeader Class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
+                            <MudText Typo="Typo.h6"><img src="Images/@(category.Name.Replace(" ", "")).png" style="width: 24px;"> @category.Name</MudText>                                
+                        </MudCardHeader>
 
-                    <MudCardContent Class="pa=0">
-                        <MudTable Elevation="25" Outlined="true" Hover="true" Breakpoint="Breakpoint.MdAndDown" Items="@GetProjectTechnologies(category.Id).OrderBy(x => x.Category.Name).ThenByDescending(x => x.LastUse ?? DateTime.Now.Date).ThenByDescending(x => x.Proficiency)">
-                            <HeaderContent>
-                                <MudTh><b>Skill</b></MudTh>
-                                <MudTh><b>Last Use</b></MudTh>
-                                <MudTh><b>Proficiency</b></MudTh>
-                                <MudTh><b>Years</b></MudTh>
-                                <MudTh><b>First Use</b></MudTh>
-                                <MudTh></MudTh>
-                            </HeaderContent>
-                            <RowTemplate>
-                                <MudTd DataLabel="Skill">@context.Name</MudTd>
-                                <MudTd DataLabel="Last Use">@(GetLastUseText(context))</MudTd>
-                                <MudTd DataLabel="Proficiency">@context.Proficiency</MudTd>
-                                <MudTd DataLabel="Years" Style="text-align: right">@($"{GetYears(context):0.0}")</MudTd>                                
-                                <MudTd DataLabel="First Use" Style="text-align: center">@($"{context.FirstUse:yyyy}")</MudTd>
-                                <MudTd></MudTd>
-                            </RowTemplate>
-                            <ColGroup>
-                                <col style="width: 180px;" />
-                                <col style="width: 145px;" />
-                                <col style="width: 100px;" />
-                                <col style="width: 45px;"/>
-                                <col style="width: 90px;"/>
-                                <col />
-                            </ColGroup>
-                        </MudTable>
-                    </MudCardContent>
-                </MudCard>                
-            </MudItem>
+                        <MudCardContent Class="pa=0">
+                            <MudTable Elevation="25" Outlined="true" Hover="true" Breakpoint="Breakpoint.MdAndDown" Items="@GetProjectTechnologies(category.Id).OrderBy(x => x.Category.Name).ThenByDescending(x => x.LastUse ?? DateTime.Now.Date).ThenByDescending(x => x.Proficiency)">
+                                <HeaderContent>
+                                    <MudTh><b>Skill</b></MudTh>
+                                    <MudTh><b>Last Use</b></MudTh>
+                                    <MudTh><b>Proficiency</b></MudTh>
+                                    <MudTh><b>Years</b></MudTh>
+                                    <MudTh><b>First Use</b></MudTh>
+                                    <MudTh></MudTh>
+                                </HeaderContent>
+                                <RowTemplate>
+                                    <MudTd DataLabel="Skill">@context.Name</MudTd>
+                                    <MudTd DataLabel="Last Use">@(GetLastUseText(context))</MudTd>
+                                    <MudTd DataLabel="Proficiency">@context.Proficiency</MudTd>
+                                    <MudTd DataLabel="Years" Style="text-align: right">@($"{GetYears(context):0.0}")</MudTd>                                
+                                    <MudTd DataLabel="First Use" Style="text-align: center">@($"{context.FirstUse:yyyy}")</MudTd>
+                                    <MudTd></MudTd>
+                                </RowTemplate>
+                                <ColGroup>
+                                    <col style="width: 180px;" />
+                                    <col style="width: 145px;" />
+                                    <col style="width: 100px;" />
+                                    <col style="width: 45px;"/>
+                                    <col style="width: 90px;"/>
+                                    <col />
+                                </ColGroup>
+                            </MudTable>
+                        </MudCardContent>
+                    </MudCard>                
+                </MudItem>
+            }
+        </MudGrid>
+    }
+
+    <style>
+        th {
+            background-color: lightslategray;
         }
-    </MudGrid>
-}
+    </style>
 
-<style>
-    th {
-        background-color: lightslategray;
+
+    @code {
+        private ProjectTechnology[] _technologies;    
+
+        protected async Task OnInitData(BasePageServices basePageServices)
+        {
+            basePageServices.DisplayMessage("Loading up my tech stack");
+            _technologies = await Http.GetFromJsonAsync<ProjectTechnology[]>("api/CVInfo/GetTechnologies");
+        }
+
+        protected IList<ProjectTechnologyCategory> GetCategories()
+        {
+            return _technologies
+                .OrderBy(x => x.Category.Name)
+                .Select(x => x.Category)
+                .Distinct()
+                .ToList();
+        }
+
+        protected IList<ProjectTechnology> GetProjectTechnologies(int categoryId)
+        {
+            return _technologies
+                .Where(x => x.Category.Id == categoryId)
+                .ToList();
+        }
+
+        protected string GetLastUseText(ProjectTechnology technology)
+        {
+            if (!technology.LastUse.HasValue)
+                return "Current";
+
+            var lastUsed = technology.LastUse.Value;
+            var timeSinceLastUsed = DateTime.Now.Date - technology.LastUse.Value;
+
+            if (timeSinceLastUsed.TotalDays < 30)
+                return "Current";
+            if (timeSinceLastUsed.TotalDays < 90)
+                return "Recently";
+            if (timeSinceLastUsed.TotalDays < 180)
+                return "Fairly recently";
+            if (timeSinceLastUsed.TotalDays < 360)
+                return "< 1 year ago";
+
+            var years = timeSinceLastUsed.TotalDays / 365.0;
+            if (years < 2)
+                return "    a year ago";
+            if (years < 6)
+                return "> 5 years";
+            if (years < 11)
+                return "> 10 years";
+
+            return "Long long ago...";
+        }
+
+        protected double? GetYears(ProjectTechnology technology)
+        {
+            var lastUsed = DateTime.Now.Date;
+            if (technology.LastUse.HasValue)
+                lastUsed = technology.LastUse.Value;
+
+
+            var x = (lastUsed - technology.FirstUse).TotalDays / 365.0;
+            return Math.Round(x / 0.5, MidpointRounding.AwayFromZero) * 0.5;
+        }
     }
-</style>
-
-
-@code {
-    private ProjectTechnology[] _technologies;    
-    protected override async Task OnInitializedAsync()
-    {
-        _technologies = await Http.GetFromJsonAsync<ProjectTechnology[]>("api/CVInfo/GetTechnologies");
-    }
-
-    protected IList<ProjectTechnologyCategory> GetCategories()
-    {
-        return _technologies
-            .OrderBy(x => x.Category.Name)
-            .Select(x => x.Category)
-            .Distinct()
-            .ToList();
-    }
-
-    protected IList<ProjectTechnology> GetProjectTechnologies(int categoryId)
-    {
-        return _technologies
-            .Where(x => x.Category.Id == categoryId)
-            .ToList();
-    }
-
-    protected string GetLastUseText(ProjectTechnology technology)
-    {
-        if (!technology.LastUse.HasValue)
-            return "Current";
-
-        var lastUsed = technology.LastUse.Value;
-        var timeSinceLastUsed = DateTime.Now.Date - technology.LastUse.Value;
-
-        if (timeSinceLastUsed.TotalDays < 30)
-            return "Current";
-        if (timeSinceLastUsed.TotalDays < 90)
-            return "Recently";
-        if (timeSinceLastUsed.TotalDays < 180)
-            return "Fairly recently";
-        if (timeSinceLastUsed.TotalDays < 360)
-            return "< 1 year ago";
-
-        var years = timeSinceLastUsed.TotalDays / 365.0;
-        if (years < 2)
-            return "    a year ago";
-        if (years < 6)
-            return "> 5 years";
-        if (years < 11)
-            return "> 10 years";
-
-        return "Long long ago...";
-    }
-
-    protected double? GetYears(ProjectTechnology technology)
-    {
-        var lastUsed = DateTime.Now.Date;
-        if (technology.LastUse.HasValue)
-            lastUsed = technology.LastUse.Value;
-
-
-        var x = (lastUsed - technology.FirstUse).TotalDays / 365.0;
-        return Math.Round(x / 0.5, MidpointRounding.AwayFromZero) * 0.5;
-    }
-}
+</BasePage>

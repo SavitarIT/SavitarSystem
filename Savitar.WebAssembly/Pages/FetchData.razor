@@ -2,45 +2,45 @@
 @using Savitar.Domain.Models
 @inject HttpClient Http
 
-<h1>Weather forecast</h1>
+<BasePage Title="Weather forecast" OnInitData="OnInitData">
+    <p>This component demonstrates fetching data from the server.</p>
 
-<p>This component demonstrates fetching data from the server.</p>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-
-@code {
-    private WeatherForecast[] forecasts;
-
-    protected override async Task OnInitializedAsync()
+    @if (forecasts == null)
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast");
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temp. (C)</th>
+                    <th>Temp. (F)</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var forecast in forecasts)
+                {
+                    <tr>
+                        <td>@forecast.Date.ToShortDateString()</td>
+                        <td>@forecast.TemperatureC</td>
+                        <td>@forecast.TemperatureF</td>
+                        <td>@forecast.Summary</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 
-}
+    @code {
+        private WeatherForecast[] forecasts;
+
+        protected async Task OnInitData(BasePageServices basePageServices)
+        {
+            basePageServices.DisplayMessage("Loading up weather data");
+            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast");
+        }
+    }
+</BasePage>

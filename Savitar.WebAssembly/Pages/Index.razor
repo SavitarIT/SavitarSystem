@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using System.Threading
 
 <MudText Typo="Typo.h4">Savitar WebAssembly, by Michael Smit</MudText>
 
@@ -36,5 +37,5 @@
     int GetTotalYears()
     {
         return (int)(DateTime.Now.Date - (new DateTime(1986, 8, 11))).TotalDays / 365;
-    }
+    }    
 }

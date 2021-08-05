@@ -40,8 +40,7 @@ namespace WebApplication3.Server
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"),
-                    x => x.MigrationsAssembly("Savitar.Infrastructure.Repository.EFCore")
+                    Configuration.GetConnectionString("SavitarDB"), x => x.MigrationsAssembly("Savitar.Infrastructure.Repository.EFCore")
                 ));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();

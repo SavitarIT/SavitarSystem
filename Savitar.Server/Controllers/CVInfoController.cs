@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Savitar.Domain.Models;
+using Savitar.Domain.Models.CV;
+using Savitar.Infrastructure.Repository.Shared;
 using Savitar.Infrastructure.Repository.Shared.CV;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +15,13 @@ namespace Savitar.Server.Controllers
         private readonly ILogger<EthFunctionsController> _logger;
         public IClientsAndProjects ClientsAndProjectsService { get; }
         public ITechnologies TechnologiesService { get; }
-        public IServices ServicesService { get; }
+        public IServicesRepository ServicesRepository { get; }
 
-        public CVInfoController(IClientsAndProjects clientsAndProjectsService, ITechnologies technologiesService, IServices servicesService, ILogger<EthFunctionsController> logger)
+        public CVInfoController(IClientsAndProjects clientsAndProjectsService, ITechnologies technologiesService, IServicesRepository servicesRepository, ILogger<EthFunctionsController> logger)
         {
             ClientsAndProjectsService = clientsAndProjectsService;
             TechnologiesService = technologiesService;
-            ServicesService = servicesService;
+            ServicesRepository = servicesRepository;
 
             _logger = logger;
         }
@@ -48,7 +50,7 @@ namespace Savitar.Server.Controllers
         [ResponseCache(NoStore = false, Duration = 10, Location = ResponseCacheLocation.Any)]
         public async Task<IEnumerable<Service>> GetServices()
         {
-            var result = ServicesService.GetAll();
+            var result = await ServicesRepository.GetAllAsync();
             return await Task.FromResult(result.ToArray());
         }
     }

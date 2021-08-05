@@ -1,4 +1,4 @@
-﻿using Savitar.Domain.Models;
+﻿using Savitar.Domain.Models.CV;
 using System.Threading.Tasks;
 
 namespace Savitar.Services.Shared
@@ -6,7 +6,6 @@ namespace Savitar.Services.Shared
     public interface ICVDataService
     {
         Task<Client[]> GetClientsAsync();
-        Task<ProjectTechnology[]> GetProjectTechnologies();
-        Task<Service[]> GetServicesAsync();
+        Task<ProjectTechnology[]> GetProjectTechnologies();        
     }
 }

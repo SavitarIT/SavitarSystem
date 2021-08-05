@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Savitar.Domain.Models;
+using Savitar.Domain.Models.CV;
 using Savitar.Infrastructure.Repository.Shared.CV;
 
 namespace Savitar.Infrastructure.Repository.CV

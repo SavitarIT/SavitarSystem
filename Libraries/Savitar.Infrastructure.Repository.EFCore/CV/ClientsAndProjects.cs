@@ -1,4 +1,4 @@
-﻿using Savitar.Domain.Models;
+﻿using Savitar.Domain.Models.CV;
 using Savitar.Infrastructure.Repository.Shared.CV;
 using System.Collections.Generic;
 

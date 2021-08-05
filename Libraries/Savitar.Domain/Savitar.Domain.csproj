@@ -7,4 +7,8 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.8" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Savitar.Domain.Shared\Savitar.Domain.Shared.csproj" />
+	</ItemGroup>
 </Project>

@@ -25,5 +25,6 @@
   
 	<ItemGroup>
 	  <ProjectReference Include="..\Savitar.Domain\Savitar.Domain.csproj" />
+	  <ProjectReference Include="..\Savitar.Infrastructure.Repository.Shared\Savitar.Infrastructure.Repository.Shared.csproj" />
 	</ItemGroup>
 </Project>

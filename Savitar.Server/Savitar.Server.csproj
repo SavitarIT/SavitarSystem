@@ -9,9 +9,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.8" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
+	  <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.8" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Libraries\Savitar.Bootstrapper\Savitar.Bootstrapper.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.Infrastructure.Repository.EFCore\Savitar.Infrastructure.Repository.EFCore.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.WebAssembly.Blockchain.Ethereum\Savitar.WebAssembly.Blockchain.Ethereum.csproj" />
     <ProjectReference Include="..\Savitar.WebAssembly\Savitar.WebAssembly.csproj" />

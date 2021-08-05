@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Savitar.Domain.Models;
+using Savitar.Domain.Models.CV;
 
 namespace Savitar.Infrastructure.Repository.CV
 {

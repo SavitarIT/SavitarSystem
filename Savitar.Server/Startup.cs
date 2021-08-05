@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Savitar.Bootstrapper;
+using Savitar.Domain.Models;
 using Savitar.Infrastructure.Repository.EFCore;
 using Savitar.WebAssembly.Blockchain.Ethereum;
 
@@ -35,11 +37,17 @@ namespace WebApplication3.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("Savitar.Infrastructure.Repository.EFCore")
                 ));
+            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentityServer().AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+            services.AddAuthentication().AddIdentityServerJwt();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Savitar.Server", Version = "v1" });

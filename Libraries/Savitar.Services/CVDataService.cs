@@ -1,4 +1,4 @@
-﻿using Savitar.Domain.Models;
+﻿using Savitar.Domain.Models.CV;
 using Savitar.Services.Shared;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,14 +9,12 @@ namespace Savitar.Services
     internal class CVDataService : ICVDataService
     {
         private readonly IClientsAndProjects clientsAndProjects;
-        private readonly ITechnologies technologies;
-        private readonly IServices services;
+        private readonly ITechnologies technologies;        
 
-        public CVDataService(IClientsAndProjects clientsAndProjects, ITechnologies technologies, IServices services)
+        public CVDataService(IClientsAndProjects clientsAndProjects, ITechnologies technologies)
         {
             this.clientsAndProjects = clientsAndProjects;
-            this.technologies = technologies;
-            this.services = services;
+            this.technologies = technologies;            
         }
 
         public Task<Client[]> GetClientsAsync()
@@ -27,11 +25,6 @@ namespace Savitar.Services
         public Task<ProjectTechnology[]> GetProjectTechnologies()
         {
             return Task.FromResult(technologies.GetAll().ToArray());
-        }
-
-        public Task<Service[]> GetServicesAsync()
-        {
-            return Task.FromResult(services.GetAll().ToArray());
-        }
+        }        
     }
 }

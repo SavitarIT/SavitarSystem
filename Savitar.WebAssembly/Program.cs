@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
-using Savitar.Bootstrapper;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,9 +13,13 @@ namespace Savitar.WebAssembly
         {            
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
+            
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            var baseAddress = builder.HostEnvironment.BaseAddress; //.Replace("http:", "https:");
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
+            //builder.Services.AddHttpClient("Savitar.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+            //    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+            //builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("Savitar.ServerAPI"));
+            //builder.Services.AddApiAuthorization();
 
             ConfigureServices(builder);
 
@@ -25,8 +28,7 @@ namespace Savitar.WebAssembly
 
         public static void ConfigureServices(WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddMudServices();
-            builder.Services.AddSavitarServices();
+            builder.Services.AddMudServices();            
         }
     }
 }

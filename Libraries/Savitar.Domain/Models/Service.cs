@@ -1,10 +1,20 @@
-﻿namespace Savitar.Domain.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Savitar.Domain.Models
 {
     public class Service : Entity
     {
-        public string Title { get; init; }
+        [Required, StringLength(150, MinimumLength = 3)]
+        public string Title { get; init; }       
         public string Description { get; init; }
 
-        public Service() { }        
+        protected Service() { }
+
+        public Service(int id, string title, string description)
+        {
+            Id = id;
+            Title = title;
+            Description = description;
+        }    
     }
 }

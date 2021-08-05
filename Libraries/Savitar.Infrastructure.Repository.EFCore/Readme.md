@@ -1,8 +1,9 @@
-﻿add-migration <Migration Name> -ProjectName 'Savitar.Infrastructure.Repository.EFCore' -StartupProjectName 'Savitar.Server' -verbose
-update-database -ProjectName 'Savitar.Infrastructure.Repository.EFCore' -StartupProjectName 'Savitar.Server' -verbose
+﻿## Copy/Paste for DB migrations
+add-migration <Migration Name> -verbose
+update-database -verbose
 
 ROLL BACK TO SPECIFIC MIGRATION
-update-database -ProjectName 'Savitar.Infrastructure.Repository.EFCore' -StartupProjectName 'Savitar.Server' -verbose -TargetMigration:<Migration to roll back to>
+update-database -verbose 
 
 ROLL BACK ALL MIGRATIONS AND START OVER
-update-database -ProjectName 'Savitar.Infrastructure.Repository.EFCore' -StartupProjectName 'Savitar.Server' -verbose -TargetMigration:0
+update-database -verbose 

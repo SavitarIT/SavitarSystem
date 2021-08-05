@@ -35,7 +35,11 @@ namespace WebApplication3.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddDbContext<ApplicationDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    x => x.MigrationsAssembly("Savitar.Infrastructure.Repository.EFCore")
+                ));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Savitar.Server", Version = "v1" });

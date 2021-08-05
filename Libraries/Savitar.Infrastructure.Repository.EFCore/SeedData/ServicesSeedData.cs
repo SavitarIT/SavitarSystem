@@ -4,7 +4,7 @@ using Savitar.Domain.Models;
 
 namespace Savitar.Infrastructure.Repository.SeedData
 {
-    public static class Services
+    public static class ServicesSeedData
     {
         public static IEnumerable<Service> GetAll()
         {

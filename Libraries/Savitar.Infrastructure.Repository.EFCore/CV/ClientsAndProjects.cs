@@ -265,7 +265,7 @@ The IT Manager wanted a system coded in VB, but the order of the required softwa
 This system remained in use for around 15 years after I moved on!
 
 Being the first PC developer in the company, I was also responsible for assisting with network installation, PC builds, etc...",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility },
+                        Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.LeadDevResponsibility },
                         TechStack = new List<ProjectTechnology> { Technologies.AS400, Technologies.Excel, Technologies.VisualBasic }
                     }
                 }
@@ -284,7 +284,7 @@ Being the first PC developer in the company, I was also responsible for assistin
     I was involved with the server development. This consisted of a Windows Service and IIS Website. The Windows Service took care or ETL and maintenance tasks, and the website for master data, reporting, etc...
 
 When this project started in 2005, my client only had installation files for the first version of their software. It was a Winforms application on the .NET 1 framework. I reverse engineered the system and extracted the required sources. The system was then upgraded to .NET Framework 2, and later to a web application. It then got a re-write about 6 years ago to the system it is currently.",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility, Responsibilities.MentorResponsibility },
+                        Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.LeadDevResponsibility, ResponsibilitiesSeedData.MentorResponsibility },
                         TechStack        = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer, Technologies.Automapper, Technologies.StructureMap, Technologies.Postman }
                     },
                     new Project
@@ -292,7 +292,7 @@ When this project started in 2005, my client only had installation files for the
                         Name = "Minegaze",
                         Url = "https://www.accutrak.co.za/our-products-2/minegaze/",
                         Description = "Minegaze is a GPS based tracking and weighing solution for the surface or open cast trackless mining environments. Minegaze makes use of the GSM network to upload collected data into the cloud with the objective of optimising production.",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility, Responsibilities.MentorResponsibility },
+                        Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.LeadDevResponsibility, ResponsibilitiesSeedData.MentorResponsibility },
                         TechStack        = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer, Technologies.Automapper, Technologies.StructureMap, Technologies.Postman }
                     },
                     new Project
@@ -300,7 +300,7 @@ When this project started in 2005, my client only had installation files for the
                         Name = "Accuchip",
                         Url = "https://www.accutrak.co.za/our-products-2/accuchip/",
                         Description = "Accuchip is an RFid tracking solution for material cars and general rolling stock. This is an RFid solution that can be applied to various rolling stock items and high value equipment to provide proximity detection and location reporting.",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility, Responsibilities.MentorResponsibility },
+                        Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.LeadDevResponsibility, ResponsibilitiesSeedData.MentorResponsibility },
                         TechStack        = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer, Technologies.Automapper, Technologies.StructureMap, Technologies.Postman }
                     },
                     new Project
@@ -308,7 +308,7 @@ When this project started in 2005, my client only had installation files for the
                         Name = "Trucktrak",
                         Url = "https://www.accutrak.co.za/our-products-2/outset/",
                         Description = "Trucktrak is a production management system designed specifically for mechanised underground mining operations. Since there is no GPS available underground from which to obtain position, Trucktrak makes use of discretely distributed long life battery operated beacons to obtain position.",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility, Responsibilities.MentorResponsibility },
+                        Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.LeadDevResponsibility, ResponsibilitiesSeedData.MentorResponsibility },
                         TechStack        = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer, Technologies.Automapper, Technologies.StructureMap, Technologies.Postman }
                     }
 
@@ -326,7 +326,7 @@ When this project started in 2005, my client only had installation files for the
                             <li>All sales were uploaded nightly at the Alphapos Enterprise server – via FTP - to be imported into a data warehouse solution to enable the franchisor to view sales statistics for all franchises and outlets country wide.</li>
                             <li>The application is extremely feature rich and catered to both the franchisee and franchisor needs.</li>
                         </ul>",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.LeadDevResponsibility, Responsibilities.MentorResponsibility },
+                        Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.LeadDevResponsibility, ResponsibilitiesSeedData.MentorResponsibility },
                         TechStack = new List<ProjectTechnology> { Technologies.Delphi, Technologies.SQLServer }
                     }
                 }
@@ -347,7 +347,7 @@ When this project started in 2005, my client only had installation files for the
                                 <li>The service side has a complete management web interface to enable staff to setup vending machines, deploy settings to vending machines, manage accounts, funds, import stock, generate GP reports, etc…</li>
                                 <li>The server solution had to calculate commissions for account holders based on sales and pre-configured percentage settings.Account holders were also able to login to the web frontend to view sales statistics, draw reports and support queries.</li>
                             </ul>",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.SeniorDevResponsibility},
+                        Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.SeniorDevResponsibility},
                         TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer }
                     },
                     new Project("CellC Distributor / Vendor Management System")
@@ -357,7 +357,7 @@ When this project started in 2005, my client only had installation files for the
     <li>Allows for distributor and vendor login to enable the rendering of reports for cash balances, stock orders, commissions generated, payments made, etc...</li>
     <li>Starter packs are sold by CellC to a distributor (Hi-Fi Corp, etc...). The stock is sent to the system via flat file and loaded into SQL Server. Vendors then purchase the stock at Point Of Sale terminals at the distributor, with communications via SOAP Web Services in real time.</li>    
 </ul>",
-                        Responsibilities = new List<ProjectResponsibility> { Responsibilities.SeniorDevResponsibility},
+                        Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.SeniorDevResponsibility},
                         TechStack = new List<ProjectTechnology> { Technologies.VisualStudio, Technologies.DotNetFramework, Technologies.CSharp, Technologies.SQLServer, Technologies.WebServices }
 
                     }

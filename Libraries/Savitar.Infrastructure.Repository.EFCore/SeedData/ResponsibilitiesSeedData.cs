@@ -3,7 +3,7 @@ using Savitar.Domain.Models.CV;
 
 namespace Savitar.Infrastructure.Repository.CV
 {
-    internal class Responsibilities
+    public static class ResponsibilitiesSeedData
     {
         public static readonly ProjectResponsibility LeadDevResponsibility = new() { Id = 1, Name = "Lead Developer" };
         public static readonly ProjectResponsibility SeniorDevResponsibility = new() { Id = 2, Name = "Senior Developer" };

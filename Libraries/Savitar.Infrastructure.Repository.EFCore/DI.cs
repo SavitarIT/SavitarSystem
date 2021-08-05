@@ -9,9 +9,11 @@ namespace Savitar.Infrastructure.Repository.EFCore
     {
         public static void Execute(IServiceCollection services)
         {
-            services.AddSingleton<IClientsAndProjects, ClientsAndProjects>();
+            //services.AddSingleton<IClientsAndProjects, ClientsAndProjects>();
             services.AddSingleton<ITechnologies, Technologies>();
-            services.AddTransient<IServicesRepository, ServicesRepository>();
+            
+            services.AddScoped<IServicesRepository, ServicesRepository>();
+            services.AddScoped<IProjectsRepository, ProjectsRepository>();
         }
     }
 }

@@ -7,19 +7,12 @@ using Savitar.Infrastructure.Repository.Shared.CV;
 namespace Savitar.Services
 {
     internal class CVDataService : ICVDataService
-    {
-        private readonly IClientsAndProjects clientsAndProjects;
+    {        
         private readonly ITechnologies technologies;        
 
-        public CVDataService(IClientsAndProjects clientsAndProjects, ITechnologies technologies)
-        {
-            this.clientsAndProjects = clientsAndProjects;
+        public CVDataService(ITechnologies technologies)
+        {     
             this.technologies = technologies;            
-        }
-
-        public Task<Client[]> GetClientsAsync()
-        {
-            return Task.FromResult(clientsAndProjects.GetAll().ToArray());
         }
 
         public Task<ProjectTechnology[]> GetProjectTechnologies()

@@ -1,12 +1,12 @@
 ﻿using Savitar.Domain.Models.CV;
-using Savitar.Infrastructure.Repository.Shared.CV;
+using Savitar.Infrastructure.Repository.CV;
 using System.Collections.Generic;
 
-namespace Savitar.Infrastructure.Repository.CV
+namespace Savitar.Infrastructure.Repository.SeedData
 {
-    internal class ClientsAndProjects : IClientsAndProjects
+    public static class ClientsAndProjectsSeedData
     {
-        private readonly IEnumerable<Client> Clients = new List<Client>
+        private static readonly IEnumerable<Client> Clients = new List<Client>
         {
             new Client("Savitar IT Solutions")
             {
@@ -364,7 +364,7 @@ When this project started in 2005, my client only had installation files for the
                 }
             }
         };
-        public IEnumerable<Client> GetAll()
+        public static IEnumerable<Client> GetAll()
         {
             return Clients;
         }

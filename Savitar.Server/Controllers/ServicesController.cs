@@ -5,8 +5,6 @@ namespace Savitar.Server.Controllers
 {
     public class ServicesController : BaseApiEntityController<Service, IServicesRepository>
     {
-        public ServicesController(IServicesRepository repository) : base(repository)
-        {
-        }        
+        public ServicesController(IServicesRepository repository) : base(repository) { }        
     }
 }

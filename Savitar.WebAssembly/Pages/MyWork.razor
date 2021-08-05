@@ -71,8 +71,8 @@
 
         protected async Task OnInitData(BasePageServices basePageServices)
         {
-            basePageServices.DisplayMessage("Loading all the projects I have worked on");
-            _projects = await Http.GetFromJsonAsync<Project[]>("api/CVInfo/GetProjects");
+            basePageServices.DisplayMessage("Loading all the projects I have worked on");            
+            _projects = await Http.GetFromJsonAsync<Project[]>("api/Projects");
         }         
     }
 </BasePage>

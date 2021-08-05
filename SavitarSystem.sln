@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Domain", "Libraries
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Tests", "Tests\Savitar.Tests\Savitar.Tests.csproj", "{6D962CA1-BB8A-430F-84BE-7701F856C045}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savitar.Infrastructure.Repository.EFCore", "Libraries\Savitar.Infrastructure.Repository.EFCore\Savitar.Infrastructure.Repository.EFCore.csproj", "{19607206-48C2-4150-9FEE-496BBBB93218}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{6D962CA1-BB8A-430F-84BE-7701F856C045}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D962CA1-BB8A-430F-84BE-7701F856C045}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D962CA1-BB8A-430F-84BE-7701F856C045}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19607206-48C2-4150-9FEE-496BBBB93218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19607206-48C2-4150-9FEE-496BBBB93218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19607206-48C2-4150-9FEE-496BBBB93218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19607206-48C2-4150-9FEE-496BBBB93218}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{4DA7925B-1911-456D-8131-D6A3728C6EC8} = {505E52AB-6E33-4EFD-BBAA-401FED6BB5A4}
 		{DC24C50F-B901-4B71-88D9-A28FA8CAB516} = {505E52AB-6E33-4EFD-BBAA-401FED6BB5A4}
 		{6D962CA1-BB8A-430F-84BE-7701F856C045} = {CD2975A0-015E-4FB2-B88D-F17075FC1194}
+		{19607206-48C2-4150-9FEE-496BBBB93218} = {505E52AB-6E33-4EFD-BBAA-401FED6BB5A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D23BA60-8943-43AA-BB41-563A4F43A3D8}

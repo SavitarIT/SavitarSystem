@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Savitar.Bootstrapper;
+using Savitar.Infrastructure.Repository.EFCore;
 using Savitar.WebAssembly.Blockchain.Ethereum;
 
 namespace WebApplication3.Server
@@ -33,7 +35,7 @@ namespace WebApplication3.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            services.AddDbContext<ApplicationDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Savitar.Server", Version = "v1" });

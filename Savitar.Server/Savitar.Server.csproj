@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Libraries\Savitar.Infrastructure.Repository.EFCore\Savitar.Infrastructure.Repository.EFCore.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.WebAssembly.Blockchain.Ethereum\Savitar.WebAssembly.Blockchain.Ethereum.csproj" />
     <ProjectReference Include="..\Savitar.WebAssembly\Savitar.WebAssembly.csproj" />
   </ItemGroup>

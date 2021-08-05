@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Savitar.Domain.Models.CV
 {
@@ -6,5 +7,7 @@ namespace Savitar.Domain.Models.CV
     {
         [Required, StringLength(200)]
         public string Name { get; init; }
+
+        public List<ProjectTechnology> Technologies { get; set; }
     }
 }

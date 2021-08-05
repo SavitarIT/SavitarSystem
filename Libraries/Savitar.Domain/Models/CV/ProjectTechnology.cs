@@ -1,17 +1,17 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Savitar.Domain.Models.CV
 {
     public class ProjectTechnology : Entity
     {
-        internal static int id = 0;
-        public ProjectTechnology()
+        protected ProjectTechnology()
         {
         }
 
-        public ProjectTechnology(string name, DateTime firstUse, ProjectTechnologyCategory category = null, DateTime? lastUse = null, Frequencies usageFrequency = Frequencies.Daily, Proficiencies proficiency = Proficiencies.Intermediate)
+        public ProjectTechnology(int id, string name, DateTime firstUse, ProjectTechnologyCategory category, DateTime? lastUse = null, Frequencies usageFrequency = Frequencies.Daily, Proficiencies proficiency = Proficiencies.Intermediate)
         {
-            Id = ++id;
+            Id = id;
             Name = name;
             FirstUse = firstUse;
             Category = category;
@@ -20,11 +20,16 @@ namespace Savitar.Domain.Models.CV
             Proficiency = proficiency;
         }
 
+        [Required, StringLength(200)]
         public string Name { get; set; }
+        [Required]
         public ProjectTechnologyCategory Category { get; set; }
+        [Required]
         public DateTime FirstUse { get; set; }
         public DateTime? LastUse { get; set; }
+        [Required]
         public Frequencies UsageFrequency { get; set; }
+        [Required]
         public Proficiencies Proficiency { get; set; }
     }
 }

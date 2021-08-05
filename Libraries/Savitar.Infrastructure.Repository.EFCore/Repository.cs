@@ -44,9 +44,15 @@ namespace Savitar.Infrastructure.Repository.EFCore
             return await _context.Set<TEntity>().FindAsync(id);
         }
 
+        protected virtual IQueryable<TEntity> ConfigureGetAll(IQueryable<TEntity> data)
+        {
+            return data;
+        }
+
         public async virtual Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _context.Set<TEntity>().ToListAsync();
+            var data = ConfigureGetAll(_context.Set<TEntity>());            
+            return await data.ToListAsync();
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)

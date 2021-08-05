@@ -28,7 +28,7 @@ namespace Savitar.Infrastructure.Repository.EFCore
         {
             builder.ApplyConfiguration(new ServiceTypeConfiguration()); ;
             builder.ApplyConfiguration(new ProjectTechnologyCategoryTypeConfiguration());
-            
+            builder.ApplyConfiguration(new ProjectTechnologyTypeConfiguration());
 
             base.OnModelCreating(builder);
         }

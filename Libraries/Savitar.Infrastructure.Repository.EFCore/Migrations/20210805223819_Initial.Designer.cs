@@ -10,8 +10,8 @@ using Savitar.Infrastructure.Repository.EFCore;
 namespace Savitar.Infrastructure.Repository.EFCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210805213543_ProjectTechnologyCategories")]
-    partial class ProjectTechnologyCategories
+    [Migration("20210805223819_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -324,6 +324,375 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Savitar.Domain.Models.CV.ProjectTechnology", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FirstUse")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastUse")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("Proficiency")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsageFrequency")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("ProjectTechnologies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 16,
+                            CategoryId = 4,
+                            FirstUse = new DateTime(1997, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(1999, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AS400 Mainframe",
+                            Proficiency = 0,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 6,
+                            FirstUse = new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Automapper",
+                            Proficiency = 3,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 3,
+                            FirstUse = new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Blazor Server",
+                            Proficiency = 2,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 3,
+                            FirstUse = new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Blazor WebAssembly",
+                            Proficiency = 2,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CategoryId = 2,
+                            FirstUse = new DateTime(1994, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2010, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C++",
+                            Proficiency = 3,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 2,
+                            FirstUse = new DateTime(2001, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C#",
+                            Proficiency = 3,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 2,
+                            FirstUse = new DateTime(1995, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2007, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Delphi",
+                            Proficiency = 3,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 3,
+                            FirstUse = new DateTime(2014, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = ".NET Core",
+                            Proficiency = 2,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 3,
+                            FirstUse = new DateTime(2001, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = ".NET Framework",
+                            Proficiency = 3,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoryId = 6,
+                            FirstUse = new DateTime(1995, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Excel",
+                            Proficiency = 2,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CategoryId = 4,
+                            FirstUse = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Microsoft Access",
+                            Proficiency = 2,
+                            UsageFrequency = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 6,
+                            FirstUse = new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Postman",
+                            Proficiency = 2,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 4,
+                            FirstUse = new DateTime(1998, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2021, 8, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            Name = "SQL Server",
+                            Proficiency = 3,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 6,
+                            FirstUse = new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Structure Map",
+                            Proficiency = 3,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CategoryId = 2,
+                            FirstUse = new DateTime(1997, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2014, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Visual Basic",
+                            Proficiency = 2,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CategoryId = 2,
+                            FirstUse = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2010, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Visual Basic.NET",
+                            Proficiency = 2,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 1,
+                            FirstUse = new DateTime(2003, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Visual Studio",
+                            Proficiency = 3,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CategoryId = 3,
+                            FirstUse = new DateTime(2003, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Web Services",
+                            Proficiency = 2,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CategoryId = 5,
+                            FirstUse = new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Entity Framework",
+                            Proficiency = 3,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 4,
+                            FirstUse = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PostgreSQL",
+                            Proficiency = 0,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CategoryId = 5,
+                            FirstUse = new DateTime(2014, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "nHibernate",
+                            Proficiency = 2,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CategoryId = 3,
+                            FirstUse = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Web/REST API",
+                            Proficiency = 3,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 2,
+                            FirstUse = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(1993, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Turbo Pascal",
+                            Proficiency = 3,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CategoryId = 2,
+                            FirstUse = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Javascript",
+                            Proficiency = 3,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CategoryId = 6,
+                            FirstUse = new DateTime(2020, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "RabbitMQ",
+                            Proficiency = 0,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CategoryId = 2,
+                            FirstUse = new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Python",
+                            Proficiency = 0,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CategoryId = 3,
+                            FirstUse = new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "VUE",
+                            Proficiency = 0,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CategoryId = 1,
+                            FirstUse = new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PyCharm",
+                            Proficiency = 0,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CategoryId = 1,
+                            FirstUse = new DateTime(2018, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "VS Code",
+                            Proficiency = 2,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CategoryId = 6,
+                            FirstUse = new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PowerShell",
+                            Proficiency = 3,
+                            UsageFrequency = 2
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CategoryId = 1,
+                            FirstUse = new DateTime(2005, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Borland Developer Studio",
+                            Proficiency = 3,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CategoryId = 6,
+                            FirstUse = new DateTime(2020, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastUse = new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Apache Spark",
+                            Proficiency = 0,
+                            UsageFrequency = 0
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CategoryId = 6,
+                            FirstUse = new DateTime(2019, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Docker",
+                            Proficiency = 0,
+                            UsageFrequency = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 3,
+                            FirstUse = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = ".NET 5",
+                            Proficiency = 2,
+                            UsageFrequency = 3
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CategoryId = 6,
+                            FirstUse = new DateTime(2021, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MudBlazor",
+                            Proficiency = 2,
+                            UsageFrequency = 2
+                        });
+                });
+
             modelBuilder.Entity("Savitar.Domain.Models.CV.ProjectTechnologyCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -472,6 +841,15 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Savitar.Domain.Models.CV.ProjectTechnology", b =>
+                {
+                    b.HasOne("Savitar.Domain.Models.CV.ProjectTechnologyCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

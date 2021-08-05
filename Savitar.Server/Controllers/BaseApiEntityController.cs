@@ -10,19 +10,26 @@ namespace Savitar.Server.Controllers
         where TEntity : class, IEntity
         where TRepository : IRepository<TEntity>
     {
-        private readonly TRepository _repository;
+        protected readonly TRepository _repository;
 
         public BaseApiEntityController(TRepository repository)
         {
             _repository = repository;
 }
 
+        protected virtual IEnumerable<TEntity> ConfigureGetAll(IEnumerable<TEntity> data)
+        {
+            return data;
+        }
+
         // GET: api/[controller]
         [HttpGet]
         [ResponseCache(NoStore = false, Duration = 10, Location = ResponseCacheLocation.Any)]
-        public async Task<ActionResult<IEnumerable<TEntity>>> Get()
+        public async virtual Task<ActionResult<IEnumerable<TEntity>>> Get()
         {
-            return Ok(await _repository.GetAllAsync());
+            var data = await _repository.GetAllAsync();
+            ConfigureGetAll(data);
+            return Ok(data);
         }
 
 // GET: api/[controller]/5

@@ -1,7 +1,10 @@
-﻿namespace Savitar.Domain.Models.CV
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Savitar.Domain.Models.CV
 {
     public class ProjectTechnologyCategory : Entity
     {
+        [Required, StringLength(200)]
         public string Name { get; init; }
     }
 }

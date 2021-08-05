@@ -58,8 +58,8 @@
 
         protected async Task OnInitData(BasePageServices basePageServices)
         {
-            basePageServices.DisplayMessage("Fetching services I have to offer");
-            _items = await Http.GetFromJsonAsync<Service[]>("api/CVInfo/GetServices");
+            basePageServices.DisplayMessage("Fetching services I have to offer");            
+            _items = await Http.GetFromJsonAsync<Service[]>("api/Services");
         }        
     }
 </BasePage>

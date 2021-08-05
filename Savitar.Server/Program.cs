@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Savitar.Infrastructure.Repository.EFCore;
 
 namespace WebApplication3.Server
 {
@@ -8,14 +8,10 @@ namespace WebApplication3.Server
     {
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
-
-            using (var scope = host.Services.CreateScope())
-            {
-                Savitar.Infrastructure.Repository.EFCore.DBMigrations.Execute(scope);
-            }
-
-            host.Run();
+            CreateHostBuilder(args)
+                .Build()
+                //.MigrateDatabase()
+                .Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

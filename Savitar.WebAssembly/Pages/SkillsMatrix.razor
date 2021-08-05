@@ -67,7 +67,7 @@
         protected async Task OnInitData(BasePageServices basePageServices)
         {
             basePageServices.DisplayMessage("Loading up my tech stack");
-            _technologies = await Http.GetFromJsonAsync<ProjectTechnology[]>("api/CVInfo/GetTechnologies");
+            _technologies = await Http.GetFromJsonAsync<ProjectTechnology[]>("api/SkillsMatrix");
         }
 
         protected IList<ProjectTechnologyCategory> GetCategories()

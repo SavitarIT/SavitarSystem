@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Savitar.Domain.Models.CV;
 
-namespace Savitar.Infrastructure.Repository.CV
+namespace Savitar.Infrastructure.Repository.SeedData
 {
     public static class ResponsibilitiesSeedData
     {

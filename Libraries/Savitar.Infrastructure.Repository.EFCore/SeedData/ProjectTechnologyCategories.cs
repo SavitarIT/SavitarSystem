@@ -1,8 +1,8 @@
 ﻿using Savitar.Domain.Models.CV;
 
-namespace Savitar.Infrastructure.Repository.CV
+namespace Savitar.Infrastructure.Repository.SeedData
 {
-    internal static class TechnologyCategories
+    public static class ProjectTechnologyCategories
     {
         public static readonly ProjectTechnologyCategory IDE = new() { Id = 1, Name = "IDE" };
         public static readonly ProjectTechnologyCategory Language = new() { Id = 2, Name = "Language" };

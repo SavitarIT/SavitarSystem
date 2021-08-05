@@ -11,7 +11,7 @@ namespace Savitar.Infrastructure.Repository.EFCore
         {
             services.AddSingleton<IClientsAndProjects, ClientsAndProjects>();
             services.AddSingleton<ITechnologies, Technologies>();
-            services.AddTransient<IServicesRepository, ServiceRepository>();
+            services.AddTransient<IServicesRepository, ServicesRepository>();
         }
     }
 }

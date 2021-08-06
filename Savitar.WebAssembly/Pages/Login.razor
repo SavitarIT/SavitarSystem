@@ -1,0 +1,36 @@
+﻿@page "/login"
+@inject HttpClient Http
+@inject GlobalSettings GlobalSettings
+@inject NavigationManager NavigationManager
+<BasePage Title="Login">
+    <EditForm OnValidSubmit="OnValidSubmit" Model="@model">
+        <DataAnnotationsValidator />
+        <div class="form-group">
+            <MudText>Password</MudText>            
+            <InputText @bind-Value="@model.Password" type="password" class="form-control" />            
+        </div>
+        <br />
+        <button class="btn btn-primary">Login</button>
+    </EditForm>
+
+    @code {
+        Login.Model model;
+
+        protected override void OnInitialized()
+        {
+            model = new();
+        }
+
+        async Task OnValidSubmit()
+        {            
+            // Ye - it's text password. But it's just a simple validation for editing content on the site. Store the password in env on prod, or user secrets on dev.
+            var isValid = await Http.GetFromJsonAsync<bool>($"api/Accounts/IsValid/{model.Password}");
+
+            if (isValid == GlobalSettings.IsLoggedIn)
+                return;
+
+            GlobalSettings.IsLoggedIn = isValid;
+            StateHasChanged();
+        }
+    }
+</BasePage>

@@ -1,5 +1,6 @@
-﻿<MudNavMenu>
-    @*<MudNavLink Href="/">Home</MudNavLink>*@
+﻿@inject GlobalSettings GlobalSettings
+
+<MudNavMenu>    
     <MudNavLink Href="/services">Services</MudNavLink>
     <MudNavLink Href="/mywork">My Work</MudNavLink>
     <MudNavLink Href="/skillsmatrix">Skills Matrix</MudNavLink>
@@ -8,9 +9,30 @@
     <MudNavGroup Title="Blockchain" Expanded="true">
         <MudNavLink Href="/EthereumExplorer">Ethereum Explorer</MudNavLink>    
     </MudNavGroup>
+    <MudNavLink Href="/login">Login</MudNavLink>
+    <MudDivider Class="my-2"/>
+
     @if (EnvironmentInfo.IsDebug())
     {        
         <MudDivider Class="my-2"/>
         <MudNavLink Href="/FetchData">Fetch Data</MudNavLink>        
     }
 </MudNavMenu>
+
+@if (GlobalSettings.IsLoggedIn) 
+{
+    <MudText Style="background-color: red; color: white;">ADMIN MODE</MudText>
+}
+
+@code {
+    protected override Task OnInitializedAsync()
+    {
+        GlobalSettings.OnIsLoggedInChanged += OnIsLoggedInChanged;
+        return Task.CompletedTask;
+    }
+
+    void OnIsLoggedInChanged(bool isLoggedIn)
+    {
+        StateHasChanged();
+    }
+}

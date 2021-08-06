@@ -12,16 +12,16 @@
     else
     {        
         <MudGrid>
-            @foreach (var category in GetCategories())
+            @foreach (var categoryName in GetCategoryNames())
             {
                 <MudItem xs="12">
                     <MudCard Outlined="true">
                         <MudCardHeader Class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
-                            <MudText Typo="Typo.h6"><img src="Images/@(category.Name.Replace(" ", "")).png" style="width: 24px;"> @category.Name</MudText>                                
+                            <MudText Typo="Typo.h6"><img src="Images/@(categoryName.Replace(" ", "")).png" style="width: 24px;"> @categoryName</MudText>                                
                         </MudCardHeader>
 
                         <MudCardContent Class="pa=0">
-                            <MudTable Elevation="25" Outlined="true" Hover="true" Breakpoint="Breakpoint.MdAndDown" Items="@GetProjectTechnologies(category.Id).OrderBy(x => x.Category.Name).ThenByDescending(x => x.LastUse ?? DateTime.Now.Date).ThenByDescending(x => x.Proficiency)">
+                            <MudTable Elevation="25" Outlined="true" Hover="true" Breakpoint="Breakpoint.MdAndDown" Items="@GetProjectTechnologies(categoryName).OrderBy(x => x.Category.Name).ThenByDescending(x => x.LastUse ?? DateTime.Now.Date).ThenByDescending(x => x.Proficiency)">
                                 <HeaderContent>
                                     <MudTh><b>Skill</b></MudTh>
                                     <MudTh><b>Last Use</b></MudTh>
@@ -70,19 +70,18 @@
             _technologies = await Http.GetFromJsonAsync<ProjectTechnology[]>("api/SkillsMatrix");
         }
 
-        protected IList<ProjectTechnologyCategory> GetCategories()
+        protected IList<string> GetCategoryNames()
         {
-            return _technologies
-                .OrderBy(x => x.Category.Name)
-                .Select(x => x.Category)
+            return _technologies                
+                .Select(x => x.Category.Name)
                 .Distinct()
                 .ToList();
         }
 
-        protected IList<ProjectTechnology> GetProjectTechnologies(int categoryId)
+        protected IList<ProjectTechnology> GetProjectTechnologies(string categoryName)
         {
             return _technologies
-                .Where(x => x.Category.Id == categoryId)
+                .Where(x => x.Category.Name == categoryName)
                 .ToList();
         }
 

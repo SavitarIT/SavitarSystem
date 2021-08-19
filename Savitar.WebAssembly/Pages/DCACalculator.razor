@@ -1,15 +1,187 @@
 ﻿@page "/dcacalculator"
-@inject HttpClient Http
 
-<BasePage Title="Dollar Cost Average Calculator">
-    <MudGrid>        
-        <MudItem xs="12" sm="6" md="4">
-            <MudTextField @bind-Value="TextValue" Label="Outlined" Variant="Variant.Outlined"></MudTextField>
-        </MudItem>
-    </MudGrid>
+<BasePage Title="DCA Calculator">
+    <MudText Typo="Typo.body1">This is a tool to assist with working out how much to add to a position that has gone under (in the red). This will work with any form of trading.</MudText>
+    <MudCard>
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">Current Position</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudTextField @bind-Value="@data.PositionCoinCount" Label="Count Count" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Dialpad" AdornmentColor="Color.Warning" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudTextField @bind-Value="@data.PositionBuyPrice" Label="Price Paid Per Coin" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney" AdornmentColor="Color.Warning" />
+                </MudItem>    
+                <MudItem xs="12" sm="6" md="4">
+                    <MudTextField @bind-Value="@data.PositionTotalValue" Label="Total Value" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney" AdornmentColor="Color.Warning" />
+                </MudItem>            
+            </MudGrid>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="Reset">Reset</MudButton>
+        </MudCardActions>
+    </MudCard>
+
+    <MudDivider DividerType="DividerType.Middle" Class="my-6" />
+
+    <MudCard>
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">Current Info</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="3">
+                    <MudTextField @bind-Value="@data.CurrentPrice" Label="Current Price" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney" AdornmentColor="Color.Warning" />        
+                </MudItem>
+            
+                <MudDivider DividerType="DividerType.Middle" Class="my-6" />
+            
+                <div class="mt-3 ml-0 d-flex">
+                    <div>
+                        <MudText>Value: @($"{data.CurrentValue:0.00}")</MudText>
+                        <MudText>Profit Value: @($"{data.CurrentProfitValue:0.00}")</MudText>        
+                        <MudText>Profit %: @($"{data.CurrentProfitPercent:0.00}%")</MudText>                
+                    </div>    
+                </div>
+            </MudGrid>
+        </MudCardContent>    
+    </MudCard>
+
+    <MudCard>
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">DCA Calculations</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudTable Elevation="25" Outlined="true" Hover="true" Breakpoint="Breakpoint.MdAndDown" Items="@GetDCACalculations()">
+                        <HeaderContent>
+                            <MudTh Style="text-align: right"><b>BUY</b></MudTh>
+                            <MudTh Style="text-align: right"><b>TOKEN QTY</b></MudTh>
+                            <MudTh Style="text-align: right"><b>NEW BUY PRICE</b></MudTh>
+                            <MudTh Style="text-align: right"><b>PROFIT</b></MudTh>                                                
+                        </HeaderContent>
+                        <RowTemplate>
+                            <MudTd DataLabel="BUY" Style="text-align: right">@($"{context.PurchaseAmount:0.0000}")</MudTd>
+                            <MudTd DataLabel="TOKEN QTY" Style="text-align: right">@($"{context.TokenQuantity:0.0000}")</MudTd>
+                            <MudTd DataLabel="NEW BUY PRICE" Style="text-align: right">@($"{context.NewBuyPrice:0.0000}")</MudTd>
+                            <MudTd DataLabel="PROFIT" Style="text-align: right">@($"{context.ProfitPercent:0.00}%")</MudTd>
+                        </RowTemplate>                    
+                    </MudTable>
+                </MudItem>
+            </MudGrid>
+        </MudCardContent>    
+    </MudCard>
 </BasePage>
 
 @code {
-    public string TextValue { get; set; }
+    CoinData data = new CoinData() { PositionCoinCount = 0.037, PositionBuyPrice = 59227.16, CurrentPrice = 45900 };
     
+    public class CoinData
+    {
+        double _PositionCoinCount, _PositionBuyPrice, _PositionTotalValue;
+
+        public double PositionCoinCount {
+            get { return _PositionCoinCount; }
+            set { 
+                if (_PositionCoinCount == value)
+                    return;
+                _PositionCoinCount = value;
+                _PositionTotalValue = _PositionCoinCount * _PositionBuyPrice;
+            }
+        }
+
+        public double PositionBuyPrice {
+            get { return _PositionBuyPrice; }
+            set { 
+                if (_PositionBuyPrice == value)
+                    return;
+
+                _PositionBuyPrice = value;
+                _PositionTotalValue = _PositionCoinCount * _PositionBuyPrice;
+            }
+        }
+
+        public double PositionTotalValue {
+            get { return _PositionTotalValue; }
+            set { 
+                if (_PositionTotalValue == value)
+                    return;
+
+                _PositionTotalValue = value;
+
+                if (_PositionCoinCount != 0)
+                    _PositionBuyPrice = _PositionTotalValue / _PositionCoinCount;
+            }
+        }
+
+        public double CurrentPrice { get; set; }
+        
+        public double CurrentValue 
+        { 
+            get { return CurrentPrice * PositionCoinCount; }
+        }
+        public double CurrentProfitValue 
+        { 
+            get { return CurrentValue - PositionTotalValue; }
+        }
+        public double CurrentProfitPercent 
+        { 
+            get
+            {
+                return ((CurrentPrice / PositionBuyPrice) - 1) * 100;
+            }
+        }
+    }
+
+    public class CoinGridItem
+    {
+        public double PurchaseAmount { get; set; }
+        public double TokenQuantity { get; set; }
+        public double NewBuyPrice { get; set; }
+        public double ProfitPercent { get; set; }
+    }
+
+    private void Reset()
+    {
+        data = new CoinData();
+        StateHasChanged();
+    }
+
+    private IList<CoinGridItem> GetDCACalculations()
+    {
+        var result = new List<CoinGridItem>();
+        var purchaseAmount = data.PositionTotalValue;
+        var tokenQuantity = 0.0;
+        var newBuyPrice = 0.0;
+        var profitPercent = 0.0;
+
+        for (int x = 1; x <= 10; x++)
+        {
+            tokenQuantity = purchaseAmount / data.CurrentPrice;
+            newBuyPrice = (data.PositionTotalValue + (data.CurrentPrice * tokenQuantity)) / (data.PositionCoinCount + tokenQuantity);
+            profitPercent = ((data.CurrentPrice / newBuyPrice) * 100) - 100;
+
+            result.Add(new CoinGridItem() 
+            { 
+                PurchaseAmount = purchaseAmount, 
+                TokenQuantity = tokenQuantity,
+                NewBuyPrice = newBuyPrice,
+                ProfitPercent = profitPercent
+            });
+
+            purchaseAmount = purchaseAmount * 2;
+        }
+        
+        return result;
+    }
+
 }

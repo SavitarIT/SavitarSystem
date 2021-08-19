@@ -1,0 +1,15 @@
+﻿@page "/dcacalculator"
+@inject HttpClient Http
+
+<BasePage Title="Dollar Cost Average Calculator">
+    <MudGrid>        
+        <MudItem xs="12" sm="6" md="4">
+            <MudTextField @bind-Value="TextValue" Label="Outlined" Variant="Variant.Outlined"></MudTextField>
+        </MudItem>
+    </MudGrid>
+</BasePage>
+
+@code {
+    public string TextValue { get; set; }
+    
+}

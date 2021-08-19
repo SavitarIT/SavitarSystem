@@ -6,8 +6,12 @@
     <MudNavLink Href="/skillsmatrix">Skills Matrix</MudNavLink>
     <MudNavLink Href="/contact">Contact</MudNavLink>
     <MudDivider Class="my-2"/>
-    <MudNavGroup Title="Blockchain" Expanded="true">
-        <MudNavLink Href="/EthereumExplorer">Ethereum Explorer</MudNavLink>    
+    <MudNavGroup Title="Playground" Expanded="true">
+        <MudNavLink Href="/EthereumExplorer">Ethereum Explorer</MudNavLink>
+        @if (EnvironmentInfo.IsDebug())
+        {
+            <MudNavLink Href="/DCACalculator">DCA Calculator</MudNavLink>
+        }
     </MudNavGroup>
     <MudNavLink Href="/login">Login</MudNavLink>
     <MudDivider Class="my-2"/>

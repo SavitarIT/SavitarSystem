@@ -15,6 +15,8 @@ http://localhost:5001/swagger/index.html
 
 It's not as good as hot reloads, but Blazor is new - so hang in there. Hot reloads are coming...
 
+# Sensitive settings in appsettings.json can be set in environment variables on the dev machine.
+
 **Quick Access**
 * Powershell: cd d:\Software\Savitar\Applications\SavitarSystem\Savitar.Web\Server\; dotnet watch run debug;
 * Browser: http://savitar.local:5000/

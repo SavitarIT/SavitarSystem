@@ -24,7 +24,7 @@ namespace Savitar.Server.Controllers
 
         // GET: api/[controller]
         [HttpGet]
-        [ResponseCache(NoStore = false, Duration = 10, Location = ResponseCacheLocation.Any)]
+        [ResponseCache(NoStore = false, Duration = 120, Location = ResponseCacheLocation.Any)]
         public async virtual Task<ActionResult<IEnumerable<TEntity>>> Get()
         {
             var data = await _repository.GetAllAsync();

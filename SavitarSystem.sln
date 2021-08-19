@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Tests", "Tests\Savi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Infrastructure.Repository.EFCore", "Libraries\Savitar.Infrastructure.Repository.EFCore\Savitar.Infrastructure.Repository.EFCore.csproj", "{19607206-48C2-4150-9FEE-496BBBB93218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savitar.Domain.Shared", "Libraries\Savitar.Domain.Shared\Savitar.Domain.Shared.csproj", "{40C6BF6F-489D-40FF-991A-91C60A4F0159}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Domain.Shared", "Libraries\Savitar.Domain.Shared\Savitar.Domain.Shared.csproj", "{40C6BF6F-489D-40FF-991A-91C60A4F0159}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,9 +1,9 @@
 ﻿using Savitar.Domain.Models.CV;
-using Savitar.Infrastructure.Repository.SeedData;
 using Savitar.Infrastructure.Repository.Shared;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Savitar.Infrastructure.Repository.EFCore.SeedData;
 
 namespace Savitar.Infrastructure.Repository.EFCore
 {

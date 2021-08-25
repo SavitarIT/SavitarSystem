@@ -1,8 +1,8 @@
-﻿@page "/mywork"
+﻿@page "/portfolio"
 @using Savitar.Domain.Models.CV
 @inject HttpClient Http
 
-<BasePage Title="My Work" OnInitData="OnInitData">
+<BasePage Title="Portfolio" OnInitData="OnInitData">
     @if (_projects == null)
     {
         <MudContainer Class="spinner" />
@@ -11,7 +11,7 @@
     {
         <MudGrid>
             <MudItem xs="12">
-                <MudText Typo="Typo.subtitle1">Feel free to peruse or CLONE my public repositories. Naturally there won't be any of my clients code, but there will be common libraries, utilities and internal projects visible.</MudText>
+                <MudText Typo="Typo.subtitle1">Feel free to CLONE our public repositories. Naturally there won't be any client code, but there will be common libraries, utilities and internal projects visible.</MudText>
                 <MudLink Href="https://github.com/SavitarIT" Target="_blank"><img title="GitHub" src="/Images/GitHub.png" width="36" height="36"></MudLink>
                 <MudLink Href="https://bitbucket.org/DominionZA" Target="_blank"><img title="BitBucket" src="/Images/Bitbucket.png" width="36" height="36"></MudLink>
             </MudItem>
@@ -34,7 +34,7 @@
                         <MudCardContent Class="pa=0">
                             <MudText Typo="Typo.body1">@((MarkupString)project.Description)</MudText>
                             <br />
-                            @if (project.Responsibilities != null && project.Responsibilities.Any())
+                            @*@if (project.Responsibilities != null && project.Responsibilities.Any())
                             {
                                 <MudText Typo="Typo.h6">Responsibilities</MudText>
                                 <MudText Typo="Typo.body2" Class="pl-4">
@@ -45,7 +45,7 @@
                                         }
                                     </ul>
                                 </MudText>
-                            }
+                            }*@
 
                             @if (project.TechStack != null && project.TechStack.Any())
                             {
@@ -71,7 +71,7 @@
 
         protected async Task OnInitData(BasePageServices basePageServices)
         {
-            basePageServices.DisplayMessage("Loading all the projects I have worked on");            
+            basePageServices.DisplayMessage("Loading Portfolio");            
             _projects = await Http.GetFromJsonAsync<Project[]>("api/Projects");
         }         
     }

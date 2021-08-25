@@ -1,7 +1,7 @@
-﻿using Savitar.Domain.Models.CV;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Savitar.Domain.Models.CV;
 
-namespace Savitar.Infrastructure.Repository.SeedData
+namespace Savitar.Infrastructure.Repository.EFCore.SeedData
 {
     public static class ClientsAndProjectsSeedData
     {

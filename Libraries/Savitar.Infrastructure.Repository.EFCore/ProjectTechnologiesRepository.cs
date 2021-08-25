@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Savitar.Domain.Models.CV;
-using Savitar.Infrastructure.Repository.SeedData;
 using Savitar.Infrastructure.Repository.Shared;
 using System.Collections.Generic;
 using System.Linq;

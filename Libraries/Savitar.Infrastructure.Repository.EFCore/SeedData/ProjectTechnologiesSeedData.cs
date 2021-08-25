@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Savitar.Domain.Models;
 using Savitar.Domain.Models.CV;
 
-namespace Savitar.Infrastructure.Repository.SeedData
+namespace Savitar.Infrastructure.Repository.EFCore.SeedData
 {
     public static class ProjectTechnologiesSeedData
     {

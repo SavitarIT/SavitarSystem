@@ -58,7 +58,7 @@
 
         protected async Task OnInitData(BasePageServices basePageServices)
         {
-            basePageServices.DisplayMessage("Fetching services I have to offer");            
+            basePageServices.DisplayMessage("Loading Services");
             _items = await Http.GetFromJsonAsync<Service[]>("api/Services");
         }        
     }

@@ -17,7 +17,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.SeedData
     <li>Per Module</li>
     <li>Per Project</li>    
     <li>Per Hour</li>
-    <li>1 or more days per week - 1 or more weeks per month (most common). We agree on the pre-booked time and enter into a retainer. The per hour rate is also reduced relative to the kind of time booked in this arrangment.</li>
+    <li>1 or more days per week - 1 or more weeks per month (most common). We agree on the pre-booked time and enter into a retainer. The per hour rate is also reduced relative to the kind of time booked in this arrangement.</li>
 </ul>
 <br />
 <p>Your invoice will come from Savitar IT (VAT registered).</p>" ),
@@ -32,8 +32,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.SeedData
     <li>.NET Framework TO .NET 5</li>
     <li>C / C++ / Delphi / Visual Basic TO C#</li>
     <li>Desktop application to Web application</li>
-</ul>" )
-        //        new Service(id++, "Mentoring", @"I can help your juniors accellerate their learning curves. I love to talk and teach code!" )
+</ul>" ),
+                new Service(id++, "Mentoring", @"We can help your juniors accelerate their learning curves. We love to talk and teach code!" )
             };
         }
     }

@@ -72,7 +72,7 @@
         protected async Task OnInitData(BasePageServices basePageServices)
         {
             basePageServices.DisplayMessage("Loading Portfolio");
-            _projects = await Http.GetFromJsonAsync<Project[]>("api/Projects");
+            _projects = await Http.GetFromJsonAsync<Project[]>("api/portfolio");
         }         
     }
 </BasePage>

@@ -2,5 +2,5 @@
 
 namespace Savitar.Infrastructure.Repository.Shared
 {
-    public interface IProjectsRepository : IRepository<Project> { }
+    public interface IPortfolioRepository : IRepository<Project> { }
 }

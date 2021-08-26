@@ -9,7 +9,7 @@ namespace Savitar.Infrastructure.Repository.EFCore
         {
             services.AddScoped<IProjectTechnologiesRepository, ProjectTechnologiesRepository>();
             services.AddScoped<IServicesRepository, ServicesRepository>();
-            services.AddScoped<IProjectsRepository, ProjectsRepository>();
+            services.AddScoped<IPortfolioRepository, PortfolioRepository>();
         }
     }
 }

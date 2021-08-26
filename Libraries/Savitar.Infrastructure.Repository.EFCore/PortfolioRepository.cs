@@ -7,9 +7,9 @@ using Savitar.Infrastructure.Repository.EFCore.SeedData;
 
 namespace Savitar.Infrastructure.Repository.EFCore
 {
-    internal class ProjectsRepository : Repository<Project, ApplicationDbContext>, IProjectsRepository
+    internal class PortfolioRepository : Repository<Project, ApplicationDbContext>, IPortfolioRepository
     {
-        public ProjectsRepository(ApplicationDbContext context) : base(context) { }
+        public PortfolioRepository(ApplicationDbContext context) : base(context) { }
 
         public override async Task<IEnumerable<Project>> GetAllAsync()
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Savitar.Domain.Models;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 
 namespace Savitar.Server.Controllers.api
 {
+    [AllowAnonymous]
     public class WeatherForecastController : BaseApiController
     {
         private static readonly string[] Summaries = new[]

@@ -1,4 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using Savitar.WebAssembly.Services.Implementations
+@inherits LayoutComponentBase
+@inject NavigationManager navigationManager
+@inject IdentityAuthenticationStateProvider authStateProvider
 
 <MudThemeProvider Theme="currentTheme" />
 <MudDialogProvider />
@@ -13,7 +16,17 @@
             </MudNavLink>
         </MudContainer>
         <MudSpacer />
-        <MudButton OnClick="@((e) => ToggleDarkLightMode())"><img src="/Images/SunMoon.png" title="Toggle Dark/Light Modes" width="36" height="36" /></MudButton>                
+        
+        <AuthorizeView>
+            <Authorized>
+                <button type="button" class="btn btn-link ml-md-auto" @onclick="@LogoutClick">Logout</button>
+            </Authorized>
+            <NotAuthorized>
+                <button type="button" class="btn btn-link ml-md-auto" @onclick="@LoginClick">Login</button>
+            </NotAuthorized>
+        </AuthorizeView>
+        
+        <MudButton OnClick="@((e) => ToggleDarkLightMode())"><img src="/Images/SunMoon.png" title="Toggle Dark/Light Modes" width="36" height="36" /></MudButton>
         <Contacts IsVertical="false" />        
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
@@ -36,6 +49,17 @@
         _drawerOpen = !_drawerOpen;
     }
     
+    void LoginClick()
+    {
+        navigationManager.NavigateTo("/login");
+    }
+
+    async Task LogoutClick()
+    {
+        await authStateProvider.Logout();
+        navigationManager.NavigateTo("/login");
+    }
+
     // Theme handling
     protected override void OnInitialized()
     {

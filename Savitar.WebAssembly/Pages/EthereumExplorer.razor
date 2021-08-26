@@ -1,8 +1,7 @@
 ﻿@page "/EthereumExplorer"
-@using Microsoft.Extensions.Configuration
 @using Savitar.Domain.Dtos
-@using Savitar.Domain.Models
 @inject HttpClient Http
+@attribute [AllowAnonymous]
 
 <BasePage Title="Ethereum Playground" OnInitData="OnInitData">
     <MudCard Outlined="true">

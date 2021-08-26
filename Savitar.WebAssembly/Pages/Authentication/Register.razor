@@ -5,7 +5,7 @@
 @layout MainLayout
 @inject NavigationManager navigationManager
 @inject IdentityAuthenticationStateProvider authStateProvider
-@inject ISnackbar _snackbar
+@attribute [AllowAnonymous]
 
 <BasePage Title="Register">
     <div style="max-width: 400px;">

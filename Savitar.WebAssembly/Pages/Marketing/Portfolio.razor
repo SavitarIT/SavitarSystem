@@ -1,6 +1,7 @@
 ﻿@page "/portfolio"
 @using Savitar.Domain.Models.CV
 @inject HttpClient Http
+@attribute [AllowAnonymous]
 
 <BasePage Title="Portfolio" OnInitData="OnInitData">
     @if (_projects == null)

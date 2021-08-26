@@ -32,7 +32,7 @@ namespace Savitar.WebAssembly.Pages.Identity
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(message, Severity.Error);
+                    _snackbar.Add(message, Severity.Error);
                 }
             }
         }

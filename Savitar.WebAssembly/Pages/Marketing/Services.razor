@@ -1,6 +1,7 @@
 ﻿@page "/services"
 @using Savitar.Domain.Models
 @inject HttpClient Http
+@attribute [AllowAnonymous]
 
 <BasePage Title="Services" OnInitData="OnInitData">
     @if (_items == null)

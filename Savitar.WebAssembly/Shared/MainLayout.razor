@@ -19,10 +19,10 @@
         
         <AuthorizeView>
             <Authorized>
-                <button type="button" class="btn btn-link ml-md-auto" @onclick="@LogoutClick">Logout</button>
+                <button type="button" class="btn btn-link ml-md-auto" @onclick="@LogoutClick"><MudIcon Icon="@Icons.Material.Filled.Logout" /> Logout</button>
             </Authorized>
             <NotAuthorized>
-                <button type="button" class="btn btn-link ml-md-auto" @onclick="@LoginClick">Login</button>
+                <button type="button" class="btn-link" @onclick="@LoginClick"><MudIcon Icon="@Icons.Material.Filled.Login" /> Login</button>
                 @*<button type="button" class="btn-link" @onclick="@RegisterClick">Register</button>*@
             </NotAuthorized>
         </AuthorizeView>

@@ -22,17 +22,15 @@
                     <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Register</MudButton>
                 </MudCardActions>
             </MudCard>
-            
+
             <MudText Color="@Color.Error">
                 @*<ValidationSummary />*@
                 <label>@Error</label>
             </MudText>
-
-            
-            <NavLink href="/login">
-                <h6>Already have an account? Click here to login</h6>
-            </NavLink>
         </EditForm>
+        
+        <MudDivider FlexItem="true" DividerType="DividerType.FullWidth" />
+        <MudText>Already have an account? <MudLink Href="/login">Click here to login</MudLink></MudText>
     </div>
 </BasePage>
 @functions{

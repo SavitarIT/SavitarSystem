@@ -1,16 +1,30 @@
-﻿<AuthorizeView>
+﻿@*<AuthorizeView Roles="System Administrator, Administrator">*@
+<AuthorizeView>
     <Authorized>
-        <MudText Style="background-color: red; color: white;">ADMIN MODE</MudText>
+        
+            @if (EnvironmentInfo.IsDebug())
+            {
+                <MudNavLink Href="/account">
+                    <MudText Style="background-color: #323390; color: white; text-align: center">@context.User.Identity.Name</MudText>
+                </MudNavLink>
+            }
+            else
+            {
+                <MudText Style="background-color: #323390; color: white; text-align: center">@context.User.Identity.Name</MudText>
+            }
+        
     </Authorized>
 </AuthorizeView>
 
 <MudNavMenu>    
     <MudNavLink Href="/services">Services</MudNavLink>
     <MudNavLink Href="/portfolio">Portfolio</MudNavLink>
+    <MudDivider DividerType="DividerType.FullWidth" />
     <MudNavLink Href="/contact">Contact</MudNavLink>
-    <MudDivider Class="my-2"/>
+    <MudDivider DividerType="DividerType.FullWidth" />
     <MudNavGroup Title="Playground" Expanded="true">
         <MudNavLink Href="/EthereumExplorer">Ethereum Explorer</MudNavLink>        
         <MudNavLink Href="/DCACalculator">DCA Calculator</MudNavLink>        
     </MudNavGroup>
+    <MudDivider DividerType="DividerType.FullWidth" />
 </MudNavMenu>

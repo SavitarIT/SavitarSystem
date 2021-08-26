@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Pages\EthereumExplorer.razor">
+    <Content Update="Pages\Playground\EthereumExplorer.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
     <Content Update="wwwroot\Images\apple-touch-icon.png">

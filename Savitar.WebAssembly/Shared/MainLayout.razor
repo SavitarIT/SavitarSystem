@@ -1,7 +1,8 @@
 ﻿@using Savitar.WebAssembly.Services.Implementations
 @inherits LayoutComponentBase
-@inject NavigationManager navigationManager
-@inject IdentityAuthenticationStateProvider authStateProvider
+@inject NavigationManager _navigationManager
+@inject IdentityAuthenticationStateProvider _authStateProvider
+@inject ISnackbar _snackbar
 
 <MudThemeProvider Theme="currentTheme" />
 <MudDialogProvider />
@@ -52,18 +53,13 @@
     
     void LoginClick()
     {
-        navigationManager.NavigateTo("/login");
-    }
-
-    void RegisterClick()
-    {
-        navigationManager.NavigateTo("/register");
+        _navigationManager.NavigateTo("/login");
     }
 
     async Task LogoutClick()
     {
-        await authStateProvider.Logout();
-        navigationManager.NavigateTo("");
+        await _authStateProvider.Logout();
+        _navigationManager.NavigateTo("");
     }
 
     // Theme handling
@@ -71,6 +67,7 @@
     {
         currentTheme = defaultTheme;
         ToggleDarkLightMode(); // Switch to Dark mode.
+        _snackbar.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
     }
 
     void ToggleDarkLightMode()

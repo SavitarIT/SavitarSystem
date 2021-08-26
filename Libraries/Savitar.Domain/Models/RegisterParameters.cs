@@ -13,6 +13,11 @@ namespace Savitar.Domain.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        [Required, StringLength(250)]
+        public string FirstName { get; set; }
+        [Required, StringLength(250)]
+        public string LastName { get; set; }
+
         [Required]
         [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
         public string Password { get; set; }

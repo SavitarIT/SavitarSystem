@@ -5,7 +5,7 @@
 @layout MainLayout
 @inject NavigationManager navigationManager
 @inject IdentityAuthenticationStateProvider authStateProvider
-
+@inject ISnackbar _snackbar
 
 <BasePage Title="Register">
     <div style="max-width: 400px;">
@@ -15,6 +15,8 @@
                 <MudCardContent>
                     @*<MudTextField Label="Username" HelperText="Max. 8 characters" @bind-Value="Model.Username" For="@(() => Model.Username)" />*@
                     <MudTextField Label="Email" @bind-Value="Model.Email" For="@(() => Model.Email)" />
+                    <MudTextField Label="FirstName" @bind-Value="Model.FirstName" For="@(() => Model.FirstName)" />
+                    <MudTextField Label="LastName" @bind-Value="Model.LastName" For="@(() => Model.LastName)" />
                     <MudTextField Label="Password" HelperText="Choose a strong password" @bind-Value="Model.Password" For="@(() => Model.Password)" InputType="InputType.Password" />
                     <MudTextField Label="Password" HelperText="Repeat the password" @bind-Value="Model.Password2" For="@(() => Model.Password2)" InputType="InputType.Password" />
                 </MudCardContent>
@@ -22,25 +24,17 @@
                     <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Register</MudButton>
                 </MudCardActions>
             </MudCard>
-
-            <MudText Color="@Color.Error">
-                @*<ValidationSummary />*@
-                <label>@Error</label>
-            </MudText>
         </EditForm>
         
         <MudDivider FlexItem="true" DividerType="DividerType.FullWidth" />
         <MudText>Already have an account? <MudLink Href="/login">Click here to login</MudLink></MudText>
     </div>
 </BasePage>
-@functions{
-
+@code{
     RegisterParameters Model { get; } = new RegisterParameters();
-    string Error { get; set; }
 
     async Task OnSubmit()
     {
-        Error = null;
         try
         {
             await authStateProvider.Register(Model);
@@ -48,7 +42,7 @@
         }
         catch (Exception ex)
         {
-            Error = ex.Message;
+            _snackbar.Add(ex.Message, Severity.Error);
         }
     }
 }

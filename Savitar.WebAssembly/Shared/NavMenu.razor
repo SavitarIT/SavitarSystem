@@ -1,39 +1,16 @@
-﻿@inject GlobalSettings GlobalSettings
+﻿<AuthorizeView>
+    <Authorized>
+        <MudText Style="background-color: red; color: white;">ADMIN MODE</MudText>
+    </Authorized>
+</AuthorizeView>
 
 <MudNavMenu>    
     <MudNavLink Href="/services">Services</MudNavLink>
     <MudNavLink Href="/portfolio">Portfolio</MudNavLink>
-    @*<MudNavLink Href="/skillsmatrix">Skills Matrix</MudNavLink>*@
     <MudNavLink Href="/contact">Contact</MudNavLink>
     <MudDivider Class="my-2"/>
     <MudNavGroup Title="Playground" Expanded="true">
         <MudNavLink Href="/EthereumExplorer">Ethereum Explorer</MudNavLink>        
         <MudNavLink Href="/DCACalculator">DCA Calculator</MudNavLink>        
     </MudNavGroup>
-    <MudNavLink Href="/login">Login</MudNavLink>
-    <MudDivider Class="my-2"/>
-
-    @if (EnvironmentInfo.IsDebug())
-    {        
-        <MudDivider Class="my-2"/>
-        <MudNavLink Href="/FetchData">Fetch Data</MudNavLink>        
-    }
 </MudNavMenu>
-
-@if (GlobalSettings.IsLoggedIn) 
-{
-    <MudText Style="background-color: red; color: white;">ADMIN MODE</MudText>
-}
-
-@code {
-    protected override Task OnInitializedAsync()
-    {
-        GlobalSettings.OnIsLoggedInChanged += OnIsLoggedInChanged;
-        return Task.CompletedTask;
-    }
-
-    void OnIsLoggedInChanged(bool isLoggedIn)
-    {
-        StateHasChanged();
-    }
-}

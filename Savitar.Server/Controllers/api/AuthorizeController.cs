@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Savitar.Domain.Models;
 
-namespace Savitar.Server.Controllers
+namespace Savitar.Server.Controllers.api
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -38,23 +39,25 @@ namespace Savitar.Server.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterParameters parameters)
+        public async Task<IActionResult> Register(RegisterParameters model)
         {
             var user = new ApplicationUser
             {
-                UserName = parameters.Email,
-                Email = parameters.Email,
-                EmailConfirmed = true
+                UserName = model.Email,
+                Email = model.Email,
+                EmailConfirmed = true,
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
 
-            var result = await _userManager.CreateAsync(user, parameters.Password);
+            var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded) 
                 return BadRequest(result.Errors.FirstOrDefault()?.Description);
 
             return await Login(new LoginParameters
             {
-                Email = parameters.Email,
-                Password = parameters.Password
+                Email = model.Email,
+                Password = model.Password
             });
         }
 
@@ -75,6 +78,11 @@ namespace Savitar.Server.Controllers
 
         private UserInfo GetUserInformation()
         {
+            if (User  == null)
+                throw new Exception("Unable to GetUserInformation as User is null");
+            if (User.Identity == null)
+                throw new Exception("Unable to GetUserInformation as User.Identity is null");
+
             return new UserInfo
             {
                 IsAuthenticated = User.Identity.IsAuthenticated,

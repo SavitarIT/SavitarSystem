@@ -39,7 +39,6 @@ namespace Savitar.WebAssembly
 
         public static void ConfigureServices(WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddSingleton<GlobalSettings>();
             builder.Services.AddMudServices();            
         }
     }

@@ -2,54 +2,55 @@
 @using Savitar.WebAssembly.Services.Implementations
 @using Microsoft.AspNetCore.Components
 @using Savitar.Domain.Models
-@layout LoginLayout
+@layout MainLayout
 @inject NavigationManager navigationManager
 @inject IdentityAuthenticationStateProvider authStateProvider
 
-<h1 class="h2 font-weight-normal login-title">
-    Blazor with Identity Sample
-</h1>
 
-<EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="registerParameters">
-    <DataAnnotationsValidator />
-    <h4 class="font-weight-normal text-center">Create Account</h4>
+<BasePage Title="Register">
+    <div style="max-width: 400px;">
+        <EditForm Model="Model" OnValidSubmit="OnSubmit">
+            <DataAnnotationsValidator/>
+            <MudCard>
+                <MudCardContent>
+                    @*<MudTextField Label="Username" HelperText="Max. 8 characters" @bind-Value="Model.Username" For="@(() => Model.Username)" />*@
+                    <MudTextField Label="Email" @bind-Value="Model.Email" For="@(() => Model.Email)" />
+                    <MudTextField Label="Password" HelperText="Choose a strong password" @bind-Value="Model.Password" For="@(() => Model.Password)" InputType="InputType.Password" />
+                    <MudTextField Label="Password" HelperText="Repeat the password" @bind-Value="Model.Password2" For="@(() => Model.Password2)" InputType="InputType.Password" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Register</MudButton>
+                </MudCardActions>
+            </MudCard>
+            
+            <MudText Color="@Color.Error">
+                @*<ValidationSummary />*@
+                <label>@Error</label>
+            </MudText>
 
-    <label for="inputUsername" class="sr-only">User Name</label>
-    <InputText id="inputUsername" class="form-control" placeholder="Username" autofocus @bind-Value="@registerParameters.UserName" />
-    <ValidationMessage For="@(() => registerParameters.UserName)" />
-
-    <label for="inputPassword" class="sr-only">Password</label>
-    <InputText type="password" id="inputPassword" class="form-control" placeholder="Password" @bind-Value="@registerParameters.Password" />
-    <ValidationMessage For="@(() => registerParameters.Password)" />
-
-    <label for="inputPasswordConfirm" class="sr-only">Password Confirmation</label>
-    <InputText type="password" id="inputPasswordConfirm" class="form-control" placeholder="Password Confirmation" @bind-Value="@registerParameters.PasswordConfirm" />
-    <ValidationMessage For="@(() => registerParameters.PasswordConfirm)" />
-
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Create account</button>
-
-    <label class="text-danger">@error</label>
-    <NavLink href="login">
-        <h6 class="font-weight-normal text-center">Already have an account? Click here to login</h6>
-    </NavLink>
-</EditForm>
-
+            
+            <NavLink href="/login">
+                <h6>Already have an account? Click here to login</h6>
+            </NavLink>
+        </EditForm>
+    </div>
+</BasePage>
 @functions{
 
-    RegisterParameters registerParameters { get; set; } = new RegisterParameters();
-    string error { get; set; }
+    RegisterParameters Model { get; } = new RegisterParameters();
+    string Error { get; set; }
 
     async Task OnSubmit()
     {
-        error = null;
+        Error = null;
         try
         {
-            await authStateProvider.Register(registerParameters);
+            await authStateProvider.Register(Model);
             navigationManager.NavigateTo("");
         }
         catch (Exception ex)
         {
-            error = ex.Message;
+            Error = ex.Message;
         }
     }
 }

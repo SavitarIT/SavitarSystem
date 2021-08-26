@@ -55,7 +55,7 @@ namespace Savitar.Server
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
-                options.Password.RequireDigit = true;
+                options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
@@ -67,7 +67,8 @@ namespace Savitar.Server
                 options.Lockout.AllowedForNewUsers = true;
 
                 // User settings
-                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = true;
+                //options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz";
             });
 
             services.ConfigureApplicationCookie(options =>

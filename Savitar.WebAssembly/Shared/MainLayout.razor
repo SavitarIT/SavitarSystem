@@ -23,6 +23,7 @@
             </Authorized>
             <NotAuthorized>
                 <button type="button" class="btn btn-link ml-md-auto" @onclick="@LoginClick">Login</button>
+                @*<button type="button" class="btn-link" @onclick="@RegisterClick">Register</button>*@
             </NotAuthorized>
         </AuthorizeView>
         
@@ -54,10 +55,15 @@
         navigationManager.NavigateTo("/login");
     }
 
+    void RegisterClick()
+    {
+        navigationManager.NavigateTo("/register");
+    }
+
     async Task LogoutClick()
     {
         await authStateProvider.Logout();
-        navigationManager.NavigateTo("/login");
+        navigationManager.NavigateTo("");
     }
 
     // Theme handling

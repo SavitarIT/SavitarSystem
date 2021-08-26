@@ -8,43 +8,39 @@
 
 
 <BasePage Title="Login">
-    <EditForm OnValidSubmit="OnSubmit" Model="LoginParameters">
-        <DataAnnotationsValidator />
-        <h4>Login</h4>
+    <div style="max-width: 400px;">
+        <EditForm Model="@Model" OnValidSubmit="OnSubmit">
+            <DataAnnotationsValidator />
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField Label="Username" @bind-Value="Model.Email" For="@(() => Model.Email)" />
+                    <MudTextField Label="Password" @bind-Value="Model.Password" For="@(() => Model.Password)" InputType="InputType.Password" />
+                    <MudDivide />
+                    <MudCheckBox @bind-Checked="@Model.RememberMe" Label="Remember Me!" Color="Color.Primary"></MudCheckBox>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Login</MudButton>
+                </MudCardActions>
+            </MudCard>
 
-        <label for="inputUsername">User Name</label>
-        <InputText id="inputUsername" @bind-Value="LoginParameters.UserName" autofocus placeholder="Username" />
-        <ValidationMessage For="@(() => LoginParameters.UserName)" />
-
-        <label for="inputPassword">Password</label>
-        <InputText type="password" id="inputPassword" placeholder="Password" @bind-Value="LoginParameters.Password" />
-        <ValidationMessage For="@(() => LoginParameters.Password)" />
-
-        <div>
-            <InputCheckbox id="inputRememberMe" @bind-Value="@LoginParameters.RememberMe" />
-            <label for="inputRememberMe">Remember Me</label>
-        </div>
-
-        <button type="submit">Sign in</button>
-
-        <label>@Error</label>
-
-        <NavLink href="register">
-            <h6>Create account</h6>
-        </NavLink>
-    </EditForm>
+            <MudText Color="@Color.Error">
+                @*<ValidationSummary />*@
+                <label>@Error</label>
+            </MudText>
+        </EditForm>
+    </div>
 </BasePage>
 
 @code{
-    LoginParameters LoginParameters { get; } = new LoginParameters();
+    LoginParameters Model { get; } = new LoginParameters();
     string Error { get; set; }
-
+    
     async Task OnSubmit()
     {
         Error = null;
         try
         {
-            await _authStateProvider.Login(LoginParameters);
+            await _authStateProvider.Login(Model);
             _navigationManager.NavigateTo("");
         }
         catch (Exception ex)

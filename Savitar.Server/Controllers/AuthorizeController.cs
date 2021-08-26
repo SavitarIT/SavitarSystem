@@ -21,14 +21,17 @@ namespace Savitar.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginParameters parameters)
+        public async Task<IActionResult> Login(LoginParameters model)
         {
-            var user = await _userManager.FindByNameAsync(parameters.UserName);
-            if (user == null) return BadRequest("User does not exist");
-            var singInResult = await _signInManager.CheckPasswordSignInAsync(user, parameters.Password, false);
-            if (!singInResult.Succeeded) return BadRequest("Invalid password");
+            var user = await _userManager.FindByNameAsync(model.Email);
+            if (user == null) 
+                return BadRequest("User does not exist");
+            
+            var signInResult = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+            if (!signInResult.Succeeded) 
+                return BadRequest("Invalid password");
 
-            await _signInManager.SignInAsync(user, parameters.RememberMe);
+            await _signInManager.SignInAsync(user, model.RememberMe);
 
             return Ok();
         }
@@ -37,14 +40,20 @@ namespace Savitar.Server.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterParameters parameters)
         {
-            var user = new ApplicationUser();
-            user.UserName = parameters.UserName;
+            var user = new ApplicationUser
+            {
+                UserName = parameters.Email,
+                Email = parameters.Email,
+                EmailConfirmed = true
+            };
+
             var result = await _userManager.CreateAsync(user, parameters.Password);
-            if (!result.Succeeded) return BadRequest(result.Errors.FirstOrDefault()?.Description);
+            if (!result.Succeeded) 
+                return BadRequest(result.Errors.FirstOrDefault()?.Description);
 
             return await Login(new LoginParameters
             {
-                UserName = parameters.UserName,
+                Email = parameters.Email,
                 Password = parameters.Password
             });
         }
@@ -60,17 +69,16 @@ namespace Savitar.Server.Controllers
         [HttpGet]
         public UserInfo UserInfo()
         {
-            //var user = await _userManager.GetUserAsync(HttpContext.User);
-            return BuildUserInfo();
+            return GetUserInformation();
         }
 
 
-        private UserInfo BuildUserInfo()
+        private UserInfo GetUserInformation()
         {
             return new UserInfo
             {
                 IsAuthenticated = User.Identity.IsAuthenticated,
-                UserName = User.Identity.Name,
+                Email = User.Identity.Name,
                 ExposedClaims = User.Claims
                     //Optionally: filter the claims you want to expose to the client
                     //.Where(c => c.Type == "test-claim")

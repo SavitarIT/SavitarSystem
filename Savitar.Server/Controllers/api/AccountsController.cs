@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
-namespace Savitar.Server.Controllers
+namespace Savitar.Server.Controllers.api
 {
     public class AccountsController : BaseApiController
     {

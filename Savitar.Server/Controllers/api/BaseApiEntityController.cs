@@ -4,7 +4,7 @@ using Savitar.Infrastructure.Repository.Shared;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Savitar.Server.Controllers
+namespace Savitar.Server.Controllers.api
 {
     public class BaseApiEntityController<TEntity, TRepository> : BaseApiController
         where TEntity : class, IEntity

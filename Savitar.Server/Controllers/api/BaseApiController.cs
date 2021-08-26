@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Savitar.Server.Controllers
+namespace Savitar.Server.Controllers.api
 {
     [AllowAnonymous]
     [ApiController]

@@ -4,7 +4,7 @@ using Savitar.Domain.Dtos;
 using Savitar.WebAssembly.Blockchain.Ethereum.Services.Contracts;
 using System.Threading.Tasks;
 
-namespace Savitar.Server.Controllers
+namespace Savitar.Server.Controllers.api
 {
     public class EthFunctionsController : BaseApiController
     {

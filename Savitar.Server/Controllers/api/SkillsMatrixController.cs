@@ -2,7 +2,7 @@
 using Savitar.Infrastructure.Repository.Shared;
 using System.Collections.Generic;
 
-namespace Savitar.Server.Controllers
+namespace Savitar.Server.Controllers.api
 {
     public class SkillsMatrixController : BaseApiEntityController<ProjectTechnology, IProjectTechnologiesRepository>
     {

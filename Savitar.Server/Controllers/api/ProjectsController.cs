@@ -1,7 +1,7 @@
 ﻿using Savitar.Domain.Models.CV;
 using Savitar.Infrastructure.Repository.Shared;
 
-namespace Savitar.Server.Controllers
+namespace Savitar.Server.Controllers.api
 {
     public class ProjectsController : BaseApiEntityController<Project, IProjectsRepository>
     {

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Savitar.Infrastructure.Repository.EFCore;
 
-namespace WebApplication3.Server
+namespace Savitar.Server
 {
     public class Program
     {

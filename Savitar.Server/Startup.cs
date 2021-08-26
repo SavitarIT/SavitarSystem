@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +11,10 @@ using Savitar.Bootstrapper;
 using Savitar.Domain.Models;
 using Savitar.Infrastructure.Repository.EFCore;
 using Savitar.WebAssembly.Blockchain.Ethereum;
+using System.Threading.Tasks;
+using System;
 
-namespace WebApplication3.Server
+namespace Savitar.Server
 {
     public class Startup
     {
@@ -43,9 +46,39 @@ namespace WebApplication3.Server
                     Configuration.GetConnectionString("SavitarDB"), x => x.MigrationsAssembly("Savitar.Infrastructure.Repository.EFCore")
                 ));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddIdentityServer().AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-            services.AddAuthentication().AddIdentityServerJwt();
+            //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings
+                options.User.RequireUniqueEmail = false;
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Events.OnRedirectToLogin = context =>
+                {
+                    context.Response.StatusCode = 401;
+                    return Task.CompletedTask;
+                };
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -81,6 +114,8 @@ namespace WebApplication3.Server
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             // CORS Should be before Response Caching 
             //app.UseCors();

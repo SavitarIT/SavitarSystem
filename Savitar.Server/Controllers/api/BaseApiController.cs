@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Savitar.Server.Controllers.api
 {
-    [AllowAnonymous]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]

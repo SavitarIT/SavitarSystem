@@ -97,7 +97,7 @@ namespace Savitar.Server
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext dbContext)
         {
             dbContext.Database.Migrate();
-
+         
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

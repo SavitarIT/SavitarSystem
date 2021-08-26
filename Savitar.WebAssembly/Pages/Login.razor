@@ -14,7 +14,7 @@
             <DataAnnotationsValidator />
             <MudCard>
                 <MudCardContent>
-                    <MudTextField Label="Username" @bind-Value="Model.Email" For="@(() => Model.Email)" />
+                    <MudTextField Label="Email" @bind-Value="Model.Email" For="@(() => Model.Email)" />
                     <MudTextField Label="Password" @bind-Value="Model.Password" For="@(() => Model.Password)" InputType="InputType.Password" />
                     <MudDivide />
                     <MudCheckBox @bind-Checked="@Model.RememberMe" Label="Remember Me!" Color="Color.Primary"></MudCheckBox>

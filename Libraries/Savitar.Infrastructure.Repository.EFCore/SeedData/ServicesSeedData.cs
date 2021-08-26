@@ -10,7 +10,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.SeedData
             int id = 1;
             return new List<Service>
             {
-                new Service(id++, "Software Development Services", $@"<p>Specialising in cross platform .NET technologies, we are full stack devs for hire.</p>
+                new(id++, "Software Development Services", $@"<p>Specialising in cross platform .NET technologies, we are full stack devs for hire.</p>
 <br />
 <p>You can purchase time in a multitude of flexible ways, including...</p>
 <ul>
@@ -22,8 +22,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.SeedData
 <br />
 <p>Your invoice will come from Savitar IT (VAT registered).</p>" ),
 
-                new Service(id++, "Complete Systems", @"From the ground up, we can build you a new system adhering to the most current standards and specifications and on top of the latest technologies." ),
-                new Service(id++, "Conversions/Upgrades", @"Having many years experience in a multitude of languages and frameworks, we can assist with upgrading legacy language/framework systems to more modern languages and frameworks.
+                new(id++, "Complete Systems", @"From the ground up, we can build you a new system adhering to the most current standards and specifications and on top of the latest technologies." ),
+                new(id++, "Conversions/Upgrades", @"Having many years experience in a multitude of languages and frameworks, we can assist with upgrading legacy language/framework systems to more modern languages and frameworks.
 <br/><br/>
 <b>Use Cases</b>
 <ul>
@@ -33,7 +33,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.SeedData
     <li>C / C++ / Delphi / Visual Basic TO C#</li>
     <li>Desktop application to Web application</li>
 </ul>" ),
-                new Service(id++, "Mentoring", @"We can help your juniors accelerate their learning curves. We love to talk and teach code!" )
+                new(id++, "Mentoring", @"We can help your juniors accelerate their learning curves. We love to talk and teach code!" )
             };
         }
     }

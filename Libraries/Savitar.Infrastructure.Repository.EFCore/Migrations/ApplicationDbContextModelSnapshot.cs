@@ -45,6 +45,29 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("2b5763a5-905c-4105-92a8-714a55080218"),
+                            ConcurrencyStamp = "1",
+                            Name = "System Administrator",
+                            NormalizedName = "System Administrator"
+                        },
+                        new
+                        {
+                            Id = new Guid("1a5a1dc8-3e40-4d61-80d8-bf9dfe15fc77"),
+                            ConcurrencyStamp = "2",
+                            Name = "Administrator",
+                            NormalizedName = "Administrator"
+                        },
+                        new
+                        {
+                            Id = new Guid("b8e857ce-52ec-411f-a131-ec414a356e47"),
+                            ConcurrencyStamp = "3",
+                            Name = "Guest",
+                            NormalizedName = "Guest"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -127,6 +150,13 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("15a8c1bf-1a41-440d-a0a5-8518515e6ba0"),
+                            RoleId = new Guid("2b5763a5-905c-4105-92a8-714a55080218")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -222,6 +252,26 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("15a8c1bf-1a41-440d-a0a5-8518515e6ba0"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "fb2f2799-c901-439b-a41b-b031d29157fd",
+                            Email = "msmit@savitar.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "Michael",
+                            LastName = "Smit",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MSMIT@SAVITAR.CO.ZA",
+                            NormalizedUserName = "MSMIT@SAVITAR.CO.ZA",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOYdCKOBioVz4mzodc6RcEX9cCIHmoUX6kWVpna79w9/vPI7aGeKMnMjxxkhzY1PeA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "56c26e39-f2d5-453d-8b31-3e9f2f9c7bf0",
+                            TwoFactorEnabled = false,
+                            UserName = "msmit@savitar.co.za"
+                        });
                 });
 
             modelBuilder.Entity("Savitar.Domain.Models.CV.ProjectTechnology", b =>

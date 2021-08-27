@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Savitar.Domain.Models.CV;
 using Savitar.Infrastructure.Repository.Shared;
 using System.Collections.Generic;
+using Savitar.Domain.Models.Entities.CV;
 using Savitar.Web.Server.Controllers.api.Base;
 
 namespace Savitar.Web.Server.Controllers.api

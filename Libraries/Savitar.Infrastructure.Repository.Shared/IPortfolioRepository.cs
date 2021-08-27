@@ -1,4 +1,4 @@
-﻿using Savitar.Domain.Models.CV;
+﻿using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.Shared
 {

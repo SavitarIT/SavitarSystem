@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Savitar.Domain.Models;
-using Savitar.Domain.Models.CV;
 using Savitar.Infrastructure.Repository.EFCore.TypeConfigurations;
 using System;
-using System.Xml.Linq;
+using Savitar.Domain.Models.Entities;
+using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.EFCore
 {

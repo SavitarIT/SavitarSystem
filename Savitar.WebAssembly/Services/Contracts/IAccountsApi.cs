@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Savitar.Domain.Requests;
+using Savitar.Domain.Models.Requests;
 using Savitar.Domain.Shared.Wrapper;
 
 namespace Savitar.Web.Client.Services.Contracts

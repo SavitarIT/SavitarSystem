@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Savitar.Domain.Requests;
+using Savitar.Domain.Models.Requests;
 using Savitar.Domain.Shared.Wrapper;
 using Savitar.Server.Shared.Endpoints;
 using Savitar.Web.Client.Infrastructure.Extensions;

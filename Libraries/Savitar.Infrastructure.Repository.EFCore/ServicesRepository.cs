@@ -1,4 +1,4 @@
-﻿using Savitar.Domain.Models;
+﻿using Savitar.Domain.Models.Entities;
 using Savitar.Infrastructure.Repository.Shared;
 
 namespace Savitar.Infrastructure.Repository.EFCore

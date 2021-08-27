@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Savitar.Domain.Requests
+namespace Savitar.Domain.Models.Requests
 {
     public class ChangePasswordRequest
     {

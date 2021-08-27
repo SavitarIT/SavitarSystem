@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Savitar.Domain.Models
+namespace Savitar.Domain.Models.Entities
 {
     public class Service : Entity
     {

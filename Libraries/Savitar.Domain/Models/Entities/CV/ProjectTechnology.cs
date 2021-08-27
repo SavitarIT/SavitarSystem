@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Savitar.Domain.Models.CV
+namespace Savitar.Domain.Models.Entities.CV
 {
     public class ProjectTechnology : Entity
     {

@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Authorization;
 using Savitar.Domain.Models;
+using Savitar.Domain.Models.Entities;
 using Savitar.Web.Client.Services.Contracts;
 
 namespace Savitar.Web.Client.Services.Implementations

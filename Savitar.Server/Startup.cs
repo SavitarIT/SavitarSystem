@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -8,11 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Savitar.Bootstrapper;
-using Savitar.Domain.Models;
 using Savitar.Infrastructure.Repository.EFCore;
 using Savitar.WebAssembly.Blockchain.Ethereum;
 using System.Threading.Tasks;
 using System;
+using Savitar.Domain.Models.Entities;
 
 namespace Savitar.Web.Server
 {

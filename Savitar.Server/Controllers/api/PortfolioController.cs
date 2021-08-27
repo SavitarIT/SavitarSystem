@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Savitar.Domain.Models.CV;
+using Savitar.Domain.Models.Entities.CV;
 using Savitar.Infrastructure.Repository.Shared;
 using Savitar.Web.Server.Controllers.api.Base;
 

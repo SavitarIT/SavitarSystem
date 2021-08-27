@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Savitar.Domain.Models;
-using Savitar.Domain.Models.CV;
+using Savitar.Domain;
+using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.EFCore.SeedData
 {

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Savitar.Domain.Models;
+using Savitar.Domain.Models.Entities;
 
 namespace Savitar.Web.Client.Services.Contracts
 {

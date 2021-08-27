@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Savitar.Domain.Requests;
+using Savitar.Domain.Models.Requests;
 using Savitar.Web.Server.Controllers.api.Base;
 
 namespace Savitar.Web.Server.Controllers.Api.Identity

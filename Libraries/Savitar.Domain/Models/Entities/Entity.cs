@@ -1,8 +1,8 @@
-﻿using Savitar.Domain.Shared;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using Savitar.Domain.Shared;
 
-namespace Savitar.Domain.Models
+namespace Savitar.Domain.Models.Entities
 {
     public abstract class Entity : IEntity
     {

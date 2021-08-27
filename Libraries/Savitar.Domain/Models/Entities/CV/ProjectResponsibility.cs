@@ -1,4 +1,4 @@
-﻿namespace Savitar.Domain.Models.CV
+﻿namespace Savitar.Domain.Models.Entities.CV
 {
     public class ProjectResponsibility : Entity
     {

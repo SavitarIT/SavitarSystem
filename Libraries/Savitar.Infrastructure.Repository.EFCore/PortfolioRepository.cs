@@ -1,8 +1,8 @@
-﻿using Savitar.Domain.Models.CV;
-using Savitar.Infrastructure.Repository.Shared;
+﻿using Savitar.Infrastructure.Repository.Shared;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Savitar.Domain.Models.Entities.CV;
 using Savitar.Infrastructure.Repository.EFCore.SeedData;
 
 namespace Savitar.Infrastructure.Repository.EFCore

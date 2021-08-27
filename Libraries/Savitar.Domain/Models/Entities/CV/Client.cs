@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-          
-namespace Savitar.Domain.Models.CV
+
+namespace Savitar.Domain.Models.Entities.CV
 {
     public class Client : Entity
     {

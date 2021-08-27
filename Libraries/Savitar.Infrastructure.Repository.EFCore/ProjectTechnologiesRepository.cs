@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Savitar.Domain.Models.CV;
 using Savitar.Infrastructure.Repository.Shared;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.EFCore
 {

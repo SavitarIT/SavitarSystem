@@ -2,7 +2,7 @@
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using MudBlazor;
-using Savitar.Domain.Requests;
+using Savitar.Domain.Models.Requests;
 
 namespace Savitar.Web.Client.Pages.Identity
 {

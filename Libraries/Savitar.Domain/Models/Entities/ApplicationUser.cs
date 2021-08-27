@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
-namespace Savitar.Domain.Models
+namespace Savitar.Domain.Models.Entities
 {
     public class ApplicationUser : IdentityUser<Guid>
     {

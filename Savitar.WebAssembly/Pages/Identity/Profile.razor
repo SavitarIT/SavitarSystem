@@ -1,4 +1,6 @@
-﻿<MudGrid>
+﻿@inject IAccountsApi _accountsApi
+
+<MudGrid>
     <MudItem xs="12" sm="8" md="9">
         <EditForm Model="@_profileModel" OnValidSubmit="UpdateProfileAsync">
             <MudCard Elevation="25">

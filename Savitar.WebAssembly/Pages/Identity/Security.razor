@@ -1,4 +1,6 @@
-﻿<EditForm Model="@_passwordModel" OnValidSubmit="ChangePasswordAsync">
+﻿@inject IAccountsApi _accountsApi
+
+<EditForm Model="@_passwordModel" OnValidSubmit="ChangePasswordAsync">
     @*<FluentValidationValidator @ref="_fluentValidationValidator" />*@
     <MudCard Elevation="25">
         <MudCardHeader>

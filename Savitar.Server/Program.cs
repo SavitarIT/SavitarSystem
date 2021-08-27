@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Savitar.Server
+namespace Savitar.Web.Server
 {
     public class Program
     {

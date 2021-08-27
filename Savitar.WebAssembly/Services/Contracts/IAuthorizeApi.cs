@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Savitar.Domain.Models;
 
-namespace Savitar.WebAssembly.Services.Contracts
+namespace Savitar.Web.Client.Services.Contracts
 {
     public interface IAuthorizeApi
     {

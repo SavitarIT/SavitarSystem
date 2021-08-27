@@ -5,9 +5,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Authorization;
 using Savitar.Domain.Models;
-using Savitar.WebAssembly.Services.Contracts;
+using Savitar.Web.Client.Services.Contracts;
 
-namespace Savitar.WebAssembly.Services.Implementations
+namespace Savitar.Web.Client.Services.Implementations
 {
     public class IdentityAuthenticationStateProvider : AuthenticationStateProvider
     {

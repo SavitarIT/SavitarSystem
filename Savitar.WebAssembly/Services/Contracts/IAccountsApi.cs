@@ -2,7 +2,7 @@
 using Savitar.Domain.Requests;
 using Savitar.Domain.Shared.Wrapper;
 
-namespace Savitar.WebAssembly.Services.Contracts
+namespace Savitar.Web.Client.Services.Contracts
 {
     public interface IAccountsApi : IManager
     {

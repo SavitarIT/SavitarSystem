@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Savitar.WebAssembly
+namespace Savitar.Web.Client
 {
     public class BasePageServices
     {

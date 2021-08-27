@@ -2,7 +2,7 @@
 using MudBlazor;
 using Savitar.Domain.Requests;
 
-namespace Savitar.WebAssembly.Pages.Identity
+namespace Savitar.Web.Client.Pages.Identity
 {
     public partial class Security
     {

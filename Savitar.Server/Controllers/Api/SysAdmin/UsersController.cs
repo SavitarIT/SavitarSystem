@@ -7,10 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Savitar.Domain.Models;
 using Savitar.Domain.Requests;
-using Savitar.Server.Controllers.api.Base;
-using Savitar.WebAssembly.Pages.SysAdmin;
+using Savitar.Web.Server.Controllers.api.Base;
 
-namespace Savitar.Server.Controllers.Api.SysAdmin
+namespace Savitar.Web.Server.Controllers.Api.SysAdmin
 {
     [Route("api/sysadmin/[controller]")]
     public class UsersController : BaseApiController<UsersController>

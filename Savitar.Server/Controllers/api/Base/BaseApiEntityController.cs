@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Savitar.Domain.Shared;
 using Savitar.Infrastructure.Repository.Shared;
 
-namespace Savitar.Server.Controllers.api.Base
+namespace Savitar.Web.Server.Controllers.api.Base
 {
     public abstract class BaseApiEntityController<TEntity, TRepository, TController> : BaseApiController<TController>
         where TEntity : class, IEntity

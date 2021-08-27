@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Savitar.Domain.Models;
-using Savitar.Server.Controllers.api.Base;
+using Savitar.Web.Server.Controllers.api.Base;
 
-namespace Savitar.Server.Controllers.Api.Identity
+namespace Savitar.Web.Server.Controllers.Api.Identity
 {
     [Route("api/identity/authorize/[action]")]
     public class AuthorizeController : BaseApiController<AuthorizeController>

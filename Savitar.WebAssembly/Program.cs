@@ -6,10 +6,10 @@ using Serilog;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Savitar.WebAssembly.Services.Contracts;
-using Savitar.WebAssembly.Services.Implementations;
+using Savitar.Web.Client.Services.Contracts;
+using Savitar.Web.Client.Services.Implementations;
 
-namespace Savitar.WebAssembly
+namespace Savitar.Web.Client
 {
     public class Program
     {

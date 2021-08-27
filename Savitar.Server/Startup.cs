@@ -14,7 +14,7 @@ using Savitar.WebAssembly.Blockchain.Ethereum;
 using System.Threading.Tasks;
 using System;
 
-namespace Savitar.Server
+namespace Savitar.Web.Server
 {
     public class Startup
     {
@@ -83,7 +83,7 @@ namespace Savitar.Server
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Savitar.Server", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Savitar.Web.Server", Version = "v1" });
             });
 
             
@@ -103,7 +103,7 @@ namespace Savitar.Server
                 app.UseDeveloperExceptionPage();
                 app.UseWebAssemblyDebugging();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Savitar.Server v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Savitar.Web.Server v1"));
             }
             else
             {

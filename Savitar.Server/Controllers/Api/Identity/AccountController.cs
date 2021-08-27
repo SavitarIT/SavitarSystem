@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Savitar.Domain.Requests;
-using Savitar.Server.Controllers.api.Base;
+using Savitar.Web.Server.Controllers.api.Base;
 
-namespace Savitar.Server.Controllers.Api.Identity
+namespace Savitar.Web.Server.Controllers.Api.Identity
 {
     [Route("api/identity/account")]
     

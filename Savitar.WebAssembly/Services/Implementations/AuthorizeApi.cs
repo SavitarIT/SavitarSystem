@@ -4,9 +4,9 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Savitar.Domain.Models;
 using Savitar.Server.Shared.Endpoints;
-using Savitar.WebAssembly.Services.Contracts;
+using Savitar.Web.Client.Services.Contracts;
 
-namespace Savitar.WebAssembly.Services.Implementations
+namespace Savitar.Web.Client.Services.Implementations
 {
     public class AuthorizeApi : IAuthorizeApi
     {

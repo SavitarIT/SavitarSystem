@@ -7,6 +7,8 @@
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <FileVersion>1.0.0.1</FileVersion>
     <Version>1.0.0.1</Version>
+    <AssemblyName>Savitar.Web.Server</AssemblyName>
+    <RootNamespace>Savitar.Web.Server</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +21,7 @@
     <ProjectReference Include="..\Libraries\Savitar.Bootstrapper\Savitar.Bootstrapper.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.Infrastructure.Repository.EFCore\Savitar.Infrastructure.Repository.EFCore.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.WebAssembly.Blockchain.Ethereum\Savitar.WebAssembly.Blockchain.Ethereum.csproj" />
-    <ProjectReference Include="..\Savitar.WebAssembly\Savitar.WebAssembly.csproj" />
+    <ProjectReference Include="..\Savitar.WebAssembly\Savitar.Web.Client.csproj" />
   </ItemGroup>
 
 

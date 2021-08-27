@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Savitar.Domain.Requests;
 using Savitar.Domain.Shared.Wrapper;
 using Savitar.Server.Shared.Endpoints;
-using Savitar.WebAssembly.Infrastructure.Extensions;
-using Savitar.WebAssembly.Services.Contracts;
+using Savitar.Web.Client.Infrastructure.Extensions;
+using Savitar.Web.Client.Services.Contracts;
 
-namespace Savitar.WebAssembly.Services.Implementations
+namespace Savitar.Web.Client.Services.Implementations
 {
     public class AccountsApi : IAccountsApi
     {

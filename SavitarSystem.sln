@@ -21,11 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Services", "Librari
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Bootstrapper", "Libraries\Savitar.Bootstrapper\Savitar.Bootstrapper.csproj", "{5E461DDF-056E-4E39-BB9F-4143776CC53D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.WebAssembly", "Savitar.WebAssembly\Savitar.WebAssembly.csproj", "{54FBFE15-F747-48B1-8315-1CAE618CD6D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Client", "Savitar.WebAssembly\Savitar.Web.Client.csproj", "{54FBFE15-F747-48B1-8315-1CAE618CD6D9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.WebAssembly.Blockchain.Ethereum", "Libraries\Savitar.WebAssembly.Blockchain.Ethereum\Savitar.WebAssembly.Blockchain.Ethereum.csproj", "{EA494E86-4F8A-4E66-A6EA-BE3EE26562E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Server", "Savitar.Server\Savitar.Server.csproj", "{11694167-14F2-4194-BCBE-E816F97F3417}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Web.Server", "Savitar.Server\Savitar.Web.Server.csproj", "{11694167-14F2-4194-BCBE-E816F97F3417}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Infrastructure.Repository.Shared", "Libraries\Savitar.Infrastructure.Repository.Shared\Savitar.Infrastructure.Repository.Shared.csproj", "{4DA7925B-1911-456D-8131-D6A3728C6EC8}"
 EndProject
@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Infrastructure.Repo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Domain.Shared", "Libraries\Savitar.Domain.Shared\Savitar.Domain.Shared.csproj", "{40C6BF6F-489D-40FF-991A-91C60A4F0159}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savitar.Server.Shared", "Libraries\Savitar.Server.Shared\Savitar.Server.Shared.csproj", "{31C9C288-BBFE-4FE4-91D9-A3EF4B664503}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savitar.Server.Shared", "Libraries\Savitar.Server.Shared\Savitar.Server.Shared.csproj", "{31C9C288-BBFE-4FE4-91D9-A3EF4B664503}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

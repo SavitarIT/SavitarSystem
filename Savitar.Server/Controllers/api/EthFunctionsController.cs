@@ -4,9 +4,9 @@ using Savitar.Domain.Dtos;
 using Savitar.WebAssembly.Blockchain.Ethereum.Services.Contracts;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Savitar.Server.Controllers.api.Base;
+using Savitar.Web.Server.Controllers.api.Base;
 
-namespace Savitar.Server.Controllers.api
+namespace Savitar.Web.Server.Controllers.api
 {
     [AllowAnonymous]
     public class EthFunctionsController : BaseApiController<EthFunctionsController>

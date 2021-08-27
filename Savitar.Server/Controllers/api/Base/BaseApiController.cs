@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Savitar.Server.Controllers.api.Base
+namespace Savitar.Web.Server.Controllers.api.Base
 {
     [Authorize]
     [Route("api/[controller]")]

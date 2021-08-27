@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Savitar.Domain.Shared;
 using Savitar.Domain.Shared.Wrapper;
 
-namespace Savitar.WebAssembly.Infrastructure.Extensions
+namespace Savitar.Web.Client.Infrastructure.Extensions
 {
     internal static class ResultExtensions
     {

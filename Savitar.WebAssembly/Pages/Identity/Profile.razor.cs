@@ -1,9 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Net.Mime;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using Savitar.Domain.Requests;
 
@@ -11,17 +8,11 @@ namespace Savitar.WebAssembly.Pages.Identity
 {
     public partial class Profile
     {
-        //private FluentValidationValidator _fluentValidationValidator;
-        //private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private bool Validate = true;
-        private char _firstLetterOfName;
-        private readonly UpdateProfileRequest _profileModel = new();
-
-        public string UserId { get; set; }
+        private UpdateProfileRequest _model;
 
         private async Task UpdateProfileAsync()
         {
-            var response = await _accountsApi.UpdateProfileAsync(_profileModel);
+            var response = await _accountsApi.UpdateProfileAsync(_model);
             if (response.Succeeded)
             {
                 //await _authenticationManager.Logout();
@@ -39,32 +30,21 @@ namespace Savitar.WebAssembly.Pages.Identity
 
         protected override async Task OnInitializedAsync()
         {
-            await LoadDataAsync();
+            try
+            {
+                _model = await _httpClient.GetFromJsonAsync<UpdateProfileRequest>($"api/sysadmin/users/{Guid.Empty}");
+            }
+            catch (Exception ex)
+            {
+                _snackbar.Add(ex.Message, Severity.Error);
+            }
         }
-
-        private async Task LoadDataAsync()
-        {
-            //var state = await _stateProvider.GetAuthenticationStateAsync();
-            //var user = state.User;
-            //_profileModel.Email = user.GetEmail();
-            //_profileModel.FirstName = user.GetFirstName();
-            //_profileModel.LastName = user.GetLastName();
-            //_profileModel.PhoneNumber = user.GetPhoneNumber();
-            //UserId = user.GetUserId();
-            //var data = await _accountsApi.GetProfilePictureAsync(UserId);
-            
-            //if (_profileModel.FirstName.Length > 0)
-            //{
-            //    _firstLetterOfName = _profileModel.FirstName[0];
-            //}
-        }
-
 
         private async Task DeleteAsync()
         {
             //var parameters = new DialogParameters
             //{
-            //    {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), $"{string.Format(_localizer["Do you want to delete the profile picture of {0}"], _profileModel.Email)}?"}
+            //    {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), $"{string.Format(_localizer["Do you want to delete the profile picture of {0}"], _model.Email)}?"}
             //};
             //var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
             //var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(_localizer["Delete"], parameters, options);

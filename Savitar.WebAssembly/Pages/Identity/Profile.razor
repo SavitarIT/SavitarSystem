@@ -1,8 +1,8 @@
 ﻿@inject IAccountsApi _accountsApi
-
+@inject HttpClient _httpClient;
 <MudGrid>
     <MudItem xs="12" sm="8" md="9">
-        <EditForm Model="@_profileModel" OnValidSubmit="UpdateProfileAsync">
+        <EditForm Model="@_model" OnValidSubmit="UpdateProfileAsync">
             <MudCard Elevation="25">
                 <MudCardHeader>
                     <CardHeaderContent>
@@ -12,16 +12,16 @@
                 <MudCardContent>
                     <MudGrid>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@_profileModel.FirstName" For="@(() => _profileModel.FirstName)" Label="First Name" Variant="Variant.Outlined" />
+                            <MudTextField @bind-Value="@_model.FirstName" For="@(() => _model.FirstName)" Label="First Name" Variant="Variant.Outlined" />
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@_profileModel.LastName" For="@(() => _profileModel.LastName)" Label="Last Name" Variant="Variant.Outlined" />
+                            <MudTextField @bind-Value="@_model.LastName" For="@(() => _model.LastName)" Label="Last Name" Variant="Variant.Outlined" />
                         </MudItem>
+                        @*<MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" Variant="Variant.Outlined" />
+                        </MudItem>*@
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@_profileModel.PhoneNumber" For="@(() => _profileModel.PhoneNumber)" Label="Phone Number" Variant="Variant.Outlined" />
-                        </MudItem>
-                        <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@_profileModel.Email" Label="Email" For="@(() => _profileModel.Email)" Variant="Variant.Outlined" InputType="InputType.Email" Disabled=true />
+                            <MudTextField @bind-Value="@_model.Email" Label="Email" For="@(() => _model.Email)" Variant="Variant.Outlined" InputType="InputType.Email" Disabled=true />
                         </MudItem>
                     </MudGrid>
                 </MudCardContent>

@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Savitar.Domain.Models;
+using Savitar.Domain.Requests;
 using Savitar.Server.Controllers.api.Base;
+using Savitar.WebAssembly.Pages.SysAdmin;
 
 namespace Savitar.Server.Controllers.Api.SysAdmin
 {
@@ -36,6 +38,29 @@ namespace Savitar.Server.Controllers.Api.SysAdmin
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("{userId:guid}")]
+        public async Task<ActionResult<UpdateProfileRequest>> Get(Guid userId)
+        {
+            ApplicationUser data = null;
+
+            if (userId == Guid.Empty)
+                data = _userManager.Users.SingleOrDefault(x => x.Email == User.Identity.Name);
+            else
+                data = await _userManager.Users.SingleOrDefaultAsync(x => x.Id == userId);
+
+            if (data == null)
+                return BadRequest("No user could be found with the passed userId");
+
+            var result = new UpdateProfileRequest
+            {
+                Email = data.Email,
+                FirstName = data.FirstName,
+                LastName = data.LastName
+            };
+
+            return Ok(result);
         }
     }
 }

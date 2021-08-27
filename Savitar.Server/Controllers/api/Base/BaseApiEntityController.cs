@@ -32,7 +32,6 @@ namespace Savitar.Server.Controllers.api.Base
             return Ok(data);
         }
 
-// GET: api/[controller]/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TEntity>> Get(int id)
         {

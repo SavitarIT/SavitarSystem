@@ -4,11 +4,12 @@ using Savitar.Domain.Dtos;
 using Savitar.WebAssembly.Blockchain.Ethereum.Services.Contracts;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Savitar.Server.Controllers.api.Base;
 
 namespace Savitar.Server.Controllers.api
 {
     [AllowAnonymous]
-    public class EthFunctionsController : BaseApiController
+    public class EthFunctionsController : ApiController
     {
         private readonly ILogger<EthFunctionsController> _logger;
 

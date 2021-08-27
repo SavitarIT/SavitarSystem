@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Savitar.Domain.Models;
+using Savitar.Server.Controllers.api.Base;
 
 namespace Savitar.Server.Controllers.api
 {
     [Route("api/[controller]/[action]")]
-    public class AuthorizeController : BaseApiController
+    public class AuthorizeController : ApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;

@@ -2,11 +2,12 @@
 using Savitar.Domain.Models.CV;
 using Savitar.Infrastructure.Repository.Shared;
 using System.Collections.Generic;
+using Savitar.Server.Controllers.api.Base;
 
 namespace Savitar.Server.Controllers.api
 {
     [AllowAnonymous]
-    public class SkillsMatrixController : BaseApiEntityController<ProjectTechnology, IProjectTechnologiesRepository>
+    public class SkillsMatrixController : ApiEntityController<ProjectTechnology, IProjectTechnologiesRepository>
     {
         public SkillsMatrixController(IProjectTechnologiesRepository repository) : base(repository) { }
 

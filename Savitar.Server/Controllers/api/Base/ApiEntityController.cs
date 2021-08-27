@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Savitar.Domain.Shared;
 using Savitar.Infrastructure.Repository.Shared;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Savitar.Server.Controllers.api
+namespace Savitar.Server.Controllers.api.Base
 {
-    public class BaseApiEntityController<TEntity, TRepository> : BaseApiController
+    public class ApiEntityController<TEntity, TRepository> : ApiController
         where TEntity : class, IEntity
         where TRepository : IRepository<TEntity>
     {
         protected readonly TRepository _repository;
 
-        public BaseApiEntityController(TRepository repository)
+        public ApiEntityController(TRepository repository)
         {
             _repository = repository;
 }

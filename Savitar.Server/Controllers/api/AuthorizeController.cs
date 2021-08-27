@@ -8,7 +8,7 @@ using Savitar.Domain.Models;
 
 namespace Savitar.Server.Controllers.api
 {
-    
+    [Route("api/[controller]/[action]")]
     public class AuthorizeController : BaseApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;

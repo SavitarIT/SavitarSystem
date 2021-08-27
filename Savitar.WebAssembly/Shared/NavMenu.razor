@@ -27,4 +27,10 @@
         <MudNavLink Href="/DCACalculator">DCA Calculator</MudNavLink>        
     </MudNavGroup>
     <MudDivider DividerType="DividerType.FullWidth" />
+    @if (EnvironmentInfo.IsDebug())
+    {
+        <MudNavGroup Title="Sys Admin" Expanded="false">
+            <MudNavLink Href="/sysadmin/accounts">Accounts</MudNavLink>
+        </MudNavGroup>
+    }   
 </MudNavMenu>

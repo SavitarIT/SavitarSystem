@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Savitar.Server.Controllers.api
 {
     [Authorize]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class BaseApiController : ControllerBase

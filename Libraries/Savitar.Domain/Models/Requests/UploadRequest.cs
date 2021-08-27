@@ -1,6 +1,4 @@
-﻿using Savitar.Domain.Enums;
-
-namespace Savitar.Domain.Models.Requests
+﻿namespace Savitar.Domain.Models.Requests
 {
     public class UploadRequest
     {

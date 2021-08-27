@@ -6,17 +6,20 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Savitar.Domain.Models;
 using Savitar.Server.Controllers.api.Base;
+using Savitar.Services.Shared;
 
 namespace Savitar.Server.Controllers.api
 {
     [Route("api/[controller]/[action]")]
     public class AuthorizeController : ApiController
     {
+        private readonly IUserService _userService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AuthorizeController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AuthorizeController(IUserService userService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
+            _userService = userService;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -24,17 +27,23 @@ namespace Savitar.Server.Controllers.api
         [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Login(LoginParameters model)
         {
-            var user = await _userManager.FindByNameAsync(model.Email);
-            if (user == null) 
-                return BadRequest("User does not exist");
-            
-            var signInResult = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
-            if (!signInResult.Succeeded) 
-                return BadRequest("Invalid password");
-
-            await _signInManager.SignInAsync(user, model.RememberMe);
+            var result = await _userService.Login(model);
+            if (!result.Succeeded)
+                return BadRequest(result.ToString());
 
             return Ok();
+
+            //var user = await _userManager.FindByNameAsync(model.Email);
+            //if (user == null) 
+            //    return BadRequest("User does not exist");
+
+            //var signInResult = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+            //if (!signInResult.Succeeded) 
+            //    return BadRequest("Invalid password");
+
+            //await _signInManager.SignInAsync(user, model.RememberMe);
+
+            //return Ok();
         }
 
 

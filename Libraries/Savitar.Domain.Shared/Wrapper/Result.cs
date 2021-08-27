@@ -11,6 +11,15 @@ namespace Savitar.Domain.Shared.Wrapper
 
         public List<string> Messages { get; set; } = new List<string>();
 
+        public override string ToString()
+        {
+            var result = "";
+            foreach (var message in Messages)
+                result += message;
+
+            return result;
+        }
+
         public bool Succeeded { get; set; }
 
         public static IResult Fail()

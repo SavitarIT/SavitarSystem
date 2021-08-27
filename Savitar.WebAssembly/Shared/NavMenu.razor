@@ -29,8 +29,12 @@
     <MudDivider DividerType="DividerType.FullWidth" />
     @if (EnvironmentInfo.IsDebug())
     {
-        <MudNavGroup Title="Sys Admin" Expanded="false">
-            <MudNavLink Href="/sysadmin/accounts">Accounts</MudNavLink>
-        </MudNavGroup>
+        <AuthorizeView Roles="System Administrator">
+            <Authorized>
+                <MudNavGroup Title="Sys Admin" Expanded="false">
+                    <MudNavLink Href="/sysadmin/accounts">Accounts</MudNavLink>
+                </MudNavGroup>
+            </Authorized>
+        </AuthorizeView>
     }   
 </MudNavMenu>

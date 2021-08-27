@@ -20,28 +20,28 @@ namespace Savitar.WebAssembly.Services.Implementations
         public async Task Login(LoginParameters loginParameters)
         {
             //var stringContent = new StringContent(JsonSerializer.Serialize(loginParameters), Encoding.UTF8, "application/json");
-            var result = await _httpClient.PostAsJsonAsync(AuthEndpoints.Login, loginParameters);
+            var result = await _httpClient.PostAsJsonAsync(AuthorizeEndpoints.Login, loginParameters);
             if (result.StatusCode == System.Net.HttpStatusCode.BadRequest) throw new Exception(await result.Content.ReadAsStringAsync());
             result.EnsureSuccessStatusCode();
         }
 
         public async Task Logout()
         {
-            var result = await _httpClient.PostAsync(AuthEndpoints.Logout, null);
+            var result = await _httpClient.PostAsync(AuthorizeEndpoints.Logout, null);
             result.EnsureSuccessStatusCode();
         }
 
         public async Task Register(RegisterParameters registerParameters)
         {
             //var stringContent = new StringContent(JsonSerializer.Serialize(registerParameters), Encoding.UTF8, "application/json");
-            var result = await _httpClient.PostAsJsonAsync(AuthEndpoints.Register, registerParameters);
+            var result = await _httpClient.PostAsJsonAsync(AuthorizeEndpoints.Register, registerParameters);
             if (result.StatusCode == System.Net.HttpStatusCode.BadRequest) throw new Exception(await result.Content.ReadAsStringAsync());
             result.EnsureSuccessStatusCode();
         }
 
         public async Task<UserInfo> GetUserInfo()
         {
-            var result = await _httpClient.GetFromJsonAsync<UserInfo>(AuthEndpoints.UserInfo);
+            var result = await _httpClient.GetFromJsonAsync<UserInfo>(AuthorizeEndpoints.UserInfo);
             return result;
         }
     }

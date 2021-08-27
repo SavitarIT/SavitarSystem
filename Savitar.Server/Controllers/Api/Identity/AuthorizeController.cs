@@ -7,9 +7,9 @@ using Savitar.Domain.Models;
 using Savitar.Server.Controllers.api.Base;
 using Savitar.Services.Shared;
 
-namespace Savitar.Server.Controllers.api
+namespace Savitar.Server.Controllers.Api.Identity
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/identity/authorize/[action]")]
     public class AuthorizeController : BaseApiController<AuthorizeController>
     {
         private readonly IUserService _userService;

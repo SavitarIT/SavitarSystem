@@ -6,13 +6,13 @@ using Savitar.Infrastructure.Repository.Shared;
 
 namespace Savitar.Server.Controllers.api.Base
 {
-    public class ApiEntityController<TEntity, TRepository> : ApiController
+    public abstract class BaseApiEntityController<TEntity, TRepository> : BaseApiController<BaseApiEntityController<TEntity, TRepository>>
         where TEntity : class, IEntity
         where TRepository : IRepository<TEntity>
     {
         protected readonly TRepository _repository;
 
-        public ApiEntityController(TRepository repository)
+        protected BaseApiEntityController(TRepository repository)
         {
             _repository = repository;
 }
@@ -25,7 +25,7 @@ namespace Savitar.Server.Controllers.api.Base
         // GET: api/[controller]
         [HttpGet]
         [ResponseCache(NoStore = false, Duration = 120, Location = ResponseCacheLocation.Any)]
-        public async virtual Task<ActionResult<IEnumerable<TEntity>>> Get()
+        public virtual async Task<ActionResult<IEnumerable<TEntity>>> Get()
         {
             var data = await _repository.GetAllAsync();
             ConfigureGetAll(data);

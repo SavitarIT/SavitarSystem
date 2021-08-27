@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Savitar.Domain.Models;
 using Savitar.Domain.Shared.Wrapper;
@@ -28,6 +29,29 @@ namespace Savitar.Services
                 return await Result.FailAsync("Invalid password");
 
             await _signInManager.SignInAsync(user, model.RememberMe);
+            return await Result.SuccessAsync();
+        }
+
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
+        }
+
+        public async Task<IResult> Register(RegisterParameters model)
+        {
+            var user = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                EmailConfirmed = true,
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+                return await Result.FailAsync(result.Errors.FirstOrDefault()?.Description);
+
             return await Result.SuccessAsync();
         }
     }

@@ -9,7 +9,7 @@ using Savitar.Server.Controllers.api.Base;
 namespace Savitar.Server.Controllers.api
 {
     [AllowAnonymous]
-    public class EthFunctionsController : ApiController
+    public class EthFunctionsController : BaseApiController<EthFunctionsController>
     {
         private readonly ILogger<EthFunctionsController> _logger;
 

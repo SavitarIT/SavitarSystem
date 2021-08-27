@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Savitar.Services.Shared;
 
 namespace Savitar.Services
 {
@@ -7,7 +6,6 @@ namespace Savitar.Services
     {
         public static void Execute(IServiceCollection services)
         {
-            services.AddTransient<IUserService, UsersService>();
         }
     }
 }

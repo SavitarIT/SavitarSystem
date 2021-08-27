@@ -7,7 +7,7 @@ using Savitar.Server.Controllers.api.Base;
 namespace Savitar.Server.Controllers.api
 {
     [AllowAnonymous]
-    public class SkillsMatrixController : BaseApiEntityController<ProjectTechnology, IProjectTechnologiesRepository>
+    public class SkillsMatrixController : BaseApiEntityController<ProjectTechnology, IProjectTechnologiesRepository, SkillsMatrixController>
     {
         public SkillsMatrixController(IProjectTechnologiesRepository repository) : base(repository) { }
 

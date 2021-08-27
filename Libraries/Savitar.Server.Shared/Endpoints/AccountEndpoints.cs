@@ -13,4 +13,9 @@ namespace Savitar.Server.Shared.Endpoints
             return $"api/identity/account/getUserProfile/{userId}";
         }
     }
+
+    public static class SysAdminUserEndpoints
+    {
+        public static string GetAll = "api/sysadmin/users/getall";
+    }
 }

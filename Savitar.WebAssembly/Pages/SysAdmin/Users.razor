@@ -1,4 +1,4 @@
-﻿@page "/sysadmin/accounts"
+﻿@page "/sysadmin/users"
 @using Savitar.Domain.Models
 @inject HttpClient Http
 
@@ -58,7 +58,7 @@
 
         protected async Task OnInitData(BasePageServices basePageServices)
         {
-            basePageServices.DisplayMessage("Loading Services");
+            basePageServices.DisplayMessage("Loading Accounts");
             _items = await Http.GetFromJsonAsync<Service[]>("api/Services");
         }        
     }

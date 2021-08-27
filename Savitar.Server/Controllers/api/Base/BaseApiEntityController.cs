@@ -6,7 +6,7 @@ using Savitar.Infrastructure.Repository.Shared;
 
 namespace Savitar.Server.Controllers.api.Base
 {
-    public abstract class BaseApiEntityController<TEntity, TRepository> : BaseApiController<BaseApiEntityController<TEntity, TRepository>>
+    public abstract class BaseApiEntityController<TEntity, TRepository, TController> : BaseApiController<TController>
         where TEntity : class, IEntity
         where TRepository : IRepository<TEntity>
     {

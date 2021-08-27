@@ -1,5 +1,6 @@
 ﻿@inject IAccountsApi _accountsApi
 @inject HttpClient _httpClient;
+
 <MudGrid>
     <MudItem xs="12" sm="8" md="9">
         <EditForm Model="@_model" OnValidSubmit="UpdateProfileAsync">

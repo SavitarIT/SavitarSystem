@@ -16,7 +16,7 @@ namespace Savitar.WebAssembly.Pages.Identity
             if (response.Succeeded)
             {
                 //await _authenticationManager.Logout();
-                //_snackBar.Add(_localizer["Your Profile has been updated. Please Login to Continue."], Severity.Success);
+                _snackbar.Add("Your Profile has been updated.", Severity.Success);
                 //_navigationManager.NavigateTo("/");
             }
             else

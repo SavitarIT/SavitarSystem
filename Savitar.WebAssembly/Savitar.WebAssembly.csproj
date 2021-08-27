@@ -22,7 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>	
-    <ProjectReference Include="..\Libraries\Savitar.Domain\Savitar.Domain.csproj" />
+    <ProjectReference Include="..\Libraries\Savitar.Domain\Savitar.Domain.csproj" />	
+    <ProjectReference Include="..\Libraries\Savitar.Server.Shared\Savitar.Server.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -97,6 +98,10 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Routes\" />
   </ItemGroup>
 
 </Project>

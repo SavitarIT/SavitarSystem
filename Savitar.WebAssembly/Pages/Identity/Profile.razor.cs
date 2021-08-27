@@ -21,7 +21,7 @@ namespace Savitar.WebAssembly.Pages.Identity
 
         private async Task UpdateProfileAsync()
         {
-            var response = await _accountManager.UpdateProfileAsync(_profileModel);
+            var response = await _accountsApi.UpdateProfileAsync(_profileModel);
             if (response.Succeeded)
             {
                 //await _authenticationManager.Logout();
@@ -51,7 +51,7 @@ namespace Savitar.WebAssembly.Pages.Identity
             //_profileModel.LastName = user.GetLastName();
             //_profileModel.PhoneNumber = user.GetPhoneNumber();
             //UserId = user.GetUserId();
-            //var data = await _accountManager.GetProfilePictureAsync(UserId);
+            //var data = await _accountsApi.GetProfilePictureAsync(UserId);
             
             //if (_profileModel.FirstName.Length > 0)
             //{
@@ -72,7 +72,7 @@ namespace Savitar.WebAssembly.Pages.Identity
             //if (!result.Cancelled)
             //{
             //    var request = new UpdateProfilePictureRequest { Data = null, FileName = string.Empty, UploadType = MediaTypeNames.Application.Enums.UploadType.ProfilePicture };
-            //    var data = await _accountManager.UpdateProfilePictureAsync(request, UserId);
+            //    var data = await _accountsApi.UpdateProfilePictureAsync(request, UserId);
             //    if (data.Succeeded)
             //    {
             //        await _localStorage.RemoveItemAsync(StorageConstants.Local.UserImageURL);

@@ -13,7 +13,7 @@ namespace Savitar.WebAssembly.Pages.Identity
 
         private async Task ChangePasswordAsync()
         {
-            var response = await _accountManager.ChangePasswordAsync(_passwordModel);
+            var response = await _accountsApi.ChangePasswordAsync(_passwordModel);
             if (response.Succeeded)
             {
                 //_snackBar.Add(_localizer["Password Changed!"], Severity.Success);

@@ -6,7 +6,6 @@ using Serilog;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Savitar.WebAssembly.Infrastructure.Managers.Identity.Account;
 using Savitar.WebAssembly.Services.Contracts;
 using Savitar.WebAssembly.Services.Implementations;
 
@@ -40,7 +39,7 @@ namespace Savitar.WebAssembly
 
         public static void ConfigureServices(WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddScoped<IAccountManager, AccountManager>();
+            builder.Services.AddScoped<IAccountsApi, AccountsApi>();
             builder.Services.AddMudServices();            
         }
     }

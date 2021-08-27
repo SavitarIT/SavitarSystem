@@ -14,8 +14,8 @@
 @using MudBlazor
 @using Savitar.WebAssembly.Components
 @using System.Security.Claims
-@using Savitar.WebAssembly.Infrastructure.Managers.Identity.Account
+@using Savitar.WebAssembly.Services.Contracts
 
 @attribute [Authorize]
 @inject ISnackbar _snackbar
-@inject IAccountManager _accountManager
+@inject IAccountsApi _accountsApi

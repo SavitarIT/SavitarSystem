@@ -8,9 +8,8 @@ using Savitar.Domain.Models;
 
 namespace Savitar.Server.Controllers.api
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    public class AuthorizeController : ControllerBase
+    
+    public class AuthorizeController : BaseApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -21,7 +20,7 @@ namespace Savitar.Server.Controllers.api
             _signInManager = signInManager;
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Login(LoginParameters model)
         {
             var user = await _userManager.FindByNameAsync(model.Email);
@@ -38,7 +37,7 @@ namespace Savitar.Server.Controllers.api
         }
 
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Register(RegisterParameters model)
         {
             var user = new ApplicationUser
@@ -61,7 +60,6 @@ namespace Savitar.Server.Controllers.api
             });
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -76,6 +74,7 @@ namespace Savitar.Server.Controllers.api
         }
 
 
+        [HttpGet]
         private UserInfo GetUserInformation()
         {
             if (User  == null)

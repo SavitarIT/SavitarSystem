@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -9,7 +10,7 @@ using Savitar.Server.Controllers.api.Base;
 
 namespace Savitar.Server.Controllers.Api.SysAdmin
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/sysadmin/[controller]")]
     public class UsersController : BaseApiController<UsersController>
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -23,11 +24,18 @@ namespace Savitar.Server.Controllers.Api.SysAdmin
         [ResponseCache(NoStore = true)]
         public virtual async Task<ActionResult<IEnumerable<UserInfo>>> Get()
         {
-            var data = await _userManager.Users
-                .Select(x => new UserInfo { Email = x.Email })
-                .ToListAsync();
+            try
+            {
+                var data = await _userManager.Users
+                    .Select(x => new UserInfo { Email = x.Email })
+                    .ToListAsync();
 
-            return Ok(data);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

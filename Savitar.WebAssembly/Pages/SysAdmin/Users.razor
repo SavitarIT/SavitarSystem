@@ -2,7 +2,7 @@
 @using Savitar.Domain.Models
 @inject HttpClient Http
 
-<BasePage Title="Services" OnInitData="OnInitData">
+<BasePage Title="Users" OnInitData="OnInitData">
     @if (_items == null)
     {
         <MudContainer Class="spinner" />
@@ -14,52 +14,32 @@
             {       
                 <MudItem xs="12">
                     <MudCard Outlined="true">
-                        <MudCardHeader Class="pl-5 py-1" style="background-color: var(--mud-palette-background-grey)">
+                        <MudCardHeader Class="pl-5 py-1">
                             <CardHeaderContent>
-                                <MudText Typo="Typo.h6"><p>@((MarkupString)item.Title)</p></MudText>
+                                <MudText Typo="Typo.h6"><p>@((MarkupString)item.Email)</p></MudText>
                             </CardHeaderContent>
                         </MudCardHeader>
-                        <MudCardContent Class="pa=0">
-                            <MudText Typo="Typo.body1">@((MarkupString)item.Description)  </MudText>
-                        </MudCardContent>
                     </MudCard>
                 </MudItem>
             }
         </MudGrid>
     }
 
-    <style>    
-        ul {
-            list-style-type: disc;
-            list-style-position: inside;
-        }   
-
-        ol {
-            list-style-type: decimal;
-            list-style-position: inside;
-        }
-
-        ul ul, ol ul {
-            list-style-type: circle;
-            list-style-position: inside;
-            margin-left: 15px;
-        }
-
-        ol ol, ul ol {
-            list-style-type: lower-latin;
-            list-style-position: inside;
-            margin-left: 15px;
-        }
-    </style>
-
-
     @code {
-        private Service[] _items;
+        private IEnumerable<UserInfo> _items;
 
         protected async Task OnInitData(BasePageServices basePageServices)
         {
-            basePageServices.DisplayMessage("Loading Accounts");
-            _items = await Http.GetFromJsonAsync<Service[]>("api/Services");
+            basePageServices.DisplayMessage("Loading Users");
+     
+            var data = await Http.GetFromJsonAsync<UserInfo[]>("api/sysadmin/users");
+            if (data == null)
+            {
+                _snackbar.Add("No users found", Severity.Warning);
+                return;
+            }
+
+            _items = data.OrderBy(x => x.Email).ToList();
         }        
     }
 </BasePage>

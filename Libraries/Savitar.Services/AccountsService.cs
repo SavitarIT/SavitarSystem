@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Savitar.Domain.Models.Requests;
 using Savitar.Domain.Shared.Wrapper;
@@ -21,7 +20,7 @@ namespace Savitar.Services
             _signInManager = signInManager;
         }
 
-        public async Task<IResult> UpdateProfileAsync(UpdateProfileRequest request, Guid userId)
+        public async Task<IResult> UpdateProfileAsync(UpdateProfileRequest request, int userId)
         {
             if (!string.IsNullOrWhiteSpace(request.PhoneNumber))
             {
@@ -55,7 +54,7 @@ namespace Savitar.Services
             return await Result.FailAsync($"Email {request.Email} is already used.");
         }
 
-        public async Task<IResult> ChangePasswordAsync(ChangePasswordRequest model, Guid userId)
+        public async Task<IResult> ChangePasswordAsync(ChangePasswordRequest model, int userId)
         {
             var user = await _userManager.FindByIdAsync(userId.ToString());
             if (user == null)

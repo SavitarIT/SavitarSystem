@@ -13,12 +13,12 @@ namespace Savitar.Web.Server.Shared.Implementations
         {
             var id = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!string.IsNullOrEmpty(id))
-                UserId = new Guid(id);
+                UserId = Convert.ToInt32(id);
 
             Claims = httpContextAccessor.HttpContext?.User?.Claims.AsEnumerable().Select(item => new KeyValuePair<string, string>(item.Type, item.Value)).ToList();
         }
 
-        public Guid UserId { get; }
+        public int UserId { get; }
         public List<KeyValuePair<string, string>> Claims { get; set; }
     }
 }

@@ -11,7 +11,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -25,7 +26,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -81,7 +83,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -102,7 +104,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -124,7 +126,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,8 +143,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -165,7 +167,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -210,15 +212,15 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("2b5763a5-905c-4105-92a8-714a55080218"), "1", "System Administrator", "System Administrator" },
-                    { new Guid("1a5a1dc8-3e40-4d61-80d8-bf9dfe15fc77"), "2", "Administrator", "Administrator" },
-                    { new Guid("b8e857ce-52ec-411f-a131-ec414a356e47"), "3", "Guest", "Guest" }
+                    { 1, "1", "System Administrator", "System Administrator" },
+                    { 2, "2", "Administrator", "Administrator" },
+                    { 3, "3", "Guest", "Guest" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("15a8c1bf-1a41-440d-a0a5-8518515e6ba0"), 0, "fb2f2799-c901-439b-a41b-b031d29157fd", "msmit@savitar.co.za", true, "Michael", "Smit", false, null, "MSMIT@SAVITAR.CO.ZA", "MSMIT@SAVITAR.CO.ZA", "AQAAAAEAACcQAAAAEOYdCKOBioVz4mzodc6RcEX9cCIHmoUX6kWVpna79w9/vPI7aGeKMnMjxxkhzY1PeA==", null, false, "56c26e39-f2d5-453d-8b31-3e9f2f9c7bf0", false, "msmit@savitar.co.za" });
+                values: new object[] { 1, 0, "d42a1794-e4a9-48e6-8bf9-64ab521289d0", "msmit@savitar.co.za", true, "Michael", "Smit", false, null, "MSMIT@SAVITAR.CO.ZA", "MSMIT@SAVITAR.CO.ZA", "AQAAAAEAACcQAAAAEE3oEvmdwUEuf3vj1ux/dtT9dLunmZ9wN2GIGd0JyfXJAVoMCjSovRNObkLO+CBTgg==", null, false, "94d3648b-b08a-4d25-9783-e064268e1f26", false, "msmit@savitar.co.za" });
 
             migrationBuilder.InsertData(
                 table: "ProjectTechnologyCategories",
@@ -247,7 +249,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { new Guid("2b5763a5-905c-4105-92a8-714a55080218"), new Guid("15a8c1bf-1a41-440d-a0a5-8518515e6ba0") });
+                values: new object[] { 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "ProjectTechnologies",
@@ -257,7 +259,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     { 4, 3, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, ".NET 5", 2, 3 },
                     { 16, 4, new DateTime(1997, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1999, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AS400 Mainframe", 0, 2 },
                     { 22, 4, new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Microsoft Access", 2, 1 },
-                    { 7, 4, new DateTime(1998, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 8, 26, 0, 0, 0, 0, DateTimeKind.Local), "SQL Server", 3, 3 },
+                    { 7, 4, new DateTime(1998, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 8, 29, 0, 0, 0, 0, DateTimeKind.Local), "SQL Server", 3, 3 },
                     { 8, 4, new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "PostgreSQL", 0, 0 },
                     { 24, 5, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Entity Framework", 3, 2 },
                     { 29, 3, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "VUE", 0, 0 },

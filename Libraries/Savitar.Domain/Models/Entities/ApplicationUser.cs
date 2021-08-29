@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Savitar.Domain.Models.Entities
 {
-    public class ApplicationUser : IdentityUser<Guid>
+    public class ApplicationUser : IdentityUser<int>
     {
         [Required, StringLength(250)]
         public string FirstName { get; set; }

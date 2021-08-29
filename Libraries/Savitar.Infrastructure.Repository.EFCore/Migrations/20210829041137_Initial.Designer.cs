@@ -10,7 +10,7 @@ using Savitar.Infrastructure.Repository.EFCore;
 namespace Savitar.Infrastructure.Repository.EFCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210826170109_Initial")]
+    [Migration("20210829041137_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,11 +21,12 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -51,28 +52,28 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2b5763a5-905c-4105-92a8-714a55080218"),
+                            Id = 1,
                             ConcurrencyStamp = "1",
                             Name = "System Administrator",
                             NormalizedName = "System Administrator"
                         },
                         new
                         {
-                            Id = new Guid("1a5a1dc8-3e40-4d61-80d8-bf9dfe15fc77"),
+                            Id = 2,
                             ConcurrencyStamp = "2",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
-                            Id = new Guid("b8e857ce-52ec-411f-a131-ec414a356e47"),
+                            Id = 3,
                             ConcurrencyStamp = "3",
                             Name = "Guest",
                             NormalizedName = "Guest"
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,8 +86,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -95,7 +96,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,8 +109,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -118,7 +119,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -129,8 +130,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -139,13 +140,13 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -156,15 +157,15 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("15a8c1bf-1a41-440d-a0a5-8518515e6ba0"),
-                            RoleId = new Guid("2b5763a5-905c-4105-92a8-714a55080218")
+                            UserId = 1,
+                            RoleId = 1
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -180,11 +181,12 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Savitar.Domain.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Savitar.Domain.Models.Entities.ApplicationUser", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -258,9 +260,9 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("15a8c1bf-1a41-440d-a0a5-8518515e6ba0"),
+                            Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fb2f2799-c901-439b-a41b-b031d29157fd",
+                            ConcurrencyStamp = "d42a1794-e4a9-48e6-8bf9-64ab521289d0",
                             Email = "msmit@savitar.co.za",
                             EmailConfirmed = true,
                             FirstName = "Michael",
@@ -268,15 +270,15 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MSMIT@SAVITAR.CO.ZA",
                             NormalizedUserName = "MSMIT@SAVITAR.CO.ZA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOYdCKOBioVz4mzodc6RcEX9cCIHmoUX6kWVpna79w9/vPI7aGeKMnMjxxkhzY1PeA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE3oEvmdwUEuf3vj1ux/dtT9dLunmZ9wN2GIGd0JyfXJAVoMCjSovRNObkLO+CBTgg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "56c26e39-f2d5-453d-8b31-3e9f2f9c7bf0",
+                            SecurityStamp = "94d3648b-b08a-4d25-9783-e064268e1f26",
                             TwoFactorEnabled = false,
                             UserName = "msmit@savitar.co.za"
                         });
                 });
 
-            modelBuilder.Entity("Savitar.Domain.Models.CV.ProjectTechnology", b =>
+            modelBuilder.Entity("Savitar.Domain.Models.Entities.CV.ProjectTechnology", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -428,7 +430,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                             Id = 7,
                             CategoryId = 4,
                             FirstUse = new DateTime(1998, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastUse = new DateTime(2021, 8, 26, 0, 0, 0, 0, DateTimeKind.Local),
+                            LastUse = new DateTime(2021, 8, 29, 0, 0, 0, 0, DateTimeKind.Local),
                             Name = "SQL Server",
                             Proficiency = 3,
                             UsageFrequency = 3
@@ -645,7 +647,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Savitar.Domain.Models.CV.ProjectTechnologyCategory", b =>
+            modelBuilder.Entity("Savitar.Domain.Models.Entities.CV.ProjectTechnologyCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -696,7 +698,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Savitar.Domain.Models.Service", b =>
+            modelBuilder.Entity("Savitar.Domain.Models.Entities.Service", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -744,60 +746,60 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("Savitar.Domain.Models.ApplicationUser", null)
+                    b.HasOne("Savitar.Domain.Models.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("Savitar.Domain.Models.ApplicationUser", null)
+                    b.HasOne("Savitar.Domain.Models.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Savitar.Domain.Models.ApplicationUser", null)
+                    b.HasOne("Savitar.Domain.Models.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("Savitar.Domain.Models.ApplicationUser", null)
+                    b.HasOne("Savitar.Domain.Models.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Savitar.Domain.Models.CV.ProjectTechnology", b =>
+            modelBuilder.Entity("Savitar.Domain.Models.Entities.CV.ProjectTechnology", b =>
                 {
-                    b.HasOne("Savitar.Domain.Models.CV.ProjectTechnologyCategory", "Category")
+                    b.HasOne("Savitar.Domain.Models.Entities.CV.ProjectTechnologyCategory", "Category")
                         .WithMany("Technologies")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -806,7 +808,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Savitar.Domain.Models.CV.ProjectTechnologyCategory", b =>
+            modelBuilder.Entity("Savitar.Domain.Models.Entities.CV.ProjectTechnologyCategory", b =>
                 {
                     b.Navigation("Technologies");
                 });

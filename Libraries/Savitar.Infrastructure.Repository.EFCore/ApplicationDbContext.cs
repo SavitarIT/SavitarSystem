@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Savitar.Domain.Models;
 using Savitar.Infrastructure.Repository.EFCore.TypeConfigurations;
 using System;
 using Savitar.Domain.Models.Entities;
@@ -11,7 +10,7 @@ using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.EFCore
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
     {
         public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options)
         {
@@ -37,7 +36,7 @@ namespace Savitar.Infrastructure.Repository.EFCore
         {
             ApplicationUser user = new()
             {
-                Id = Guid.NewGuid(),
+                Id = 1,
                 UserName = "msmit@savitar.co.za",
                 Email = "msmit@savitar.co.za",
                 LockoutEnabled = false,
@@ -57,25 +56,25 @@ namespace Savitar.Infrastructure.Repository.EFCore
             return user;
         }
 
-        private IdentityRole<Guid> SeedRoles(ModelBuilder builder)
+        private IdentityRole<int> SeedRoles(ModelBuilder builder)
         {
-            var sysAdminRole = new IdentityRole<Guid>()
+            var sysAdminRole = new IdentityRole<int>()
             {
-                Id = Guid.NewGuid(), Name = "System Administrator", ConcurrencyStamp = "1", NormalizedName = "System Administrator"
+                Id = 1, Name = "System Administrator", ConcurrencyStamp = "1", NormalizedName = "System Administrator"
             };
 
-            builder.Entity<IdentityRole<Guid>>().HasData(
+            builder.Entity<IdentityRole<int>>().HasData(
                 sysAdminRole,
-                new IdentityRole<Guid> { Id = Guid.NewGuid(), Name = "Administrator", ConcurrencyStamp = "2", NormalizedName = "Administrator" },
-                new IdentityRole<Guid> { Id = Guid.NewGuid(), Name = "Guest", ConcurrencyStamp = "3", NormalizedName = "Guest" }
+                new IdentityRole<int> { Id = 2, Name = "Administrator", ConcurrencyStamp = "2", NormalizedName = "Administrator" },
+                new IdentityRole<int> { Id = 3, Name = "Guest", ConcurrencyStamp = "3", NormalizedName = "Guest" }
             );
 
             return sysAdminRole;
         }
 
-        private static void SeedUserRoles(ModelBuilder builder, ApplicationUser sysAdminUser, IdentityRole<Guid> sysAdminRole)
+        private static void SeedUserRoles(ModelBuilder builder, ApplicationUser sysAdminUser, IdentityRole<int> sysAdminRole)
         {
-            builder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>() { UserId = sysAdminUser.Id, RoleId = sysAdminRole.Id });
+            builder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>() { UserId = sysAdminUser.Id, RoleId = sysAdminRole.Id });
         }
     }
 }

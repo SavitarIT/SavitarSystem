@@ -32,7 +32,7 @@ namespace Savitar.Web.Client.Pages.Identity
         {
             try
             {
-                _model = await _httpClient.GetFromJsonAsync<UpdateProfileRequest>($"api/sysadmin/users/{Guid.Empty}");
+                _model = await _httpClient.GetFromJsonAsync<UpdateProfileRequest>($"api/sysadmin/users/0");
             }
             catch (Exception ex)
             {

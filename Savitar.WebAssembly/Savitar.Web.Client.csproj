@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Infrastructure\Routes\**" />
+    <Content Remove="Infrastructure\Routes\**" />
+    <EmbeddedResource Remove="Infrastructure\Routes\**" />
+    <None Remove="Infrastructure\Routes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.9" PrivateAssets="all" />
 	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="5.0.9" />
@@ -98,10 +105,6 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Infrastructure\Routes\" />
   </ItemGroup>
 
 </Project>

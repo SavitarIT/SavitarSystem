@@ -47,12 +47,12 @@ namespace Savitar.Web.Server.Controllers.Api.SysAdmin
             }
         }
 
-        [HttpGet("{userId:guid}")]
-        public async Task<ActionResult<UpdateProfileRequest>> Get(Guid userId)
+        [HttpGet("{userId:int}")]
+        public async Task<ActionResult<UpdateProfileRequest>> Get(int userId)
         {
             ApplicationUser data = null;
 
-            if (userId == Guid.Empty)
+            if (userId <= 0)
                 data = _userManager.Users.SingleOrDefault(x => x.Email == User.Identity.Name);
             else
                 data = await _userManager.Users.SingleOrDefaultAsync(x => x.Id == userId);

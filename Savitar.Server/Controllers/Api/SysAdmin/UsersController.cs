@@ -24,12 +24,19 @@ namespace Savitar.Web.Server.Controllers.Api.SysAdmin
 
         [HttpGet]
         [ResponseCache(NoStore = true)]
-        public virtual async Task<ActionResult<IEnumerable<UserInfo>>> Get()
+        public virtual async Task<ActionResult<IEnumerable<User>>> Get()
         {
             try
             {
                 var data = await _userManager.Users
-                    .Select(x => new UserInfo { Email = x.Email })
+                    .Select(x => new User
+                    {
+                        Id = x.Id,
+                        Email = x.Email,
+                        FirstName = x.FirstName,
+                        LastName = x.LastName
+                    })
+                    .OrderBy(x => x.Email)
                     .ToListAsync();
 
                 return Ok(data);

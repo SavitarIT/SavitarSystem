@@ -1,7 +1,6 @@
 ﻿@page "/sysadmin/users"
-@using System.Threading
 @using Savitar.Domain.Models.Dtos
-@inject HttpClient Http
+@inject HttpClient _httpClient
 
 <BasePage Title="Users" OnInitData="OnInitDataAsync">
     @if (_items == null)
@@ -10,44 +9,94 @@
     }
     else
     {
-        <MudTable Items="@_items" Hover="true" Breakpoint="Breakpoint.Sm">
+        <MudTable Items="@_items" Hover="true" Breakpoint="Breakpoint.Sm" 
+                  CanCancelEdit="true" FixedHeader="true" FixedFooter="true" 
+                  Filter="new Func<User, bool>(FilterFunc)"  @bind-SelectedItem="_selectedItem"
+                  CommitEditTooltip="Commit Edit" OnCommitEditClick="@(() => _snackbar.Add("Commit Edit Handler Invoked"))"
+                  RowEditPreview="BackupItem" RowEditCancel="ResetItemToOriginalValues" RowEditCommit="ItemHasBeenCommitted">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">User Listing</MudText>
+                <MudSpacer />
+                <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            </ToolBarContent>
             <HeaderContent>
-                <MudTh>Email</MudTh>
+                <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x=>x.Email)"><b>Email</b></MudTableSortLabel></MudTh>
+                <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x=>x.FirstName)"><b>First Name</b></MudTableSortLabel></MudTh>
+                <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x=>x.LastName)"><b>Last Name</b></MudTableSortLabel></MudTh>
             </HeaderContent>
             <RowTemplate>
-                <MudTd DataLabel="Nr">@context.Email</MudTd>
+                <MudTd DataLabel="Email">@context.Email</MudTd>
+                <MudTd DataLabel="First Name">@context.FirstName</MudTd>
+                <MudTd DataLabel="Last Name">@context.LastName</MudTd>
             </RowTemplate>
+            <RowEditingTemplate>
+                <MudTd DataLabel="Email">@context.Email</MudTd>
+                <MudTd DataLabel="First Name">
+                    <MudTextField @bind-Value="@context.FirstName" Required />
+                </MudTd>
+                <MudTd DataLabel="Last Name">
+                    <MudTextField @bind-Value="@context.LastName" Required />
+                </MudTd>
+            </RowEditingTemplate>
+            <PagerContent>
+                <MudTablePager />
+            </PagerContent>
+            <ColGroup>
+                <col/>
+                <col style="width: 150px;"/>
+                <col style="width: 150px;"/>
+            </ColGroup>
         </MudTable>
-
-        <MudGrid>
-            @foreach (var item in _items)
-            {       
-                <MudItem xs="12">
-                    <MudCard Outlined="true">
-                        <MudCardHeader>
-                            <CardHeaderContent>
-                                <MudText Typo="Typo.h6"><p>@(item.Email)</p></MudText>
-                            </CardHeaderContent>
-                        </MudCardHeader>
-                    </MudCard>
-                </MudItem>
-            }
-        </MudGrid>
     }
 
     @code {
-        private IEnumerable<UserInfo> _items;
+        private IEnumerable<User> _items;
+        private string _searchString = "";
+        private User _selectedItem = null;
+        private User _elementBeforeEdit;
 
         protected async Task OnInitDataAsync(BasePageServices basePageServices)
         {
-            var data = await Http.GetFromJsonAsync<UserInfo[]>("api/sysadmin/users");
-            if (data == null)
-            {
-                _snackbar.Add("No users found", Severity.Warning);
-                return;
-            }
+            _items = await _httpClient.GetFromJsonAsync<User[]>("api/sysadmin/users");
+        }
 
-            _items = data.OrderBy(x => x.Email).ToList();
-        }        
+        private bool FilterFunc(User element) => FilterFunc(element, _searchString);
+        private bool FilterFunc(User element, string searchString)
+        {
+            if (string.IsNullOrWhiteSpace(searchString))
+                return true;
+            if (element.Email.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (element.FirstName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (element.LastName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            return false;
+        }
+
+        private void BackupItem(object element)
+        {
+            _elementBeforeEdit = new User
+            {            
+                Email = ((User)element).Email,
+                FirstName = ((User)element).FirstName,
+                LastName = ((User)element).LastName
+            };
+            StateHasChanged();
+        }
+
+        private void ItemHasBeenCommitted(object element)
+        {
+            StateHasChanged();
+        }
+
+        private void ResetItemToOriginalValues(object element)
+        {
+            ((User)element).Email = _elementBeforeEdit.Email;
+            ((User)element).FirstName = _elementBeforeEdit.FirstName;
+            ((User)element).LastName = _elementBeforeEdit.LastName;
+            
+            StateHasChanged();
+        }
     }
 </BasePage>

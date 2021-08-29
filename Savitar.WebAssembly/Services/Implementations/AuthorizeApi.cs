@@ -9,40 +9,37 @@ using Savitar.Web.Client.Services.Contracts;
 
 namespace Savitar.Web.Client.Services.Implementations
 {
-    public class AuthorizeApi : IAuthorizeApi
+    public class AuthorizeApi : BaseApi, IAuthorizeApi
     {
-        private readonly HttpClient _httpClient;
-
-        public AuthorizeApi(HttpClient httpClient)
+        public AuthorizeApi(HttpClient httpClient) : base(httpClient)
         {
-            _httpClient = httpClient;
         }
 
         public async Task Login(LoginParameters loginParameters)
         {
             //var stringContent = new StringContent(JsonSerializer.Serialize(loginParameters), Encoding.UTF8, "application/json");
-            var result = await _httpClient.PostAsJsonAsync(AuthorizeEndpoints.Login, loginParameters);
+            var result = await HttpClient.PostAsJsonAsync(AuthorizeEndpoints.Login, loginParameters);
             if (result.StatusCode == System.Net.HttpStatusCode.BadRequest) throw new Exception(await result.Content.ReadAsStringAsync());
             result.EnsureSuccessStatusCode();
         }
 
         public async Task Logout()
         {
-            var result = await _httpClient.PostAsync(AuthorizeEndpoints.Logout, null);
+            var result = await HttpClient.PostAsync(AuthorizeEndpoints.Logout, null);
             result.EnsureSuccessStatusCode();
         }
 
         public async Task Register(RegisterParameters registerParameters)
         {
             //var stringContent = new StringContent(JsonSerializer.Serialize(registerParameters), Encoding.UTF8, "application/json");
-            var result = await _httpClient.PostAsJsonAsync(AuthorizeEndpoints.Register, registerParameters);
+            var result = await HttpClient.PostAsJsonAsync(AuthorizeEndpoints.Register, registerParameters);
             if (result.StatusCode == System.Net.HttpStatusCode.BadRequest) throw new Exception(await result.Content.ReadAsStringAsync());
             result.EnsureSuccessStatusCode();
         }
 
         public async Task<UserInfo> GetUserInfo()
         {
-            var result = await _httpClient.GetFromJsonAsync<UserInfo>(AuthorizeEndpoints.UserInfo);
+            var result = await HttpClient.GetFromJsonAsync<UserInfo>(AuthorizeEndpoints.UserInfo);
             return result;
         }
     }

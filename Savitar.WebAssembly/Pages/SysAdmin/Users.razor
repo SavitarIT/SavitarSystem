@@ -1,6 +1,7 @@
 ﻿@page "/sysadmin/users"
 @using Savitar.Domain.Models.Dtos
 @inject HttpClient _httpClient
+@inject IUsersApi _usersApi;
 
 <BasePage Title="Users" OnInitData="OnInitDataAsync">
     @if (_items == null)
@@ -13,7 +14,7 @@
                   CanCancelEdit="true" FixedHeader="true" FixedFooter="true" 
                   Filter="new Func<User, bool>(FilterFunc)"  @bind-SelectedItem="_selectedItem"
                   CommitEditTooltip="Commit Edit" OnCommitEditClick="@(() => _snackbar.Add("Commit Edit Handler Invoked"))"
-                  RowEditPreview="BackupItem" RowEditCancel="ResetItemToOriginalValues" RowEditCommit="ItemHasBeenCommitted">
+                  RowEditPreview="BackupItem" RowEditCancel="RestoreItem" RowEditCommit="SaveItem">
             <ToolBarContent>
                 <MudText Typo="Typo.h6">User Listing</MudText>
                 <MudSpacer />
@@ -57,7 +58,7 @@
 
         protected async Task OnInitDataAsync(BasePageServices basePageServices)
         {
-            _items = await _httpClient.GetFromJsonAsync<User[]>("api/sysadmin/users");
+            _items = await _usersApi.GetAllUsersAsync();
         }
 
         private bool FilterFunc(User element) => FilterFunc(element, _searchString);
@@ -74,6 +75,11 @@
             return false;
         }
 
+        private void SaveItem(object element)
+        {
+            StateHasChanged();
+        }
+
         private void BackupItem(object element)
         {
             _elementBeforeEdit = new User
@@ -85,12 +91,7 @@
             StateHasChanged();
         }
 
-        private void ItemHasBeenCommitted(object element)
-        {
-            StateHasChanged();
-        }
-
-        private void ResetItemToOriginalValues(object element)
+        private void RestoreItem(object element)
         {
             ((User)element).Email = _elementBeforeEdit.Email;
             ((User)element).FirstName = _elementBeforeEdit.FirstName;

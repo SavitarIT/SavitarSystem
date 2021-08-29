@@ -31,7 +31,7 @@
     {
         <AuthorizeView Roles="System Administrator">
             <Authorized>
-                <MudNavGroup Title="Sys Admin" Expanded="false">
+                <MudNavGroup Title="Sys Admin" Expanded="@(EnvironmentInfo.IsDebug())">
                     <MudNavLink Href="/sysadmin/users">Users</MudNavLink>
                 </MudNavGroup>
             </Authorized>

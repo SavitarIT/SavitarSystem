@@ -15,8 +15,8 @@ namespace Savitar.Web.Client.Pages.Identity
             var response = await _accountsApi.UpdateProfileAsync(_model);
             if (response.Succeeded)
             {
-                //await _authenticationManager.Logout();
-                _snackbar.Add("Your Profile has been updated.", Severity.Success);
+                //await _authStateProvider.Logout();
+                _snackbar.Add("Your profile has been updated.", Severity.Success);
                 //_navigationManager.NavigateTo("/");
             }
             else
@@ -38,36 +38,6 @@ namespace Savitar.Web.Client.Pages.Identity
             {
                 _snackbar.Add(ex.Message, Severity.Error);
             }
-        }
-
-        private async Task DeleteAsync()
-        {
-            //var parameters = new DialogParameters
-            //{
-            //    {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), $"{string.Format(_localizer["Do you want to delete the profile picture of {0}"], _model.Email)}?"}
-            //};
-            //var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            //var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(_localizer["Delete"], parameters, options);
-            //var result = await dialog.Result;
-            //if (!result.Cancelled)
-            //{
-            //    var request = new UpdateProfilePictureRequest { Data = null, FileName = string.Empty, UploadType = MediaTypeNames.Application.Enums.UploadType.ProfilePicture };
-            //    var data = await _accountsApi.UpdateProfilePictureAsync(request, UserId);
-            //    if (data.Succeeded)
-            //    {
-            //        await _localStorage.RemoveItemAsync(StorageConstants.Local.UserImageURL);
-            //        ImageDataUrl = string.Empty;
-            //        _snackBar.Add(_localizer["Profile picture deleted."], Severity.Success);
-            //        _navigationManager.NavigateTo("/account", true);
-            //    }
-            //    else
-            //    {
-            //        foreach (var error in data.Messages)
-            //        {
-            //            _snackBar.Add(error, Severity.Error);
-            //        }
-            //    }
-            //}
         }
     }
 }

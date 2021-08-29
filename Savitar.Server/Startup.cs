@@ -12,6 +12,7 @@ using Savitar.WebAssembly.Blockchain.Ethereum;
 using System.Threading.Tasks;
 using System;
 using Savitar.Domain.Models.Entities;
+using Savitar.Web.Server.Shared;
 
 namespace Savitar.Web.Server
 {
@@ -85,9 +86,10 @@ namespace Savitar.Web.Server
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Savitar.Web.Server", Version = "v1" });
             });
 
-            
-            services.AddSavitarServices();
 
+            services.AddSavitarServerServices();
+            services.AddSavitarServices();
+            
             var infuraApiKey = Configuration.GetSection("Infura")["APIKey"];
             services.AddSavitarBlockchainEthereumServices(infuraApiKey);
         }

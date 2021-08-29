@@ -21,6 +21,8 @@
     <ProjectReference Include="..\Libraries\Savitar.Bootstrapper\Savitar.Bootstrapper.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.Infrastructure.Repository.EFCore\Savitar.Infrastructure.Repository.EFCore.csproj" />
     <ProjectReference Include="..\Libraries\Savitar.WebAssembly.Blockchain.Ethereum\Savitar.WebAssembly.Blockchain.Ethereum.csproj" />
+    <ProjectReference Include="..\Savitar.Web.Server.Shared\Savitar.Web.Server.Shared.csproj" />
+    <ProjectReference Include="..\Savitar.Web.Shared\Savitar.Web.Shared.csproj" />
     <ProjectReference Include="..\Savitar.WebAssembly\Savitar.Web.Client.csproj" />
   </ItemGroup>
 

@@ -6,9 +6,6 @@ namespace Savitar.Web.Client.Pages.Identity
 {
     public partial class Security
     {
-        //private FluentValidationValidator _fluentValidationValidator;
-        //private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private bool Validated = true;
         private readonly ChangePasswordRequest _passwordModel = new();
 
         private async Task ChangePasswordAsync()
@@ -16,7 +13,7 @@ namespace Savitar.Web.Client.Pages.Identity
             var response = await _accountsApi.ChangePasswordAsync(_passwordModel);
             if (response.Succeeded)
             {
-                //_snackBar.Add(_localizer["Password Changed!"], Severity.Success);
+                _snackbar.Add("Your password has been updated.", Severity.Success);
                 _passwordModel.Password = string.Empty;
                 _passwordModel.NewPassword = string.Empty;
                 _passwordModel.ConfirmNewPassword = string.Empty;
@@ -25,18 +22,18 @@ namespace Savitar.Web.Client.Pages.Identity
             {
                 foreach (var error in response.Messages)
                 {
-                    //_snackBar.Add(error, Severity.Error);
+                    _snackbar.Add(error, Severity.Error);
                 }
             }
         }
 
-        private bool _currentPasswordVisibility;
-        private InputType _currentPasswordInput = InputType.Password;
-        private string _currentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-
         private bool _newPasswordVisibility;
         private InputType _newPasswordInput = InputType.Password;
         private string _newPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        private bool _currentPasswordVisibility;
+        private InputType _currentPasswordInput = InputType.Password;
+        private string _currentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
         private void TogglePasswordVisibility(bool newPassword)
         {

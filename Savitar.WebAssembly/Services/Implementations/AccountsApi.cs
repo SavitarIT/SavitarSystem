@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Savitar.Domain.Models.Requests;
@@ -29,12 +28,6 @@ namespace Savitar.Web.Client.Services.Implementations
         {
             var response = await _httpClient.PutAsJsonAsync(AccountEndpoints.UpdateProfile, model);
             return await response.ToResult();
-        }
-
-        public async Task<IResult<string>> GetUserProfile(Guid userId)
-        {
-            var response = await _httpClient.GetAsync(AccountEndpoints.GetUserProfile(userId));
-            return await response.ToResult<string>();
         }
     }
 }

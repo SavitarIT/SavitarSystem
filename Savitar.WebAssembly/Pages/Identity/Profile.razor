@@ -1,5 +1,8 @@
-﻿@inject IAccountsApi _accountsApi
+﻿@using Savitar.Web.Client.Services.Implementations
+@inject IAccountsApi _accountsApi
 @inject HttpClient _httpClient;
+@inject IdentityAuthenticationStateProvider _authStateProvider
+@inject NavigationManager _navigationManager
 
 <MudGrid>
     <MudItem xs="12" sm="8" md="9">

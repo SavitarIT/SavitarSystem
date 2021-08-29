@@ -10,7 +10,7 @@ using Savitar.Infrastructure.Repository.EFCore;
 namespace Savitar.Infrastructure.Repository.EFCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210829073840_Initial")]
+    [Migration("20210829075603_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -181,6 +181,21 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ProjectProjectTechnology", b =>
+                {
+                    b.Property<int>("ProjectsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TechStackId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjectsId", "TechStackId");
+
+                    b.HasIndex("TechStackId");
+
+                    b.ToTable("ProjectProjectTechnology");
+                });
+
             modelBuilder.Entity("Savitar.Domain.Models.Entities.ApplicationUser", b =>
                 {
                     b.Property<int>("Id")
@@ -262,7 +277,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e58e81e5-ca90-4a2d-b6a9-566856b66a32",
+                            ConcurrencyStamp = "a2b60e25-7c35-49d8-b0e3-699bc7105c68",
                             Email = "msmit@savitar.co.za",
                             EmailConfirmed = true,
                             FirstName = "Michael",
@@ -270,9 +285,9 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MSMIT@SAVITAR.CO.ZA",
                             NormalizedUserName = "MSMIT@SAVITAR.CO.ZA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEtciTCrJlmQEDrZapS6DRFOZtMCRzeX6GvM0vvMGDyz97VUPRE+WOGLukj6T1byfQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELlRJPg1YEy0+C8v6Vg5XTUaW5fw45KazDhXM9ELEqEopJkCgHe9ebbeTIYvGgcqTQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0f4061c5-0fc7-483b-bd90-48dd2e2a2dbd",
+                            SecurityStamp = "a3ad6ee5-123b-466a-aab3-b02bb52298d3",
                             TwoFactorEnabled = false,
                             UserName = "msmit@savitar.co.za"
                         });
@@ -703,9 +718,6 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.Property<int>("Proficiency")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UsageFrequency")
                         .HasColumnType("int");
 
@@ -714,8 +726,6 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("Name");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("ProjectTechnologies");
 
@@ -1203,6 +1213,21 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProjectProjectTechnology", b =>
+                {
+                    b.HasOne("Savitar.Domain.Models.Entities.CV.Project", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Savitar.Domain.Models.Entities.CV.ProjectTechnology", null)
+                        .WithMany()
+                        .HasForeignKey("TechStackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Savitar.Domain.Models.Entities.CV.Project", b =>
                 {
                     b.HasOne("Savitar.Domain.Models.Entities.CV.Client", "Client")
@@ -1229,10 +1254,6 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Savitar.Domain.Models.Entities.CV.Project", null)
-                        .WithMany("TechStack")
-                        .HasForeignKey("ProjectId");
-
                     b.Navigation("Category");
                 });
 
@@ -1244,8 +1265,6 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
             modelBuilder.Entity("Savitar.Domain.Models.Entities.CV.Project", b =>
                 {
                     b.Navigation("Responsibilities");
-
-                    b.Navigation("TechStack");
                 });
 
             modelBuilder.Entity("Savitar.Domain.Models.Entities.CV.ProjectTechnologyCategory", b =>

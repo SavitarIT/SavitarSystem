@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Savitar.Domain.Models.Entities.CV
@@ -24,6 +25,8 @@ namespace Savitar.Domain.Models.Entities.CV
         public string Name { get; set; }
         [Required]
         public ProjectTechnologyCategory Category { get; set; }
+        public ICollection<Project> Projects { get; set; }
+
         [Required]
         public DateTime FirstUse { get; set; }
         public DateTime? LastUse { get; set; }

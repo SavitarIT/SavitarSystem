@@ -220,6 +220,30 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProjectTechnologies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    FirstUse = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUse = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UsageFrequency = table.Column<int>(type: "int", nullable: false),
+                    Proficiency = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectTechnologies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjectTechnologies_ProjectTechnologyCategories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "ProjectTechnologyCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProjectResponsibility",
                 columns: table => new
                 {
@@ -240,32 +264,25 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectTechnologies",
+                name: "ProjectProjectTechnology",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    FirstUse = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUse = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UsageFrequency = table.Column<int>(type: "int", nullable: false),
-                    Proficiency = table.Column<int>(type: "int", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: true)
+                    ProjectsId = table.Column<int>(type: "int", nullable: false),
+                    TechStackId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectTechnologies", x => x.Id);
+                    table.PrimaryKey("PK_ProjectProjectTechnology", x => new { x.ProjectsId, x.TechStackId });
                     table.ForeignKey(
-                        name: "FK_ProjectTechnologies_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_ProjectProjectTechnology_Projects_ProjectsId",
+                        column: x => x.ProjectsId,
                         principalTable: "Projects",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectTechnologies_ProjectTechnologyCategories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "ProjectTechnologyCategories",
+                        name: "FK_ProjectProjectTechnology_ProjectTechnologies_TechStackId",
+                        column: x => x.TechStackId,
+                        principalTable: "ProjectTechnologies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -283,7 +300,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "e58e81e5-ca90-4a2d-b6a9-566856b66a32", "msmit@savitar.co.za", true, "Michael", "Smit", false, null, "MSMIT@SAVITAR.CO.ZA", "MSMIT@SAVITAR.CO.ZA", "AQAAAAEAACcQAAAAEEtciTCrJlmQEDrZapS6DRFOZtMCRzeX6GvM0vvMGDyz97VUPRE+WOGLukj6T1byfQ==", null, false, "0f4061c5-0fc7-483b-bd90-48dd2e2a2dbd", false, "msmit@savitar.co.za" });
+                values: new object[] { 1, 0, "a2b60e25-7c35-49d8-b0e3-699bc7105c68", "msmit@savitar.co.za", true, "Michael", "Smit", false, null, "MSMIT@SAVITAR.CO.ZA", "MSMIT@SAVITAR.CO.ZA", "AQAAAAEAACcQAAAAELlRJPg1YEy0+C8v6Vg5XTUaW5fw45KazDhXM9ELEqEopJkCgHe9ebbeTIYvGgcqTQ==", null, false, "a3ad6ee5-123b-466a-aab3-b02bb52298d3", false, "msmit@savitar.co.za" });
 
             migrationBuilder.InsertData(
                 table: "Clients",
@@ -328,44 +345,44 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
 
             migrationBuilder.InsertData(
                 table: "ProjectTechnologies",
-                columns: new[] { "Id", "CategoryId", "FirstUse", "LastUse", "Name", "Proficiency", "ProjectId", "UsageFrequency" },
+                columns: new[] { "Id", "CategoryId", "FirstUse", "LastUse", "Name", "Proficiency", "UsageFrequency" },
                 values: new object[,]
                 {
-                    { 3, 3, new DateTime(2014, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, ".NET Core", 2, null, 2 },
-                    { 6, 3, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Blazor WebAssembly", 2, null, 3 },
-                    { 5, 3, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Blazor Server", 2, null, 3 },
-                    { 28, 2, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Python", 0, null, 0 },
-                    { 26, 2, new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Javascript", 3, null, 3 },
-                    { 13, 2, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1993, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Turbo Pascal", 3, null, 2 },
-                    { 2, 3, new DateTime(2001, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, ".NET Framework", 3, null, 3 },
-                    { 19, 2, new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Visual Basic.NET", 2, null, 3 },
-                    { 14, 2, new DateTime(1995, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2007, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Delphi", 3, null, 3 },
-                    { 1, 2, new DateTime(2001, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "C#", 3, null, 3 },
-                    { 23, 2, new DateTime(1994, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "C++", 3, null, 0 },
-                    { 33, 1, new DateTime(2005, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Borland Developer Studio", 3, null, 0 },
-                    { 31, 1, new DateTime(2018, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "VS Code", 2, null, 2 },
-                    { 30, 1, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "PyCharm", 0, null, 0 },
-                    { 18, 2, new DateTime(1997, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2014, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Visual Basic", 2, null, 0 },
-                    { 11, 1, new DateTime(2003, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Visual Studio", 3, null, 3 },
-                    { 20, 3, new DateTime(2003, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web Services", 2, null, 0 },
-                    { 29, 3, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "VUE", 0, null, 0 },
-                    { 34, 6, new DateTime(2020, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Apache Spark", 0, null, 0 },
-                    { 32, 6, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "PowerShell", 3, null, 2 },
-                    { 27, 6, new DateTime(2020, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "RabbitMQ", 0, null, 0 },
-                    { 10, 6, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Structure Map", 3, null, 2 },
-                    { 12, 6, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Postman", 2, null, 2 },
-                    { 15, 6, new DateTime(1995, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Excel", 2, null, 2 },
-                    { 21, 3, new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Web/REST API", 3, null, 3 },
-                    { 9, 6, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Automapper", 3, null, 2 },
-                    { 24, 5, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Entity Framework", 3, null, 2 },
-                    { 8, 4, new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "PostgreSQL", 0, null, 0 },
-                    { 7, 4, new DateTime(1998, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 8, 29, 0, 0, 0, 0, DateTimeKind.Local), "SQL Server", 3, null, 3 },
-                    { 22, 4, new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Microsoft Access", 2, null, 1 },
-                    { 16, 4, new DateTime(1997, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1999, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AS400 Mainframe", 0, null, 2 },
-                    { 4, 3, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, ".NET 5", 2, null, 3 },
-                    { 25, 5, new DateTime(2014, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "nHibernate", 2, null, 0 },
-                    { 35, 6, new DateTime(2019, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Docker", 0, null, 1 },
-                    { 36, 6, new DateTime(2021, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MudBlazor", 2, null, 2 }
+                    { 3, 3, new DateTime(2014, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, ".NET Core", 2, 2 },
+                    { 6, 3, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Blazor WebAssembly", 2, 3 },
+                    { 5, 3, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Blazor Server", 2, 3 },
+                    { 28, 2, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Python", 0, 0 },
+                    { 26, 2, new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Javascript", 3, 3 },
+                    { 13, 2, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1993, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Turbo Pascal", 3, 2 },
+                    { 2, 3, new DateTime(2001, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, ".NET Framework", 3, 3 },
+                    { 19, 2, new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Visual Basic.NET", 2, 3 },
+                    { 14, 2, new DateTime(1995, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2007, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Delphi", 3, 3 },
+                    { 1, 2, new DateTime(2001, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "C#", 3, 3 },
+                    { 23, 2, new DateTime(1994, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "C++", 3, 0 },
+                    { 33, 1, new DateTime(2005, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Borland Developer Studio", 3, 0 },
+                    { 31, 1, new DateTime(2018, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "VS Code", 2, 2 },
+                    { 30, 1, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "PyCharm", 0, 0 },
+                    { 18, 2, new DateTime(1997, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2014, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Visual Basic", 2, 0 },
+                    { 11, 1, new DateTime(2003, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Visual Studio", 3, 3 },
+                    { 20, 3, new DateTime(2003, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web Services", 2, 0 },
+                    { 29, 3, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "VUE", 0, 0 },
+                    { 34, 6, new DateTime(2020, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Apache Spark", 0, 0 },
+                    { 32, 6, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "PowerShell", 3, 2 },
+                    { 27, 6, new DateTime(2020, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "RabbitMQ", 0, 0 },
+                    { 10, 6, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Structure Map", 3, 2 },
+                    { 12, 6, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Postman", 2, 2 },
+                    { 15, 6, new DateTime(1995, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Excel", 2, 2 },
+                    { 21, 3, new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Web/REST API", 3, 3 },
+                    { 9, 6, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Automapper", 3, 2 },
+                    { 24, 5, new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Entity Framework", 3, 2 },
+                    { 8, 4, new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "PostgreSQL", 0, 0 },
+                    { 7, 4, new DateTime(1998, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 8, 29, 0, 0, 0, 0, DateTimeKind.Local), "SQL Server", 3, 3 },
+                    { 22, 4, new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Microsoft Access", 2, 1 },
+                    { 16, 4, new DateTime(1997, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1999, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AS400 Mainframe", 0, 2 },
+                    { 4, 3, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, ".NET 5", 2, 3 },
+                    { 25, 5, new DateTime(2014, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "nHibernate", 2, 0 },
+                    { 35, 6, new DateTime(2019, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Docker", 0, 1 },
+                    { 36, 6, new DateTime(2021, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MudBlazor", 2, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -469,6 +486,11 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 column: "Name");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProjectProjectTechnology_TechStackId",
+                table: "ProjectProjectTechnology",
+                column: "TechStackId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProjectResponsibility_ProjectId",
                 table: "ProjectResponsibility",
                 column: "ProjectId");
@@ -492,11 +514,6 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 name: "IX_ProjectTechnologies_Name",
                 table: "ProjectTechnologies",
                 column: "Name");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectTechnologies_ProjectId",
-                table: "ProjectTechnologies",
-                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectTechnologyCategories_Name",
@@ -527,10 +544,10 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "ProjectResponsibility");
+                name: "ProjectProjectTechnology");
 
             migrationBuilder.DropTable(
-                name: "ProjectTechnologies");
+                name: "ProjectResponsibility");
 
             migrationBuilder.DropTable(
                 name: "Services");
@@ -540,6 +557,9 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "ProjectTechnologies");
 
             migrationBuilder.DropTable(
                 name: "Projects");

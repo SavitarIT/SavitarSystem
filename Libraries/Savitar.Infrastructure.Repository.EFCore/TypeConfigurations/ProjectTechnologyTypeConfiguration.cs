@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.EFCore.TypeConfigurations
@@ -17,6 +18,9 @@ namespace Savitar.Infrastructure.Repository.EFCore.TypeConfigurations
             builder.HasOne(x => x.Category)
                 .WithMany(x => x.Technologies)
                 .IsRequired();
+
+            builder.HasMany(x => x.Projects)
+                .WithMany(x => x.TechStack);
 
             var seedData = SeedData.ProjectTechnologiesSeedData.GetAll()
                 .Select(x => new

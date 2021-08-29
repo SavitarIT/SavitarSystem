@@ -16,9 +16,9 @@ namespace Savitar.Web.Server.Controllers.api
         {
         }
 
-        protected override IQueryable<DevelopmentTechnology> ConfigureQuery(IQueryable<DevelopmentTechnology> data)
+        protected override void ConfigureQuery(ref IQueryable<DevelopmentTechnology> data)
         {
-            return data.Include(x => x.DevelopmentTechnologyCategory);
+            data = data.Include(x => x.DevelopmentTechnologyCategory);
         }
 
         public override async Task<IList<DevelopmentTechnology>> GetAllAsync()

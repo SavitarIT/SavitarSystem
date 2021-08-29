@@ -18,14 +18,12 @@ namespace Savitar.Web.Server.Controllers.api.Base
             Repository = repository;
 }
 
-        protected virtual IQueryable<TEntity> ConfigureQuery(IQueryable<TEntity> data)
-        {
-            return data;
-        }
+        protected virtual void ConfigureQuery(ref IQueryable<TEntity> data) { }
 
         public virtual async Task<IList<TEntity>> GetAllAsync()
         {
-            var data = ConfigureQuery(await Repository.GetAllAsync());
+            var data = await Repository.GetAllAsync();
+            ConfigureQuery(ref data);
 
             return await data.ToListAsync();
         }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Linq;
 using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.EFCore.TypeConfigurations
@@ -18,23 +17,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.TypeConfigurations
                 .WithMany(x => x.Technologies)
                 .IsRequired();
 
-            builder.HasMany(x => x.Projects)
+            builder.HasMany(x => x.PortfolioProjects)
                 .WithMany(x => x.DevelopmentTechnologies);
-                
-
-            var seedData = SeedData.ProjectTechnologiesSeedData.GetAll()
-                .Select(x => new
-                {
-                    x.Id,
-                    x.Name,
-                    x.FirstUse,
-                    x.LastUse,
-                    x.UsageFrequency,
-                    x.Proficiency,
-                    DevelopmentTechnologyCategoryId = x.DevelopmentTechnologyCategory.Id
-                });
-
-            builder.HasData(seedData);
         }
     }
 }

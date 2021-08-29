@@ -68,12 +68,11 @@
     }
 
     @code {
-        private Project[] _projects;
+        private PortfolioProject[] _projects;
 
         protected async Task OnInitData(BasePageServices basePageServices)
         {
-            basePageServices.DisplayMessage("Loading Portfolio");
-            _projects = await Http.GetFromJsonAsync<Project[]>("api/portfolio");
+            _projects = await Http.GetFromJsonAsync<PortfolioProject[]>("api/portfolio");
         }         
     }
 </BasePage>

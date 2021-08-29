@@ -11,7 +11,6 @@ namespace Savitar.Infrastructure.Repository.EFCore.TypeConfigurations
             builder
                 .ToTable("Services")
                 .HasIndex(x => x.Title);
-            builder.HasData(SeedData.ServicesSeedData.GetAll());
         }
     }
 }

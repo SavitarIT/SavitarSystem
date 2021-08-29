@@ -11,7 +11,7 @@ namespace Savitar.Infrastructure.Repository.EFCore
         {
             services.AddScoped<IRepository<Service>, Repository<Service>>();
             services.AddScoped<IRepository<DevelopmentTechnology>, Repository<DevelopmentTechnology>>();
-            services.AddScoped<IRepository<Project>, Repository<Project>>();
+            services.AddScoped<IRepository<PortfolioProject>, Repository<PortfolioProject>>();
             services.AddScoped<IRepository<ApplicationUser>, Repository<ApplicationUser>>();
         }
     }

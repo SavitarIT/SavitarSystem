@@ -17,7 +17,7 @@ namespace Savitar.Infrastructure.Repository.EFCore
         }
 
         public DbSet<Service> Services { get; set; }
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<PortfolioProject> Projects { get; set; }
         public DbSet<DevelopmentTechnologyCategory> ProjectTechnologyCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -29,8 +29,8 @@ namespace Savitar.Infrastructure.Repository.EFCore
             builder.ApplyConfiguration(new DevelopmentTechnologyCategoryTypeConfiguration());
             builder.ApplyConfiguration(new DevelopmentTechnologyTypeConfiguration());
 
-            builder.ApplyConfiguration(new ClientTypeConfiguration());
-            builder.ApplyConfiguration(new ProjectTypeConfiguration());
+            builder.ApplyConfiguration(new PortfolioClientTypeConfiguration());
+            builder.ApplyConfiguration(new PortfolioProjectTypeConfiguration());
             
 
             var sysAdminUser = SeedUsers(builder);

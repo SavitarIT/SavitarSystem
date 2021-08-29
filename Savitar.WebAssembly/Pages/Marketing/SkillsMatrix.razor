@@ -67,7 +67,6 @@
 
         protected async Task OnInitData(BasePageServices basePageServices)
         {
-            basePageServices.DisplayMessage("Loading up my tech stack");
             _technologies = await Http.GetFromJsonAsync<DevelopmentTechnology[]>("api/SkillsMatrix");
         }
 

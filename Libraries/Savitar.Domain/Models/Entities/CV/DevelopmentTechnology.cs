@@ -33,6 +33,6 @@ namespace Savitar.Domain.Models.Entities.CV
         public Frequencies UsageFrequency { get; set; }
         [Required]
         public Proficiencies Proficiency { get; set; }
-        public IEnumerable<Project> Projects { get; set; }
+        public IEnumerable<PortfolioProject> PortfolioProjects { get; set; }
     }
 }

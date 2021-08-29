@@ -68,6 +68,7 @@
         protected async Task OnInitData(BasePageServices basePageServices)
         {
             _technologies = await Http.GetFromJsonAsync<DevelopmentTechnology[]>("api/SkillsMatrix");
+            var aaa = _technologies;
         }
 
         protected IList<string> GetCategoryNames()

@@ -280,7 +280,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "fe34f70a-982f-4179-b44b-cf7ce6a00253", "msmit@savitar.co.za", true, "Michael", "Smit", false, null, "MSMIT@SAVITAR.CO.ZA", "MSMIT@SAVITAR.CO.ZA", "AQAAAAEAACcQAAAAEBXUU2JYP2SgSfN0NVT/esXlYVuedE7CghRSjCZoPbkQquxQI4fdpQeegfHA77LYIg==", null, false, "7c8512a6-9b10-4034-b2f6-f36a6f70c609", false, "msmit@savitar.co.za" });
+                values: new object[] { 1, 0, "41fa258a-22aa-43b9-b33a-84735ca4555a", "msmit@savitar.co.za", true, "Michael", "Smit", false, null, "MSMIT@SAVITAR.CO.ZA", "MSMIT@SAVITAR.CO.ZA", "AQAAAAEAACcQAAAAEAQktdshLo9BwaUx8nNJ0xf/EruIYJsEOj7yFWR3Jth2sIu0zgw28z7QqAHYQMaeXw==", null, false, "60250d00-2e16-4cb1-b036-7718442e5e88", false, "msmit@savitar.co.za" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

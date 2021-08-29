@@ -275,7 +275,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fe34f70a-982f-4179-b44b-cf7ce6a00253",
+                            ConcurrencyStamp = "41fa258a-22aa-43b9-b33a-84735ca4555a",
                             Email = "msmit@savitar.co.za",
                             EmailConfirmed = true,
                             FirstName = "Michael",
@@ -283,9 +283,9 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MSMIT@SAVITAR.CO.ZA",
                             NormalizedUserName = "MSMIT@SAVITAR.CO.ZA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBXUU2JYP2SgSfN0NVT/esXlYVuedE7CghRSjCZoPbkQquxQI4fdpQeegfHA77LYIg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAQktdshLo9BwaUx8nNJ0xf/EruIYJsEOj7yFWR3Jth2sIu0zgw28z7QqAHYQMaeXw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7c8512a6-9b10-4034-b2f6-f36a6f70c609",
+                            SecurityStamp = "60250d00-2e16-4cb1-b036-7718442e5e88",
                             TwoFactorEnabled = false,
                             UserName = "msmit@savitar.co.za"
                         });

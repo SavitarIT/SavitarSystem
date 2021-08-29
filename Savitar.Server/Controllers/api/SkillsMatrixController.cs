@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Savitar.Infrastructure.Repository.Shared;
-using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Savitar.Domain.Models.Entities.CV;
 using Savitar.Web.Server.Controllers.api.Base;
 
@@ -13,15 +16,23 @@ namespace Savitar.Web.Server.Controllers.api
         {
         }
 
-        protected override IEnumerable<DevelopmentTechnology> ConfigureGetAll(IEnumerable<DevelopmentTechnology> data)
+        protected override IQueryable<DevelopmentTechnology> ConfigureQuery(IQueryable<DevelopmentTechnology> data)
         {
-            foreach (var item in data)
+            return data.Include(x => x.DevelopmentTechnologyCategory);
+        }
+
+        public override async Task<IList<DevelopmentTechnology>> GetAllAsync()
+        {
+            var result = await base.GetAllAsync();
+
+            // Setting to null to enable us to "flatten" in a jook way, and use in the UI.
+            foreach (var item in result)
             {
                 if (item.DevelopmentTechnologyCategory != null)
                     item.DevelopmentTechnologyCategory.Technologies = null;
             }
 
-            return data;
+            return result;
         }
     }    
 }

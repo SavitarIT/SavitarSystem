@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Savitar.Domain.Shared;
 using Savitar.Infrastructure.Repository.Shared;
 
@@ -16,19 +18,26 @@ namespace Savitar.Web.Server.Controllers.api.Base
             Repository = repository;
 }
 
-        protected virtual IEnumerable<TEntity> ConfigureGetAll(IEnumerable<TEntity> data)
+        protected virtual IQueryable<TEntity> ConfigureQuery(IQueryable<TEntity> data)
         {
             return data;
         }
 
+        public virtual async Task<IList<TEntity>> GetAllAsync()
+        {
+            var data = ConfigureQuery(await Repository.GetAllAsync());
+
+            return await data.ToListAsync();
+        }
+
         // GET: api/[controller]
         [HttpGet]
+#if !DEBUG
         [ResponseCache(NoStore = false, Duration = 120, Location = ResponseCacheLocation.Any)]
-        public virtual async Task<ActionResult<IEnumerable<TEntity>>> Get()
+#endif
+        public async Task<ActionResult<IList<TEntity>>> Get()
         {
-            var data = await Repository.GetAllAsync();
-            ConfigureGetAll(data);
-            return Ok(data);
+            return Ok(await GetAllAsync());
         }
 
         [HttpGet("{id}")]

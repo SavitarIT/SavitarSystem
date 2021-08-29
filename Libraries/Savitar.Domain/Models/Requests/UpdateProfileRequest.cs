@@ -1,12 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Savitar.Domain.Models.Requests
 {
     public class UpdateProfileRequest
     {
-        [Required]
-        public Guid UserId { get; set; }
         [Required]
         public string FirstName { get; set; }
 

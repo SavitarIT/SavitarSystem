@@ -1,4 +1,4 @@
-﻿namespace Savitar.Domain.Dtos
+﻿namespace Savitar.Domain.Models.Dtos
 {
     public record EthInfo
     {

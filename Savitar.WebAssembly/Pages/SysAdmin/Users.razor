@@ -1,22 +1,32 @@
 ﻿@page "/sysadmin/users"
-@using Savitar.Domain.Models
+@using System.Threading
+@using Savitar.Domain.Models.Dtos
 @inject HttpClient Http
 
-<BasePage Title="Users" OnInitData="OnInitData">
+<BasePage Title="Users" OnInitData="OnInitDataAsync">
     @if (_items == null)
     {
         <MudContainer Class="spinner" />
     }
     else
     {
+        <MudTable Items="@_items" Hover="true" Breakpoint="Breakpoint.Sm">
+            <HeaderContent>
+                <MudTh>Email</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Nr">@context.Email</MudTd>
+            </RowTemplate>
+        </MudTable>
+
         <MudGrid>
             @foreach (var item in _items)
             {       
                 <MudItem xs="12">
                     <MudCard Outlined="true">
-                        <MudCardHeader Class="pl-5 py-1">
+                        <MudCardHeader>
                             <CardHeaderContent>
-                                <MudText Typo="Typo.h6"><p>@((MarkupString)item.Email)</p></MudText>
+                                <MudText Typo="Typo.h6"><p>@(item.Email)</p></MudText>
                             </CardHeaderContent>
                         </MudCardHeader>
                     </MudCard>
@@ -28,10 +38,8 @@
     @code {
         private IEnumerable<UserInfo> _items;
 
-        protected async Task OnInitData(BasePageServices basePageServices)
+        protected async Task OnInitDataAsync(BasePageServices basePageServices)
         {
-            basePageServices.DisplayMessage("Loading Users");
-     
             var data = await Http.GetFromJsonAsync<UserInfo[]>("api/sysadmin/users");
             if (data == null)
             {

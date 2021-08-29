@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Savitar.Domain.Models;
+using Savitar.Domain.Models.Dtos;
 using Savitar.Domain.Models.Entities;
 using Savitar.Domain.Models.Requests;
 using Savitar.Web.Server.Controllers.api.Base;

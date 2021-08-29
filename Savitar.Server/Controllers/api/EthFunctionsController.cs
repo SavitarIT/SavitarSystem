@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Savitar.Domain.Dtos;
 using Savitar.WebAssembly.Blockchain.Ethereum.Services.Contracts;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Savitar.Domain.Models.Dtos;
 using Savitar.Web.Server.Controllers.api.Base;
 
 namespace Savitar.Web.Server.Controllers.api

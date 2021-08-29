@@ -6,8 +6,9 @@ namespace Savitar.Domain.Models.Entities.CV
     {
         public Client() {}
 
-        public Client(string name)
+        public Client(int id, string name)
         {
+            Id = id;
             Name = name;
         }
 

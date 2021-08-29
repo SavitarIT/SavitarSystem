@@ -6,8 +6,10 @@ using Savitar.Web.Server.Controllers.api.Base;
 namespace Savitar.Web.Server.Controllers.api
 {
     [AllowAnonymous]
-    public class ServicesController : BaseApiEntityController<Service, IServicesRepository, ServicesController>
+    public class ServicesController : BaseApiEntityController<Service, ServicesController>
     {
-        public ServicesController(IServicesRepository repository) : base(repository) { }        
+        public ServicesController(IRepository<Service> repository) : base(repository)
+        {
+        }
     }
 }

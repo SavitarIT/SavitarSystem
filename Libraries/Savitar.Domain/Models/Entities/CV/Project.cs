@@ -7,8 +7,14 @@ namespace Savitar.Domain.Models.Entities.CV
     {
         public Project() {}
 
-        public Project(string name)
+        public Project(int id)
         {
+            Id = id;
+        }
+
+        public Project(int id, string name)
+        {
+            Id = id;
             Name = name;
         }
 
@@ -17,7 +23,7 @@ namespace Savitar.Domain.Models.Entities.CV
 
         [Required, StringLength(200)]        
         public string Name { get; set; }
-        [StringLength(1000)]
+        [StringLength(4000)]
         public string Description { get; set; }
         [StringLength(200)]
         public string Url { get; set; }

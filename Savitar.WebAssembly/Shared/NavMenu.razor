@@ -19,6 +19,10 @@
 <MudNavMenu>    
     <MudNavLink Href="/services">Services</MudNavLink>
     <MudNavLink Href="/portfolio">Portfolio</MudNavLink>
+    @if (EnvironmentInfo.IsDebug())
+    {
+        <MudNavLink Href="/skillsmatrix">Skills Matrix</MudNavLink>
+    }
     <MudDivider DividerType="DividerType.FullWidth" />
     <MudNavLink Href="/contact">Contact</MudNavLink>
     <MudDivider DividerType="DividerType.FullWidth" />

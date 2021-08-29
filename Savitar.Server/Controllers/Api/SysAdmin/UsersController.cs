@@ -8,16 +8,17 @@ using Microsoft.EntityFrameworkCore;
 using Savitar.Domain.Models.Dtos;
 using Savitar.Domain.Models.Entities;
 using Savitar.Domain.Models.Requests;
+using Savitar.Infrastructure.Repository.Shared;
 using Savitar.Web.Server.Controllers.api.Base;
 
 namespace Savitar.Web.Server.Controllers.Api.SysAdmin
 {
     [Route("api/sysadmin/[controller]")]
-    public class UsersController : BaseApiController<UsersController>
+    public class UsersController : BaseApiEntityController<ApplicationUser, UsersController>
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public UsersController(UserManager<ApplicationUser> userManager)
+        public UsersController(UserManager<ApplicationUser> userManager, IRepository<ApplicationUser> repository) : base(repository)
         {
             _userManager = userManager;
         }

@@ -6,15 +6,14 @@ using Savitar.Infrastructure.Repository.Shared;
 
 namespace Savitar.Web.Server.Controllers.api.Base
 {
-    public abstract class BaseApiEntityController<TEntity, TRepository, TController> : BaseApiController<TController>
+    public abstract class BaseApiEntityController<TEntity, TController> : BaseApiController<TController>
         where TEntity : class, IEntity
-        where TRepository : IRepository<TEntity>
     {
-        protected readonly TRepository _repository;
+        protected IRepository<TEntity> Repository { get; }
 
-        protected BaseApiEntityController(TRepository repository)
+        protected BaseApiEntityController(IRepository<TEntity> repository)
         {
-            _repository = repository;
+            Repository = repository;
 }
 
         protected virtual IEnumerable<TEntity> ConfigureGetAll(IEnumerable<TEntity> data)
@@ -27,7 +26,7 @@ namespace Savitar.Web.Server.Controllers.api.Base
         [ResponseCache(NoStore = false, Duration = 120, Location = ResponseCacheLocation.Any)]
         public virtual async Task<ActionResult<IEnumerable<TEntity>>> Get()
         {
-            var data = await _repository.GetAllAsync();
+            var data = await Repository.GetAllAsync();
             ConfigureGetAll(data);
             return Ok(data);
         }
@@ -35,7 +34,7 @@ namespace Savitar.Web.Server.Controllers.api.Base
         [HttpGet("{id}")]
         public async Task<ActionResult<TEntity>> Get(int id)
         {
-            var movie = Ok(await _repository.GetAsync(id));
+            var movie = Ok(await Repository.GetAsync(id));
             if (movie == null)
                 return NotFound();
 
@@ -49,7 +48,7 @@ namespace Savitar.Web.Server.Controllers.api.Base
             if (id != entity.Id)
                 return BadRequest();
 
-            await _repository.UpdateAsync(entity);
+            await Repository.UpdateAsync(entity);
             return NoContent();
         }
 
@@ -57,7 +56,7 @@ namespace Savitar.Web.Server.Controllers.api.Base
 [HttpPost]
         public async Task<ActionResult<TEntity>> Post(TEntity entity)
         {
-            await _repository.AddAsync(entity);
+            await Repository.AddAsync(entity);
             return CreatedAtAction("Get", new { id = entity.Id }, entity);
         }
 
@@ -65,7 +64,7 @@ namespace Savitar.Web.Server.Controllers.api.Base
 [HttpDelete("{id}")]
         public async Task<ActionResult<TEntity>> Delete(int id)
         {
-            var movie = await _repository.DeleteAsync(id);
+            var movie = await Repository.DeleteAsync(id);
             if (movie == null)
                 return NotFound();
 

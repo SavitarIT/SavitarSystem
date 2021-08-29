@@ -6,8 +6,10 @@ using Savitar.Web.Server.Controllers.api.Base;
 namespace Savitar.Web.Server.Controllers.api
 {
     [AllowAnonymous]
-    public class PortfolioController : BaseApiEntityController<Project, IPortfolioRepository, PortfolioController>
+    public class PortfolioController : BaseApiEntityController<Project, PortfolioController>
     {
-        public PortfolioController(IPortfolioRepository repository) : base(repository) { }
+        public PortfolioController(IRepository<Project> repository) : base(repository)
+        {
+        }
     }
 }

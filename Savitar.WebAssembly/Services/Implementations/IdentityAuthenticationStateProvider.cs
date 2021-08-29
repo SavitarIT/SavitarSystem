@@ -23,12 +23,14 @@ namespace Savitar.Web.Client.Services.Implementations
         public async Task Login(LoginParameters loginParameters)
         {
             await _authorizeApi.Login(loginParameters);
+            
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
 
         public async Task Register(RegisterParameters registerParameters)
         {
             await _authorizeApi.Register(registerParameters);
+            
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
 
@@ -36,12 +38,15 @@ namespace Savitar.Web.Client.Services.Implementations
         {
             await _authorizeApi.Logout();
             _userInfoCache = null;
+
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
 
         private async Task<UserInfo> GetUserInfo()
         {
-            if (_userInfoCache != null && _userInfoCache.IsAuthenticated) return _userInfoCache;
+            if (_userInfoCache != null && _userInfoCache.IsAuthenticated) 
+                return _userInfoCache;
+            
             _userInfoCache = await _authorizeApi.GetUserInfo();
             return _userInfoCache;
         }
@@ -60,7 +65,7 @@ namespace Savitar.Web.Client.Services.Implementations
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine("Request failed:" + ex.ToString());
+                Console.WriteLine($"Request failed: {ex}");
             }
 
             return new AuthenticationState(new ClaimsPrincipal(identity));

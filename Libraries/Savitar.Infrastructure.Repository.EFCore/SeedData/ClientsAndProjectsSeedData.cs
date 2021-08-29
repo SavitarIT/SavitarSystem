@@ -1,39 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.EFCore.SeedData
 {
     public static class ClientsAndProjectsSeedData
     {
+        static readonly int clientId = 1;
+        private static int projectId = 1;
+
         private static readonly IEnumerable<Client> Clients = new List<Client>
         {
-            new Client("Savitar IT Solutions")
+            new Client(clientId++, "Savitar IT Solutions")
             {
                 Projects = new List<Project>
                 {
-                    new Project("# Savitar WebAssembly and Server : This website :)")
+                    new Project(projectId++, "# Savitar WebAssembly and Server : This website :)")
                     {
                         Description = @"Wanting to learn the new Microsoft Blazor technology, I decided to build this site using the technology to gain some needed experience.<br/><br/>
                         The aim is to introduce different concepts over time, add tools, and just generarlly showcase what Blazor is capable of, and what I can do with it.",                       
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNet5, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.BlazorWebAssembly, ProjectTechnologiesSeedData.MudBlazor, ProjectTechnologiesSeedData.SQLServer, ProjectTechnologiesSeedData.WebAPI }
                     },
-                    new Project("dBit : MWeb Payment Module")
+                    new Project(projectId++, "dBit : MWeb Payment Module")
                     {
                         Description = "The company already had a web application built off DotNetNuke. I simply built them a DNN module that facilitated online payments.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetCore, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Absolute Systems")
+                    new Project(projectId++, "Absolute Systems")
                     {
                         Description = @"Application written to enable the setting up, tracking and cash reconciliation of Nedbank ATM canisters around South Africa.
 I wrote the web application for the system that enabled users to setup the canisters, track their locations, monitor the status and reconcile cash-up once the canisters arrived at the cash centre.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer, ProjectTechnologiesSeedData.WebServices }
                     },
-                    new Project("Adcheck Contractor")
+                    new Project(projectId++, "Adcheck Contractor")
                     {
                         Description = @"Contracted to Adcheck for a number of projects that I am unable to elaborate on due to an NDA in effect",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Artemis Red Robot")
+                    new Project(projectId++, "Artemis Red Robot")
                     {
                         Description = @"<ul>
     <li>Traffic violation system installed on freeways and at intersections, and any other deemed to be an area speed or red robot violations are committed.</li>
@@ -48,7 +53,7 @@ I wrote the web application for the system that enabled users to setup the canis
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.Delphi, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Artemis Mobile Edition")
+                    new Project(projectId++, "Artemis Mobile Edition")
                     {
                         Description = @"<ul>
     <li>Similar application to Artemis Red Robot, but this version streams feed from a video camera and freezes the image when a violation is recorded. The system is also a mobile system. The PC is embedded in a hardened plastic suitcase and powered off a 12v battery.</li>
@@ -57,7 +62,7 @@ I wrote the web application for the system that enabled users to setup the canis
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.Delphi, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Athletics South Africa")
+                    new Project(projectId++, "Athletics South Africa")
                     {
                         Description = @"Company web application for advertising athletic events, handling athlete profiles, athlete event registration and displaying event results.
 
@@ -67,17 +72,17 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
 
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualBasic, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer, ProjectTechnologiesSeedData.Excel }
                     },
-                    new Project("Brilliant Accounting - Point of Sale")
+                    new Project(projectId++, "Brilliant Accounting - Point of Sale")
                     {
                         Description = @"Build the Point of Sale module that is integrated in the Brilliant Account package.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.Delphi, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Canoe Kayak World")
+                    new Project(projectId++, "Canoe Kayak World")
                     {
                         Description = "Canoe Kayak World required a website to display products sold in store and to advertise events organized.",                        
                         TechStack = new List<ProjectTechnology>{ ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("CheckMyTicket")
+                    new Project(projectId++, "CheckMyTicket")
                     {
                         Description = @"<ul>
     <li>Web application for monitoring winning lotto numbers and notifies end users of winning number combinations.</li>
@@ -86,7 +91,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("CV Magic Worldwide")
+                    new Project(projectId++, "CV Magic Worldwide")
                     {
                         Description = @"<ul>
                             <li>Web application catering to both the employer and employee. The system ran very much in the same way PNet does but with some unique ideas provided by the client. This system was also targeted initially at the Nigerian market with the aim of going world wide at a later date.</li>
@@ -96,12 +101,12 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
                         </ul>",                        
                         TechStack = new List<ProjectTechnology>{ ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Dawn Wing")
+                    new Project(projectId++, "Dawn Wing")
                     {
                         Description = @"Dawn wing reached a point where their in-house software had too many problems for the software to be usable. I was contracted to assist them with ironing out the problems and getting the software to a stable position again.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.VisualBasicNet }
                     },
-                    new Project("Ferdinandplan")
+                    new Project(projectId++, "Ferdinandplan")
                     {
                         Description = @"<ul>
     <li>Winforms application to handle insurance contracts sold to owners of exotic cars like Ferrari, Lamborghini, etc...</li>
@@ -110,7 +115,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Franchise Management System")
+                    new Project(projectId++, "Franchise Management System")
                     {
                         Description = @"This was a system owned / maintained by Savitar IT Solutions for about 8 years, and in use in the hospitality industry.
 <ul>
@@ -121,17 +126,17 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
 </ul>",                        
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Hygeria")
+                    new Project(projectId++, "Hygeria")
                     {
                         Description = @"Web application to display the companies profile and related products.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Incredible Connection Marquee")
+                    new Project(projectId++, "Incredible Connection Marquee")
                     {
                         Description = @"Simple user control that plugged into Incredible Connection's existing intranet that would scroll data by branch. Data was supplied via XML.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Media Magic")
+                    new Project(projectId++, "Media Magic")
                     {
                         Description = @"<ul>
     <li>Winforms application for cataloging and provide lookup/search functionality of various media.</li>
@@ -141,22 +146,22 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.Delphi, ProjectTechnologiesSeedData.MSAccess }
                     },
-                    new Project("Mondi Recyling RMS")
+                    new Project(projectId++, "Mondi Recyling RMS")
                     {
                         Description = @"Basic system to handle the management of recycled paper and exporting data to JD Edwards.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("MWeb Business")
+                    new Project(projectId++, "MWeb Business")
                     {
                         Description  = @"MWeb Business outsourced a number of web applications to us to do on their behalf. Unable to disclose further information due to an NDA, but a noteworthy entry anyway.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Pacify")
+                    new Project(projectId++, "Pacify")
                     {
                         Description = @"Web application to display companies profile and products available",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Project Watch")
+                    new Project(projectId++, "Project Watch")
                     {
                         Description = @"<ul>
     <li>Web application for handling timesheets and time invoicing.</li>
@@ -165,22 +170,22 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("PSCBC")
+                    new Project(projectId++, "PSCBC")
                     {
                         Description = @"Converted the PSCBC web application from .NET 1.1 to .NET 3.5, updated SQL Server, and migrated data.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("RoadAngle")
+                    new Project(projectId++, "RoadAngle")
                     {
                         Description = @"Web application to handle product information and warranty returns for the RoadAngle GPS product.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Rockwatch.NET")
+                    new Project(projectId++, "Rockwatch.NET")
                     {
                         Description = "Application for importing and analysing data fed into the system via XML files, to assist them in determining the structural integrity of the panel's worked in by the miners in the mine. NDA prevents further information.",
                         TechStack = new List<ProjectTechnology>{ ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Roto-Platics")
+                    new Project(projectId++, "Roto-Platics")
                     {
                         Description = @"<ul>
     <li>Winforms application to assist in the manufacturing of plastic materials at Roto-Plastics.</li>
@@ -188,7 +193,7 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
 </ul>",
                         TechStack = new List<ProjectTechnology>{ ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Savitar RC")
+                    new Project(projectId++, "Savitar RC")
                     {
                         Description = @"Web application for handling the distribution of radio controlled helicopters and accessories.
 <ul>
@@ -197,17 +202,17 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Signal Systems")
+                    new Project(projectId++, "Signal Systems")
                     {
                         Description = @"Web application to display company information and available products",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp }
                     },
-                    new Project("Signature Placements")
+                    new Project(projectId++, "Signature Placements")
                     {
                         Description = "Simple web application advertising the companies services",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp }
                     },
-                    new Project("SmartAd")
+                    new Project(projectId++, "SmartAd")
                     {
                         Description = @"<ul>
     <li>Windows application for the SABC marketing department. The application handled the cataloging and retrieval of adverts that were recorded for use on the various radio stations.</li>
@@ -215,17 +220,17 @@ Savitar IT was also responsible for the hosting and maintenance of this website 
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.CPP }
                     },
-                    new Project("Videotown")
+                    new Project(projectId++, "Videotown")
                     {
                         Description = "eCommerce web application for advertising, leasing and selling movies and video games.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("Winace Frontend")
+                    new Project(projectId++, "Winace Frontend")
                     {
                         Description = @"This application was written back in the Windows For Workgroups days as a frontend to the command line only tool, WinAce. It offered a graphical user interface to the end user for configuring archive settings, storage location and encryption mechanism. Data was then fed via the cmd line to Winace to do the actual work.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.CPP }
                     },
-                    new Project("Winamp Monitor")
+                    new Project(projectId++, "Winamp Monitor")
                     {
                         Description = @"<ul>
     <li>Winamp 2.x plugin</li>
@@ -234,7 +239,7 @@ This was released free to the community and assisted me with further Winamp deve
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.Delphi }
                     },
-                    new Project("Winamp Ratings")
+                    new Project(projectId++, "Winamp Ratings")
                     {
                         Description = @"<ul>
     <li>Winamp 2.x plugin</li>
@@ -244,19 +249,19 @@ settings by the end user.</li>
 </ul>",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.Delphi, ProjectTechnologiesSeedData.MSAccess }
                     },
-                    new Project("Xheli")
+                    new Project(projectId++, "Xheli")
                     {
                         Description = "eCommerce web application for radio controlled helicopters and accessories.",
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     }
                 }
             },
-            new Client("Aberdare Cables")
+            new Client(clientId++, "Aberdare Cables")
             {
                 Url = "https://www.aberdare.co.za",
                 Projects = new List<Project>
                 {
-                    new Project("AS400ToIntranet")
+                    new Project(projectId++, "AS400ToIntranet")
                     {
                         Description = @"Management required production information from the factory floor. 
 The IT Manager wanted a system coded in VB, but the order of the required software was taking time, so I made a plan using Microsoft Excel (VBA) to extract the information required from the AS400, generate graphs and tables, and dump it on the companies LAN.
@@ -269,12 +274,12 @@ Being the first PC developer in the company, I was also responsible for assistin
                     }
                 }
             },
-            new Client("Accutrak Pty (Ltd)")
+            new Client(clientId++, "Accutrak Pty (Ltd)")
             {
                 Url = "https://www.accutrak.co.za",
                 Projects = new List<Project>
                 {
-                    new Project
+                    new Project(projectId++)
                     {
                         Name = "Smartrail",
                         Url = "https://www.accutrak.co.za/our-products-2/smartrail",
@@ -286,7 +291,7 @@ When this project started in 2005, my client only had installation files for the
                         Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.LeadDevResponsibility, ResponsibilitiesSeedData.MentorResponsibility },
                         TechStack        = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer, ProjectTechnologiesSeedData.Automapper, ProjectTechnologiesSeedData.StructureMap, ProjectTechnologiesSeedData.Postman }
                     },
-                    new Project
+                    new Project(projectId++)
                     {
                         Name = "Minegaze",
                         Url = "https://www.accutrak.co.za/our-products-2/minegaze/",
@@ -294,7 +299,7 @@ When this project started in 2005, my client only had installation files for the
                         Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.LeadDevResponsibility, ResponsibilitiesSeedData.MentorResponsibility },
                         TechStack        = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer, ProjectTechnologiesSeedData.Automapper, ProjectTechnologiesSeedData.StructureMap, ProjectTechnologiesSeedData.Postman }
                     },
-                    new Project
+                    new Project(projectId++)
                     {
                         Name = "Accuchip",
                         Url = "https://www.accutrak.co.za/our-products-2/accuchip/",
@@ -302,7 +307,7 @@ When this project started in 2005, my client only had installation files for the
                         Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.LeadDevResponsibility, ResponsibilitiesSeedData.MentorResponsibility },
                         TechStack        = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer, ProjectTechnologiesSeedData.Automapper, ProjectTechnologiesSeedData.StructureMap, ProjectTechnologiesSeedData.Postman }
                     },
-                    new Project
+                    new Project(projectId++)
                     {
                         Name = "Trucktrak",
                         Url = "https://www.accutrak.co.za/our-products-2/outset/",
@@ -313,11 +318,11 @@ When this project started in 2005, my client only had installation files for the
 
                 }
             },
-            new Client("Cosoft")
+            new Client(clientId++, "Cosoft")
             {
                 Projects = new List<Project>
                 {
-                    new Project("Aura")
+                    new Project(projectId++, "Aura")
                     {
                         Description = @"<ul>
                             <li>Point Of Sale solution serving the hospitality industry. In use by Steers Holdings (Steers, Debonairs, etc..), Fishaways, Something Fishy, Hotdog Café, Scooters, and more.</li>
@@ -330,11 +335,11 @@ When this project started in 2005, my client only had installation files for the
                     }
                 }
             },
-            new Client("Smartec Technologies")
+            new Client(clientId++, "Smartec Technologies")
             {
                 Projects = new List<Project>
                 {
-                    new Project("Top-It-Up")
+                    new Project(projectId++, "Top-It-Up")
                     {
                         Description = @"This is a pre-paid airtime vending system.                            
                             <ul>
@@ -349,7 +354,7 @@ When this project started in 2005, my client only had installation files for the
                         Responsibilities = new List<ProjectResponsibility> { ResponsibilitiesSeedData.SeniorDevResponsibility},
                         TechStack = new List<ProjectTechnology> { ProjectTechnologiesSeedData.VisualStudio, ProjectTechnologiesSeedData.DotNetFramework, ProjectTechnologiesSeedData.CSharp, ProjectTechnologiesSeedData.SQLServer }
                     },
-                    new Project("CellC Distributor / Vendor Management System")
+                    new Project(projectId++, "CellC Distributor / Vendor Management System")
                     {
                         Description = @"<ul>
     <li>System to handle the management of starter packs sold to distributors, then to vendors - and generated commission.</li>
@@ -363,8 +368,34 @@ When this project started in 2005, my client only had installation files for the
                 }
             }
         };
-        public static IEnumerable<Client> GetAll()
+
+        private static void SetClientIds()
         {
+            var id = 1;
+
+            foreach (var client in Clients)
+            {
+                client.Id = id++;
+
+                foreach (var project in client.Projects)
+                    project.Client = client;
+            }
+        }
+
+        public static IEnumerable<Project> GetProjects()
+        {
+            var projects = GetClients()
+                .SelectMany(x => x.Projects
+                    .Select(project => project))
+                .ToList();
+
+            return projects;
+        }
+
+        public static IEnumerable<Client> GetClients()
+        {
+            SetClientIds();
+
             return Clients;
         }
     }

@@ -7,9 +7,11 @@ using Savitar.Web.Server.Controllers.api.Base;
 namespace Savitar.Web.Server.Controllers.api
 {
     [AllowAnonymous]
-    public class SkillsMatrixController : BaseApiEntityController<ProjectTechnology, IProjectTechnologiesRepository, SkillsMatrixController>
+    public class SkillsMatrixController : BaseApiEntityController<ProjectTechnology, SkillsMatrixController>
     {
-        public SkillsMatrixController(IProjectTechnologiesRepository repository) : base(repository) { }
+        public SkillsMatrixController(IRepository<ProjectTechnology> repository) : base(repository)
+        {
+        }
 
         protected override IEnumerable<ProjectTechnology> ConfigureGetAll(IEnumerable<ProjectTechnology> data)
         {
@@ -20,6 +22,6 @@ namespace Savitar.Web.Server.Controllers.api
             }
 
             return data;
-        }        
+        }
     }    
 }

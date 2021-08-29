@@ -17,19 +17,30 @@ namespace Savitar.Infrastructure.Repository.EFCore
         }
 
         public DbSet<Service> Services { get; set; }
+        public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectTechnologyCategory> ProjectTechnologyCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfiguration(new ServiceTypeConfiguration()); ;
+            builder.ApplyConfiguration(new ServiceTypeConfiguration());
+
             builder.ApplyConfiguration(new ProjectTechnologyCategoryTypeConfiguration());
             builder.ApplyConfiguration(new ProjectTechnologyTypeConfiguration());
+
+            builder.ApplyConfiguration(new ClientTypeConfiguration());
+            builder.ApplyConfiguration(new ProjectTypeConfiguration());
+            
 
             var sysAdminUser = SeedUsers(builder);
             var sysAdminRole = SeedRoles(builder);
             SeedUserRoles(builder, sysAdminUser, sysAdminRole);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         private static ApplicationUser SeedUsers(ModelBuilder builder)

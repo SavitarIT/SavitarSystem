@@ -16,7 +16,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.TypeConfigurations
             builder.HasOne(x => x.Client)
                 .WithMany(x => x.Projects);
 
-            builder.HasMany(x => x.TechStack)
+            builder.HasMany(x => x.DevelopmentTechnologies)
                 .WithMany(x => x.Projects);
 
             var seedData = SeedData.ClientsAndProjectsSeedData.GetProjects()

@@ -22,7 +22,7 @@
                         </MudCardHeader>
 
                         <MudCardContent Class="pa=0">
-                            <MudTable Elevation="25" Outlined="true" Hover="true" Breakpoint="Breakpoint.MdAndDown" Items="@GetProjectTechnologies(categoryName).OrderBy(x => x.Category.Name).ThenByDescending(x => x.LastUse ?? DateTime.Now.Date).ThenByDescending(x => x.Proficiency)">
+                            <MudTable Elevation="25" Outlined="true" Hover="true" Breakpoint="Breakpoint.MdAndDown" Items="@GetProjectTechnologies(categoryName).OrderBy(x => x.DevelopmentTechnologyCategory.Name).ThenByDescending(x => x.LastUse ?? DateTime.Now.Date).ThenByDescending(x => x.Proficiency)">
                                 <HeaderContent>
                                     <MudTh><b>Skill</b></MudTh>
                                     <MudTh><b>Last Use</b></MudTh>
@@ -63,30 +63,30 @@
 
 
     @code {
-        private ProjectTechnology[] _technologies;    
+        private DevelopmentTechnology[] _technologies;    
 
         protected async Task OnInitData(BasePageServices basePageServices)
         {
             basePageServices.DisplayMessage("Loading up my tech stack");
-            _technologies = await Http.GetFromJsonAsync<ProjectTechnology[]>("api/SkillsMatrix");
+            _technologies = await Http.GetFromJsonAsync<DevelopmentTechnology[]>("api/SkillsMatrix");
         }
 
         protected IList<string> GetCategoryNames()
         {
             return _technologies                
-                .Select(x => x.Category.Name)
+                .Select(x => x.DevelopmentTechnologyCategory.Name)
                 .Distinct()
                 .ToList();
         }
 
-        protected IList<ProjectTechnology> GetProjectTechnologies(string categoryName)
+        protected IList<DevelopmentTechnology> GetProjectTechnologies(string categoryName)
         {
             return _technologies
-                .Where(x => x.Category.Name == categoryName)
+                .Where(x => x.DevelopmentTechnologyCategory.Name == categoryName)
                 .ToList();
         }
 
-        protected string GetLastUseText(ProjectTechnology technology)
+        protected string GetLastUseText(DevelopmentTechnology technology)
         {
             if (!technology.LastUse.HasValue)
                 return "Current";
@@ -114,7 +114,7 @@
             return "Long long ago...";
         }
 
-        protected double? GetYears(ProjectTechnology technology)
+        protected double? GetYears(DevelopmentTechnology technology)
         {
             var lastUsed = DateTime.Now.Date;
             if (technology.LastUse.HasValue)

@@ -65,7 +65,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectTechnologyCategories",
+                name: "DevelopmentTechnologyCategories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -74,7 +74,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectTechnologyCategories", x => x.Id);
+                    table.PrimaryKey("PK_DevelopmentTechnologyCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -220,13 +220,13 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectTechnologies",
+                name: "DevelopmentTechnologies",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    DevelopmentTechnologyCategoryId = table.Column<int>(type: "int", nullable: false),
                     FirstUse = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUse = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UsageFrequency = table.Column<int>(type: "int", nullable: false),
@@ -234,55 +234,35 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectTechnologies", x => x.Id);
+                    table.PrimaryKey("PK_DevelopmentTechnologies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProjectTechnologies_ProjectTechnologyCategories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "ProjectTechnologyCategories",
+                        name: "FK_DevelopmentTechnologies_DevelopmentTechnologyCategories_DevelopmentTechnologyCategoryId",
+                        column: x => x.DevelopmentTechnologyCategoryId,
+                        principalTable: "DevelopmentTechnologyCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectResponsibility",
+                name: "DevelopmentTechnologyProject",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProjectId = table.Column<int>(type: "int", nullable: true)
+                    DevelopmentTechnologiesId = table.Column<int>(type: "int", nullable: false),
+                    ProjectsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectResponsibility", x => x.Id);
+                    table.PrimaryKey("PK_DevelopmentTechnologyProject", x => new { x.DevelopmentTechnologiesId, x.ProjectsId });
                     table.ForeignKey(
-                        name: "FK_ProjectResponsibility_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
+                        name: "FK_DevelopmentTechnologyProject_DevelopmentTechnologies_DevelopmentTechnologiesId",
+                        column: x => x.DevelopmentTechnologiesId,
+                        principalTable: "DevelopmentTechnologies",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProjectProjectTechnology",
-                columns: table => new
-                {
-                    ProjectsId = table.Column<int>(type: "int", nullable: false),
-                    TechStackId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectProjectTechnology", x => new { x.ProjectsId, x.TechStackId });
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectProjectTechnology_Projects_ProjectsId",
+                        name: "FK_DevelopmentTechnologyProject_Projects_ProjectsId",
                         column: x => x.ProjectsId,
                         principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProjectProjectTechnology_ProjectTechnologies_TechStackId",
-                        column: x => x.TechStackId,
-                        principalTable: "ProjectTechnologies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -300,7 +280,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "a2b60e25-7c35-49d8-b0e3-699bc7105c68", "msmit@savitar.co.za", true, "Michael", "Smit", false, null, "MSMIT@SAVITAR.CO.ZA", "MSMIT@SAVITAR.CO.ZA", "AQAAAAEAACcQAAAAELlRJPg1YEy0+C8v6Vg5XTUaW5fw45KazDhXM9ELEqEopJkCgHe9ebbeTIYvGgcqTQ==", null, false, "a3ad6ee5-123b-466a-aab3-b02bb52298d3", false, "msmit@savitar.co.za" });
+                values: new object[] { 1, 0, "bda824e0-409e-4e30-a82a-94a5b4b94d4c", "msmit@savitar.co.za", true, "Michael", "Smit", false, null, "MSMIT@SAVITAR.CO.ZA", "MSMIT@SAVITAR.CO.ZA", "AQAAAAEAACcQAAAAEGEX3z1L/wAyAigS1UFRDkfbScxssOzNrQ4afBPoDGj1XFHfSQSMSt/O4v1qVY+sPw==", null, false, "1d00bb6a-5fb3-4971-bd67-a6d4b7bf34ac", false, "msmit@savitar.co.za" });
 
             migrationBuilder.InsertData(
                 table: "Clients",
@@ -315,7 +295,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "ProjectTechnologyCategories",
+                table: "DevelopmentTechnologyCategories",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
@@ -344,8 +324,8 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 values: new object[] { 1, 1 });
 
             migrationBuilder.InsertData(
-                table: "ProjectTechnologies",
-                columns: new[] { "Id", "CategoryId", "FirstUse", "LastUse", "Name", "Proficiency", "UsageFrequency" },
+                table: "DevelopmentTechnologies",
+                columns: new[] { "Id", "DevelopmentTechnologyCategoryId", "FirstUse", "LastUse", "Name", "Proficiency", "UsageFrequency" },
                 values: new object[,]
                 {
                     { 3, 3, new DateTime(2014, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, ".NET Core", 2, 2 },
@@ -486,14 +466,24 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectProjectTechnology_TechStackId",
-                table: "ProjectProjectTechnology",
-                column: "TechStackId");
+                name: "IX_DevelopmentTechnologies_DevelopmentTechnologyCategoryId",
+                table: "DevelopmentTechnologies",
+                column: "DevelopmentTechnologyCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectResponsibility_ProjectId",
-                table: "ProjectResponsibility",
-                column: "ProjectId");
+                name: "IX_DevelopmentTechnologies_Name",
+                table: "DevelopmentTechnologies",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DevelopmentTechnologyCategories_Name",
+                table: "DevelopmentTechnologyCategories",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DevelopmentTechnologyProject_ProjectsId",
+                table: "DevelopmentTechnologyProject",
+                column: "ProjectsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_ClientId",
@@ -503,21 +493,6 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_Name",
                 table: "Projects",
-                column: "Name");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectTechnologies_CategoryId",
-                table: "ProjectTechnologies",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectTechnologies_Name",
-                table: "ProjectTechnologies",
-                column: "Name");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectTechnologyCategories_Name",
-                table: "ProjectTechnologyCategories",
                 column: "Name");
 
             migrationBuilder.CreateIndex(
@@ -544,10 +519,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "ProjectProjectTechnology");
-
-            migrationBuilder.DropTable(
-                name: "ProjectResponsibility");
+                name: "DevelopmentTechnologyProject");
 
             migrationBuilder.DropTable(
                 name: "Services");
@@ -559,13 +531,13 @@ namespace Savitar.Infrastructure.Repository.EFCore.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "ProjectTechnologies");
+                name: "DevelopmentTechnologies");
 
             migrationBuilder.DropTable(
                 name: "Projects");
 
             migrationBuilder.DropTable(
-                name: "ProjectTechnologyCategories");
+                name: "DevelopmentTechnologyCategories");
 
             migrationBuilder.DropTable(
                 name: "Clients");

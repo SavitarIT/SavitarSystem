@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Savitar.Domain.Models.Entities.CV
 {
-    public class ProjectTechnologyCategory : Entity
+    public class DevelopmentTechnologyCategory : Entity
     {
         [Required, StringLength(200)]
         public string Name { get; init; }
 
-        public List<ProjectTechnology> Technologies { get; set; }
+        public List<DevelopmentTechnology> Technologies { get; set; }
     }
 }

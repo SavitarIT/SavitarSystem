@@ -5,15 +5,15 @@ using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.EFCore.TypeConfigurations
 {
-    internal class ProjectTechnologyCategoryTypeConfiguration : IEntityTypeConfiguration<ProjectTechnologyCategory>
+    internal class DevelopmentTechnologyCategoryTypeConfiguration : IEntityTypeConfiguration<DevelopmentTechnologyCategory>
     {
-        public void Configure(EntityTypeBuilder<ProjectTechnologyCategory> builder)
+        public void Configure(EntityTypeBuilder<DevelopmentTechnologyCategory> builder)
         {
             builder
-                .ToTable("ProjectTechnologyCategories")
+                .ToTable("DevelopmentTechnologyCategories")
                 .HasIndex(x => x.Name);
 
-            var seedData = SeedData.ProjectTechnologyCategories.GetAll()
+            var seedData = SeedData.DevelopmentTechnologyCategories.GetAll()
                 .Select(x => new
                 {
                     x.Id,

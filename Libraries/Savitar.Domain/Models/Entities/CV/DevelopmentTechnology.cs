@@ -4,18 +4,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Savitar.Domain.Models.Entities.CV
 {
-    public class ProjectTechnology : Entity
+    public class DevelopmentTechnology : Entity
     {
-        protected ProjectTechnology()
+        protected DevelopmentTechnology()
         {
         }
 
-        public ProjectTechnology(int id, string name, DateTime firstUse, ProjectTechnologyCategory category, DateTime? lastUse = null, Frequencies usageFrequency = Frequencies.Daily, Proficiencies proficiency = Proficiencies.Intermediate)
+        public DevelopmentTechnology(int id, string name, DateTime firstUse, DevelopmentTechnologyCategory category, DateTime? lastUse = null, Frequencies usageFrequency = Frequencies.Daily, Proficiencies proficiency = Proficiencies.Intermediate)
         {
             Id = id;
             Name = name;
             FirstUse = firstUse;
-            Category = category;
+            DevelopmentTechnologyCategory = category;
             LastUse = lastUse;
             UsageFrequency = usageFrequency;
             Proficiency = proficiency;
@@ -24,8 +24,7 @@ namespace Savitar.Domain.Models.Entities.CV
         [Required, StringLength(200)]
         public string Name { get; set; }
         [Required]
-        public ProjectTechnologyCategory Category { get; set; }
-        public ICollection<Project> Projects { get; set; }
+        public DevelopmentTechnologyCategory DevelopmentTechnologyCategory { get; set; }
 
         [Required]
         public DateTime FirstUse { get; set; }
@@ -34,5 +33,6 @@ namespace Savitar.Domain.Models.Entities.CV
         public Frequencies UsageFrequency { get; set; }
         [Required]
         public Proficiencies Proficiency { get; set; }
+        public IEnumerable<Project> Projects { get; set; }
     }
 }

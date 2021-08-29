@@ -27,7 +27,6 @@ namespace Savitar.Domain.Models.Entities.CV
         public string Description { get; set; }
         [StringLength(200)]
         public string Url { get; set; }
-        public IEnumerable<ProjectResponsibility> Responsibilities { get; set; }
-        public IEnumerable<ProjectTechnology> TechStack { get; set; }
+        public IEnumerable<DevelopmentTechnology> DevelopmentTechnologies { get; set; }
     }
 }

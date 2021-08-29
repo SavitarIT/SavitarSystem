@@ -7,18 +7,18 @@ using Savitar.Web.Server.Controllers.api.Base;
 namespace Savitar.Web.Server.Controllers.api
 {
     [AllowAnonymous]
-    public class SkillsMatrixController : BaseApiEntityController<ProjectTechnology, SkillsMatrixController>
+    public class SkillsMatrixController : BaseApiEntityController<DevelopmentTechnology, SkillsMatrixController>
     {
-        public SkillsMatrixController(IRepository<ProjectTechnology> repository) : base(repository)
+        public SkillsMatrixController(IRepository<DevelopmentTechnology> repository) : base(repository)
         {
         }
 
-        protected override IEnumerable<ProjectTechnology> ConfigureGetAll(IEnumerable<ProjectTechnology> data)
+        protected override IEnumerable<DevelopmentTechnology> ConfigureGetAll(IEnumerable<DevelopmentTechnology> data)
         {
             foreach (var item in data)
             {
-                if (item.Category != null)
-                    item.Category.Technologies = null;
+                if (item.DevelopmentTechnologyCategory != null)
+                    item.DevelopmentTechnologyCategory.Technologies = null;
             }
 
             return data;

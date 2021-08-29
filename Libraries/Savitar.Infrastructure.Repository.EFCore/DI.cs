@@ -10,7 +10,7 @@ namespace Savitar.Infrastructure.Repository.EFCore
         public static void Execute(IServiceCollection services)
         {
             services.AddScoped<IRepository<Service>, Repository<Service>>();
-            services.AddScoped<IRepository<ProjectTechnology>, Repository<ProjectTechnology>>();
+            services.AddScoped<IRepository<DevelopmentTechnology>, Repository<DevelopmentTechnology>>();
             services.AddScoped<IRepository<Project>, Repository<Project>>();
             services.AddScoped<IRepository<ApplicationUser>, Repository<ApplicationUser>>();
         }

@@ -1,26 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Savitar.Domain.Models.Entities.CV;
 
 namespace Savitar.Infrastructure.Repository.EFCore.TypeConfigurations
 {
-    internal class ProjectTechnologyTypeConfiguration : IEntityTypeConfiguration<ProjectTechnology>
+    internal class DevelopmentTechnologyTypeConfiguration : IEntityTypeConfiguration<DevelopmentTechnology>
     {
-        public void Configure(EntityTypeBuilder<ProjectTechnology> builder)
+        public void Configure(EntityTypeBuilder<DevelopmentTechnology> builder)
         {
             builder
-                .ToTable("ProjectTechnologies")
+                .ToTable("DevelopmentTechnologies")
                 .HasIndex(x => x.Name);
 
 
-            builder.HasOne(x => x.Category)
+            builder.HasOne(x => x.DevelopmentTechnologyCategory)
                 .WithMany(x => x.Technologies)
                 .IsRequired();
 
             builder.HasMany(x => x.Projects)
-                .WithMany(x => x.TechStack);
+                .WithMany(x => x.DevelopmentTechnologies);
+                
 
             var seedData = SeedData.ProjectTechnologiesSeedData.GetAll()
                 .Select(x => new
@@ -31,7 +31,7 @@ namespace Savitar.Infrastructure.Repository.EFCore.TypeConfigurations
                     x.LastUse,
                     x.UsageFrequency,
                     x.Proficiency,
-                    CategoryId = x.Category.Id
+                    DevelopmentTechnologyCategoryId = x.DevelopmentTechnologyCategory.Id
                 });
 
             builder.HasData(seedData);

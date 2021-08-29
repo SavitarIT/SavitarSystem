@@ -48,12 +48,12 @@
                                 </MudText>
                             }*@
 
-                            @if (project.TechStack != null && project.TechStack.Any())
+                            @if (project.DevelopmentTechnologies != null && project.DevelopmentTechnologies.Any())
                             {
                                 <MudText Typo="Typo.h6">Tech Stack</MudText>
                                 <MudText Typo="Typo.body2" Class="pl-4">
                                     <ul class="list-group list-group-flush">
-                                        @foreach (var item in project.TechStack)
+                                        @foreach (var item in project.DevelopmentTechnologies)
                                         {
                                             <li>@item.Name</li>
                                         }

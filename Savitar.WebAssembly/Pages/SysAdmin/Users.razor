@@ -3,14 +3,14 @@
 @inject HttpClient _httpClient
 @inject IUsersApi _usersApi;
 
-<BasePage Title="Users">
+<BasePage Title="Users" OnInitData="OnIntData">
     <MudTable 
-            ServerData="@(new Func<TableState, Task<TableData<User>>>(ServerReload))"
+            Items="Items"
             Hover="true" Breakpoint="Breakpoint.Sm"
             CanCancelEdit="true" FixedHeader="true" FixedFooter="true"
-            Filter="new Func<User, bool>(FilterFunc)" @bind-SelectedItem="_selectedItem"
+            Filter="new Func<User, bool>(Search)"
             CommitEditTooltip="Save Changes" CancelEditTooltip="Cancel Changes" OnCommitEditClick="SaveChanges"
-            RowEditPreview="BackupItem" RowEditCancel="RestoreItem" RowEditCommit="SaveItem" @ref="_table" Loading="_loading">
+            RowEditPreview="BackupItem" RowEditCancel="RestoreItem" RowEditCommit="SaveItem">
         <ToolBarContent>
             <div>
                 <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">"Create"</MudButton>
@@ -54,64 +54,24 @@
     </MudTable>
 
     @code {
-        private MudTable<User> _table;
-        private int totalItems;
-        private IEnumerable<User> pagedData;
-        private bool _loading = false;
+        public IEnumerable<User> Items { get; private set; } = null;
+        private string _searchString = "";
+        private User _itemBeforeEdit;
 
-        private async Task<TableData<User>> ServerReload(TableState state)
+        private async Task OnIntData(BasePageServices obj)
         {
-            _loading = true;
-
-            var data = await _usersApi.GetAllUsersAsync();
-            
-            await Task.Delay(3000);
-            data = data.Where(element =>
-            {
-                if (string.IsNullOrWhiteSpace(_searchString))
-                    return true;
-                if (element.Email.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                if (element.FirstName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                if (element.LastName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                return false;
-            }).ToArray();
-
-            totalItems = data.Count();
-            switch (state.SortLabel)
-            {
-                case "Email":
-                    data = data.OrderByDirection(state.SortDirection, o => o.Email);
-                    break;
-                case "FirstName":
-                    data = data.OrderByDirection(state.SortDirection, o => o.FirstName);
-                    break;
-                case "LastName":
-                    data = data.OrderByDirection(state.SortDirection, o => o.LastName);
-                    break;
-            }
-
-            
-            pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
-            return new TableData<User>() {TotalItems = totalItems, Items = pagedData};
+            Items = await _usersApi.GetAllUsersAsync();
         }
 
-        private string _searchString = "";
-        private User _selectedItem = null;
-        private User _elementBeforeEdit;
-
-        private bool FilterFunc(User element) => FilterFunc(element, _searchString);
-        private bool FilterFunc(User element, string searchString)
+        private bool Search(User model)
         {
-            if (string.IsNullOrWhiteSpace(searchString))
+            if (string.IsNullOrWhiteSpace(_searchString))
                 return true;
-            if (element.Email.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            if (model.Email.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
-            if (element.FirstName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            if (model.FirstName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
-            if (element.LastName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            if (model.LastName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
             return false;
         }
@@ -119,34 +79,40 @@
         private void SaveItem(object element)
         {
             StateHasChanged();
-        }
-
-        private void BackupItem(object element)
-        {
-            _elementBeforeEdit = new User
-            {            
-                Email = ((User)element).Email,
-                FirstName = ((User)element).FirstName,
-                LastName = ((User)element).LastName
-            };
-            StateHasChanged();
-        }
-
-        private void RestoreItem(object element)
-        {
-            ((User)element).Email = _elementBeforeEdit.Email;
-            ((User)element).FirstName = _elementBeforeEdit.FirstName;
-            ((User)element).LastName = _elementBeforeEdit.LastName;
-            
-            StateHasChanged();
+            _snackbar.Add("SaveItem");
         }
 
         private void SaveChanges(MouseEventArgs args)
         {
             Console.WriteLine(args);
-           // @(() => _snackbar.Add("Commit Edit Handler Invoked"))
-            _snackbar.Add("Hell ye!");
+            _snackbar.Add("SaveChanges");
         }
 
+        private void BackupItem(object item)
+        {
+            if (item is not User dataItem)
+                return;
+
+            _itemBeforeEdit = new User
+            {            
+                Email = dataItem.Email,
+                FirstName = dataItem.FirstName,
+                LastName = dataItem.LastName
+            };
+            
+            StateHasChanged();
+        }
+
+        private void RestoreItem(object item)
+        {
+            if (item is not User dataItem)
+                return;
+
+            dataItem.Email = _itemBeforeEdit.Email;
+            dataItem.FirstName = _itemBeforeEdit.FirstName;
+            dataItem.LastName = _itemBeforeEdit.LastName;
+            
+            StateHasChanged();
+        }
     }
 </BasePage>

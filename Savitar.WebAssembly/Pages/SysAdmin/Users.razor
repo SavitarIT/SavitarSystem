@@ -3,63 +3,104 @@
 @inject HttpClient _httpClient
 @inject IUsersApi _usersApi;
 
-<BasePage Title="Users" OnInitData="OnInitDataAsync">
-    @if (_items == null)
-    {
-        <MudContainer Class="spinner" />
-    }
-    else
-    {
-        <MudTable Items="@_items" Hover="true" Breakpoint="Breakpoint.Sm" 
-                  CanCancelEdit="true" FixedHeader="true" FixedFooter="true" 
-                  Filter="new Func<User, bool>(FilterFunc)"  @bind-SelectedItem="_selectedItem"
-                  CommitEditTooltip="Commit Edit" OnCommitEditClick="@(() => _snackbar.Add("Commit Edit Handler Invoked"))"
-                  RowEditPreview="BackupItem" RowEditCancel="RestoreItem" RowEditCommit="SaveItem">
-            <ToolBarContent>
-                <MudText Typo="Typo.h6">User Listing</MudText>
-                <MudSpacer />
-                <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-            </ToolBarContent>
-            <HeaderContent>
-                <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x=>x.Email)"><b>Email</b></MudTableSortLabel></MudTh>
-                <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x=>x.FirstName)"><b>First Name</b></MudTableSortLabel></MudTh>
-                <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x=>x.LastName)"><b>Last Name</b></MudTableSortLabel></MudTh>
-            </HeaderContent>
-            <RowTemplate>
-                <MudTd DataLabel="Email">@context.Email</MudTd>
-                <MudTd DataLabel="First Name">@context.FirstName</MudTd>
-                <MudTd DataLabel="Last Name">@context.LastName</MudTd>
-            </RowTemplate>
-            <RowEditingTemplate>
-                <MudTd DataLabel="Email">@context.Email</MudTd>
-                <MudTd DataLabel="First Name">
-                    <MudTextField @bind-Value="@context.FirstName" Required />
-                </MudTd>
-                <MudTd DataLabel="Last Name">
-                    <MudTextField @bind-Value="@context.LastName" Required />
-                </MudTd>
-            </RowEditingTemplate>
-            <PagerContent>
-                <MudTablePager />
-            </PagerContent>
-            <ColGroup>
-                <col/>
-                <col style="width: 150px;"/>
-                <col style="width: 150px;"/>
-            </ColGroup>
-        </MudTable>
-    }
+<BasePage Title="Users">
+    <MudTable 
+            ServerData="@(new Func<TableState, Task<TableData<User>>>(ServerReload))"
+            Hover="true" Breakpoint="Breakpoint.Sm"
+            CanCancelEdit="true" FixedHeader="true" FixedFooter="true"
+            Filter="new Func<User, bool>(FilterFunc)" @bind-SelectedItem="_selectedItem"
+            CommitEditTooltip="Save Changes" CancelEditTooltip="Cancel Changes" OnCommitEditClick="SaveChanges"
+            RowEditPreview="BackupItem" RowEditCancel="RestoreItem" RowEditCommit="SaveItem" @ref="_table" Loading="_loading">
+        <ToolBarContent>
+            <div>
+                <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">"Create"</MudButton>
+                <MudButton DisableElevation Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Primary">"Reload"</MudButton>
+                    
+                <MudButton DisableElevation Variant="Variant.Filled" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">"Export"</MudButton>
+            </div>
+
+
+            @*<MudText Typo="Typo.h6">User Listing</MudText>
+            <MudSpacer/>
+            <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>*@
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x => x.Email)"><b>Email</b></MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x => x.FirstName)"><b>First Name</b></MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x => x.LastName)"><b>Last Name</b></MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Email">@context.Email</MudTd>
+            <MudTd DataLabel="First Name">@context.FirstName</MudTd>
+            <MudTd DataLabel="Last Name">@context.LastName</MudTd>
+        </RowTemplate>
+        <RowEditingTemplate>
+            <MudTd DataLabel="Email">@context.Email</MudTd>
+            <MudTd DataLabel="First Name">
+                <MudTextField @bind-Value="@context.FirstName" Required/>
+            </MudTd>
+            <MudTd DataLabel="Last Name">
+                <MudTextField @bind-Value="@context.LastName" Required/>
+            </MudTd>
+        </RowEditingTemplate>
+        <PagerContent>
+            <MudTablePager/>
+        </PagerContent>
+        <ColGroup>
+            <col/>
+            <col style="width: 150px;"/>
+            <col style="width: 150px;"/>
+        </ColGroup>
+    </MudTable>
 
     @code {
-        private IEnumerable<User> _items;
+        private MudTable<User> _table;
+        private int totalItems;
+        private IEnumerable<User> pagedData;
+        private bool _loading = false;
+
+        private async Task<TableData<User>> ServerReload(TableState state)
+        {
+            _loading = true;
+
+            var data = await _usersApi.GetAllUsersAsync();
+            
+            await Task.Delay(3000);
+            data = data.Where(element =>
+            {
+                if (string.IsNullOrWhiteSpace(_searchString))
+                    return true;
+                if (element.Email.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+                    return true;
+                if (element.FirstName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+                    return true;
+                if (element.LastName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+                    return true;
+                return false;
+            }).ToArray();
+
+            totalItems = data.Count();
+            switch (state.SortLabel)
+            {
+                case "Email":
+                    data = data.OrderByDirection(state.SortDirection, o => o.Email);
+                    break;
+                case "FirstName":
+                    data = data.OrderByDirection(state.SortDirection, o => o.FirstName);
+                    break;
+                case "LastName":
+                    data = data.OrderByDirection(state.SortDirection, o => o.LastName);
+                    break;
+            }
+
+            
+            pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+            return new TableData<User>() {TotalItems = totalItems, Items = pagedData};
+        }
+
         private string _searchString = "";
         private User _selectedItem = null;
         private User _elementBeforeEdit;
-
-        protected async Task OnInitDataAsync(BasePageServices basePageServices)
-        {
-            _items = await _usersApi.GetAllUsersAsync();
-        }
 
         private bool FilterFunc(User element) => FilterFunc(element, _searchString);
         private bool FilterFunc(User element, string searchString)
@@ -99,5 +140,13 @@
             
             StateHasChanged();
         }
+
+        private void SaveChanges(MouseEventArgs args)
+        {
+            Console.WriteLine(args);
+           // @(() => _snackbar.Add("Commit Edit Handler Invoked"))
+            _snackbar.Add("Hell ye!");
+        }
+
     }
 </BasePage>

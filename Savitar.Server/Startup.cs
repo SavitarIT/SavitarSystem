@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System;
 using Savitar.Domain.Models.Entities;
 using Savitar.Web.Server.Shared;
+using Savitar.Web.Server.Shared.Implementations;
+using Savitar.Web.Server.Shared.Interfaces;
 
 namespace Savitar.Web.Server
 {
@@ -86,8 +88,9 @@ namespace Savitar.Web.Server
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Savitar.Web.Server", Version = "v1" });
             });
 
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
-            services.AddSavitarServerServices();
             services.AddSavitarServices();
             
             var infuraApiKey = Configuration.GetSection("Infura")["APIKey"];

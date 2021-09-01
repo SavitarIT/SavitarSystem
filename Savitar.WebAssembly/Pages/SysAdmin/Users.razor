@@ -3,36 +3,57 @@
 @inject HttpClient _httpClient
 @inject IUsersApi _usersApi;
 
-<BasePage Title="Users" OnInitData="OnIntData">
-    <MudTable 
-            Items="Items"
-            Hover="true" Breakpoint="Breakpoint.Sm"
-            CanCancelEdit="true" FixedHeader="true" FixedFooter="true"
-            Filter="new Func<User, bool>(Search)"
-            CommitEditTooltip="Save Changes" CancelEditTooltip="Cancel Changes" OnCommitEditClick="SaveChanges"
-            RowEditPreview="BackupItem" RowEditCancel="RestoreItem" RowEditCommit="SaveItem">
+<BasePage Title="Users">
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">Add / Edit Customers</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudTextField @bind-Value="_selectedItem.Email" Label="Email" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+            <MudTextField @bind-Value="_selectedItem.FirstName" Label="First Name" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+            <MudTextField @bind-Value="_selectedItem.LastName" Label="Last Name" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+            <br />
+            <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="Save">Save Customer</MudButton>
+        </MudCardContent>
+    </MudCard>
+    <br />
+    <MudTable
+        ServerData="@(new Func<TableState, Task<TableData<User>>>(ServerReload))"
+        Filter="new Func<User, bool>(FilterFunc)" @bind-SelectedItem="_selectedItem"
+        @ref="_table" Loading="_loading"
+        Hover="true" Breakpoint="Breakpoint.Sm"
+        CanCancelEdit="true" FixedHeader="true" FixedFooter="true"
+        CommitEditTooltip="Save Changes" CancelEditTooltip="Cancel Changes" OnCommitEditClick="SaveChanges"
+        RowEditPreview="BackupItem" RowEditCancel="RestoreItem" RowEditCommit="SaveItem">
         <ToolBarContent>
             <div>
                 <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">"Create"</MudButton>
                 <MudButton DisableElevation Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Primary">"Reload"</MudButton>
-                    
+
                 <MudButton DisableElevation Variant="Variant.Filled" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">"Export"</MudButton>
             </div>
 
 
-            @*<MudText Typo="Typo.h6">User Listing</MudText>
-            <MudSpacer/>
-            <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>*@
+            @*<MudText Typo="Typo.h6">User Listing</MudText>*@
+            <MudToolBarSpacer/>
+            <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium"></MudTextField>
         </ToolBarContent>
         <HeaderContent>
             <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x => x.Email)"><b>Email</b></MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x => x.FirstName)"><b>First Name</b></MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<User, object>(x => x.LastName)"><b>Last Name</b></MudTableSortLabel></MudTh>
+            <MudTh>Actions</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Email">@context.Email</MudTd>
             <MudTd DataLabel="First Name">@context.FirstName</MudTd>
             <MudTd DataLabel="Last Name">@context.LastName</MudTd>
+            <MudTd DataLabel="">
+                <MudFab @onclick="@(() => Edit(@context.Id))" Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small"/>
+                <MudFab @onclick="@(() => Delete(@context.Id))" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small"/>
+            </MudTd>
         </RowTemplate>
         <RowEditingTemplate>
             <MudTd DataLabel="Email">@context.Email</MudTd>
@@ -54,38 +75,58 @@
     </MudTable>
 
     @code {
-        public IEnumerable<User> Items { get; private set; } = null;
-        private string _searchString = "";
-        private User _itemBeforeEdit;
+        private MudTable<User> _table;
+        private int _totalItems;
+        private IEnumerable<User> _pagedData;
+        private bool _loading;
 
-        private async Task OnIntData(BasePageServices obj)
+        private async Task<TableData<User>> ServerReload(TableState state)
         {
-            Items = await _usersApi.GetAllUsersAsync();
+            _loading = true;
+
+            var data = await _usersApi.GetAllUsersAsync();
+            if (data == null)
+                throw new Exception("No data returned in API call.");
+
+            if (!string.IsNullOrEmpty(_searchString))
+                data = data.Where(x => FilterFunc(x, _searchString));
+
+            _totalItems = data.Count();
+            data = state.SortLabel switch
+            {
+                "Email" => data.OrderByDirection(state.SortDirection, o => o.Email),
+                "FirstName" => data.OrderByDirection(state.SortDirection, o => o.FirstName),
+                "LastName" => data.OrderByDirection(state.SortDirection, o => o.LastName),
+                _ => data
+                };
+
+            _pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+
+            return new TableData<User> { TotalItems = _totalItems, Items = _pagedData };
         }
 
-        private bool Search(User model)
+        private string _searchString = "";
+        private User _selectedItem = new User();
+        private User _itemBeforeEdit;
+
+        private bool FilterFunc(User item) => FilterFunc(item, _searchString);
+        private bool FilterFunc(User item, string searchString)
         {
-            if (string.IsNullOrWhiteSpace(_searchString))
+            if (string.IsNullOrWhiteSpace(searchString))
                 return true;
-            if (model.Email.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            if (item.Email.Contains(searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
-            if (model.FirstName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            if (item.FirstName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
-            if (model.LastName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            if (item.LastName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
             return false;
         }
 
-        private void SaveItem(object element)
+        private void SaveItem(object item)
         {
             StateHasChanged();
             _snackbar.Add("SaveItem");
-        }
-
-        private void SaveChanges(MouseEventArgs args)
-        {
-            Console.WriteLine(args);
-            _snackbar.Add("SaveChanges");
         }
 
         private void BackupItem(object item)
@@ -94,12 +135,11 @@
                 return;
 
             _itemBeforeEdit = new User
-            {            
+            {
                 Email = dataItem.Email,
                 FirstName = dataItem.FirstName,
                 LastName = dataItem.LastName
             };
-            
             StateHasChanged();
         }
 
@@ -111,8 +151,39 @@
             dataItem.Email = _itemBeforeEdit.Email;
             dataItem.FirstName = _itemBeforeEdit.FirstName;
             dataItem.LastName = _itemBeforeEdit.LastName;
-            
+
             StateHasChanged();
         }
+
+        private void SaveChanges(MouseEventArgs args)
+        {
+            Console.WriteLine(args);
+        // @(() => _snackbar.Add("Commit Edit Handler Invoked"))
+            _snackbar.Add("SaveChanges");
+        }
+
+        private void Save()
+        {
+            //customerService.SaveCustomer(customer);
+            _selectedItem = new User();
+            _snackbar.Add("Item Saved.", Severity.Success);
+            //GetCustomers();
+        }
+
+        private void Edit(int id)
+        {
+            _selectedItem = _pagedData.FirstOrDefault(c => c.Id == id);
+            _snackbar.Add($"Edit {id}");
+        }
+
+        private void Delete(int id)
+        {
+        //customerService.DeleteCustomer(id);
+            _snackbar.Add("Item Deleted.", Severity.Success);
+        //GetCustomers();
+            StateHasChanged();
+        }
+
     }
+
 </BasePage>

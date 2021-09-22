@@ -38,18 +38,26 @@ namespace Savitar.Web.Server.Controllers.api.Base
             return Ok(await GetAllAsync());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<TEntity>> Get(int id)
         {
-            var movie = Ok(await Repository.GetAsync(id));
-            if (movie == null)
+            var item = Ok(await Repository.GetAsync(id));
+            if (item == null)
                 return NotFound();
 
-            return movie;
+            return item;
+        }
+
+        // POST: api/[controller]
+        [HttpPost]
+        public async Task<ActionResult<TEntity>> Post(TEntity entity)
+        {
+            await Repository.AddAsync(entity);
+            return CreatedAtAction("Get", new { id = entity.Id }, entity);
         }
 
         // PUT: api/[controller]/5
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> Put(int id, TEntity entity)
 {
             if (id != entity.Id)
@@ -59,16 +67,8 @@ namespace Savitar.Web.Server.Controllers.api.Base
             return NoContent();
         }
 
-// POST: api/[controller]
-[HttpPost]
-        public async Task<ActionResult<TEntity>> Post(TEntity entity)
-        {
-            await Repository.AddAsync(entity);
-            return CreatedAtAction("Get", new { id = entity.Id }, entity);
-        }
-
 // DELETE: api/[controller]/5
-[HttpDelete("{id}")]
+[HttpDelete("{id:int}")]
         public async Task<ActionResult<TEntity>> Delete(int id)
         {
             var movie = await Repository.DeleteAsync(id);

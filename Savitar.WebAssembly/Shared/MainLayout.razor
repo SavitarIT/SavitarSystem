@@ -29,7 +29,7 @@
         </AuthorizeView>
         
         <MudButton OnClick="@((e) => ToggleDarkLightMode())"><img src="/Images/SunMoon.png" title="Toggle Dark/Light Modes" width="36" height="36" /></MudButton>
-        <Contacts IsVertical="false" />        
+        @*<Contacts IsVertical="false" />*@
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu/>

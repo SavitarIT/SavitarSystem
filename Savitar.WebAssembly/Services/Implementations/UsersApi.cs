@@ -12,9 +12,19 @@ namespace Savitar.Web.Client.Services.Implementations
     {
         public UsersApi(HttpClient httpClient) : base(httpClient) { }
 
-        public Task SaveAsync(User user)
+        public async Task SaveAsync(User user)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage result;
+
+            if (user.Id <= 0)
+                result = await HttpClient.PostAsJsonAsync("api/sysadmin/users", user);
+            else
+                result = await HttpClient.PutAsJsonAsync($"api/sysadmin/users/{user.Id}", user);
+
+            if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                throw new Exception(await result.Content.ReadAsStringAsync());
+
+            result.EnsureSuccessStatusCode();
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()

@@ -79,6 +79,9 @@
         private int _totalItems;
         private IEnumerable<User> _pagedData;
         private bool _loading;
+        private string _searchString = "";
+        private User _selectedItem = new();
+        private User _itemBeforeEdit;
 
         private async Task<TableData<User>> ServerReload(TableState state)
         {
@@ -105,12 +108,8 @@
             return new TableData<User> { TotalItems = _totalItems, Items = _pagedData };
         }
 
-        private string _searchString = "";
-        private User _selectedItem = new User();
-        private User _itemBeforeEdit;
-
         private bool FilterFunc(User item) => FilterFunc(item, _searchString);
-        private bool FilterFunc(User item, string searchString)
+        private static bool FilterFunc(User item, string searchString)
         {
             if (string.IsNullOrWhiteSpace(searchString))
                 return true;
@@ -158,6 +157,7 @@
         private void SaveChanges(MouseEventArgs args)
         {
             Console.WriteLine(args);
+            _usersApi.SaveAsync(_selectedItem);
         // @(() => _snackbar.Add("Commit Edit Handler Invoked"))
             _snackbar.Add("SaveChanges");
         }

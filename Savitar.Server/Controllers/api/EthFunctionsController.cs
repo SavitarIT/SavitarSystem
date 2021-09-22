@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Savitar.WebAssembly.Blockchain.Ethereum.Services.Contracts;
 using System.Threading.Tasks;
@@ -25,12 +26,34 @@ namespace Savitar.Web.Server.Controllers.api
         [ResponseCache(NoStore = false, Duration = 10, Location = ResponseCacheLocation.Any)]
         public async Task<EthInfo> GetAll()
         {
-            var result = new EthInfo()
+            var result = new EthInfo();
+
+            try
             {
-                LatestBlockNumber = await EthereumService.GetLatestBlockNumberAsync(),
-                Balance = await EthereumService.GetBalanceAsync(),
-                NetworkVersion = await EthereumService.GetNetworkVersionAsync()
-            };
+                result.LatestBlockNumber = await EthereumService.GetLatestBlockNumberAsync();
+            }
+            catch (Exception ex)
+            {
+                var aaa = ex.Message;
+            }
+
+            try
+            {
+                result.Balance = await EthereumService.GetBalanceAsync();
+            }
+            catch (Exception ex)
+            {
+                var aaa = ex.Message;
+            }
+
+            try
+            {
+                result.NetworkVersion = await EthereumService.GetNetworkVersionAsync();
+            }
+            catch (Exception ex)
+            {
+                var aaa = ex.Message;
+            }
 
             return result;
         }                    

@@ -2,8 +2,8 @@
 {
     public record EthInfo
     {
-        public decimal LatestBlockNumber { get; init; }
-        public decimal Balance { get; init; }
-        public string NetworkVersion { get; init; }
+        public decimal LatestBlockNumber { get; set; }
+        public decimal Balance { get; set; }
+        public string NetworkVersion { get; set; }
     }
 }
